@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="ht">
 <head>
@@ -76,8 +74,6 @@
         input:focus, select:focus {
             border-color: #d97706;
         }
-        
-        /* Estil pou bouton pakèt djamon yo (Grid) */
         .packages-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -105,7 +101,6 @@
             color: white;
             border-color: #b45309;
         }
-
         .submit-btn {
             width: 100%;
             padding: 14px;
@@ -130,7 +125,6 @@
     <h2>PH Joolens Store 🎮</h2>
     <div class="subtitle">Free Fire Top-Up Otomatik & San Pwoblèm</div>
 
-    <!-- Bouton Enstale sou Telefòn -->
     <button id="installBtn" class="install-btn">📲 Mete App a sou ekran telefòn ou</button>
 
     <form id="orderForm">
@@ -141,7 +135,6 @@
 
         <div class="form-group">
             <label>Chwazi Pake Djamon:</label>
-            <!-- Bouton rapid pou pake yo -->
             <div class="packages-grid">
                 <div class="pkg-btn" onclick="selectPackage('110 Diamants', this)">110 💎</div>
                 <div class="pkg-btn" onclick="selectPackage('341 Diamants', this)">341 💎</div>
@@ -150,7 +143,6 @@
                 <div class="pkg-btn" onclick="selectPackage('Abonnement Mensuel', this)">Mwa</div>
                 <div class="pkg-btn" onclick="selectPackage('Booyah Pass', this)">Booyah</div>
             </div>
-            <!-- Input kache k ap kenbe chwa a -->
             <input type="text" id="package" placeholder="Oswa chwazi anwo a..." required readonly>
         </div>
 
@@ -174,12 +166,8 @@
 <script>
     function selectPackage(pkgName, element) {
         document.getElementById('package').value = pkgName;
-        
-        // Retire koulè aktif sou tout lòt bouton yo
         let buttons = document.querySelectorAll('.pkg-btn');
         buttons.forEach(btn => btn.classList.remove('active'));
-        
-        // Mete l sou klike a
         element.classList.add('active');
     }
 
@@ -197,7 +185,8 @@
         const myPhone = "50939055989"; 
         const text = `Bonjou PH Joolens Store, mwen fè yon kòmand:%0A- *ID Jouè:* ${id}%0A- *Pake:* ${pkg}%0A- *Metòd:* ${method}%0A- *Nimewo Peman:* ${phone}`;
 
-        window.open(`https://wa.me/${myPhone}?text=${text}`, '_blank');
+        // Itilize api.whatsapp.com pou asire w li ouvè chat la avèk ou kòm destinatè
+        window.open(`https://api.whatsapp.com/send?phone=${myPhone}&text=${text}`, '_blank');
     }
 
     let deferredPrompt;
@@ -220,6 +209,3 @@
 
 </body>
 </html>
-
-
-
