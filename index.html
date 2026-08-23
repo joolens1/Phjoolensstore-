@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="ht">
 <head>
@@ -7,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PH Joolens Store - Free Fire Top Up</title>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#6366f1">
+    <meta name="theme-color" content="#0f172a">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,16 +16,23 @@
             padding: 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
-            max-width: 450px;
+            max-width: 420px;
             width: 100%;
             background-color: #1e293b;
-            padding: 20px;
+            padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border: 1px solid #334155;
         }
-        h2 { text-align: center; color: #38bdf8; }
+        h2 { 
+            text-align: center; 
+            color: #38bdf8; 
+            margin-bottom: 20px;
+        }
         .install-btn {
             display: none;
             width: 100%;
@@ -36,20 +42,37 @@
             border: none;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 15px;
             cursor: pointer;
             margin-bottom: 20px;
+            transition: 0.2s;
         }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .install-btn:hover {
+            background-color: #16a34a;
+        }
+        .form-group { 
+            margin-bottom: 16px; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 6px; 
+            font-weight: bold; 
+            color: #e2e8f0;
+            font-size: 14px;
+        }
         input, select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border-radius: 6px;
             border: 1px solid #475569;
             background-color: #0f172a;
             color: white;
             box-sizing: border-box;
+            font-size: 14px;
+            outline: none;
+        }
+        input:focus, select:focus {
+            border-color: #38bdf8;
         }
         button.submit-btn {
             width: 100%;
@@ -61,8 +84,12 @@
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+            transition: 0.2s;
+            margin-top: 5px;
         }
-        button.submit-btn:hover { background-color: #0369a1; }
+        button.submit-btn:hover { 
+            background-color: #0369a1; 
+        }
     </style>
 </head>
 <body>
@@ -109,7 +136,6 @@
 </div>
 
 <script>
-    // Script pou voye kòmand lan sou WhatsApp
     function sendOrder() {
         const id = document.getElementById('playerId').value;
         const pkg = document.getElementById('package').value;
@@ -121,13 +147,12 @@
             return;
         }
 
-        const myPhone = "50939055989"; // Nimewo pa w
+        const myPhone = "50939055989"; 
         const text = `Bonjou PH Joolens Store, mwen fè yon kòmand:%0A- *ID Jouè:* ${id}%0A- *Pake:* ${pkg}%0A- *Metòd:* ${method}%0A- *Nimewo Peman:* ${phone}`;
 
         window.open(`https://wa.me/${myPhone}?text=${text}`, '_blank');
     }
 
-    // Script pou Aplikasyon sou telefòn (PWA)
     let deferredPrompt;
     const installBtn = document.getElementById('installBtn');
 
@@ -148,4 +173,5 @@
 
 </body>
 </html>
+
 
