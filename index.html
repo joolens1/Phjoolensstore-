@@ -1,30 +1,151 @@
-<!-- Bouton pou enstalasyon an -->
-<button id="installBtn" style="display: none; background: #22c55e; color: white; padding: 10px 15px; border: none; border-radius: 8px; font-weight: bold; margin: 10px auto; cursor: pointer;">
-  📲 Mete App a sou telefòn ou
-</button>
+
+
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PH Joolens Store - Free Fire Top Up</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 450px;
+            width: 100%;
+            background-color: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        h2 { text-align: center; color: #38bdf8; }
+        .install-btn {
+            display: none;
+            width: 100%;
+            background-color: #22c55e;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background-color: #0f172a;
+            color: white;
+            box-sizing: border-box;
+        }
+        button.submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #0284c7;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button.submit-btn:hover { background-color: #0369a1; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>PH Joolens Store 🎮</h2>
+
+    <!-- Bouton Enstale sou Telefòn -->
+    <button id="installBtn" class="install-btn">📲 Mete App a sou telefòn ou</button>
+
+    <form id="orderForm">
+        <div class="form-group">
+            <label for="playerId">ID Jouè Free Fire:</label>
+            <input type="number" id="playerId" placeholder="Eg: 123456789" required>
+        </div>
+
+        <div class="form-group">
+            <label for="package">Chwazi Pake Djamon:</label>
+            <select id="package" required>
+                <option value="">-- Chwazi yon pake --</option>
+                <option value="110 Diamants">110 Diamants</option>
+                <option value="341 Diamants">341 Diamants</option>
+                <option value="572 Diamants">572 Diamants</option>
+                <option value="Abonnement Hebdomadaire (Semèn)">Abonnement Hebdomadaire (Semèn)</option>
+                <option value="Abonnement Mensuel (Mwa)">Abonnement Mensuel (Mwa)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="paymentMethod">Metòd Peman:</label>
+            <select id="paymentMethod" required>
+                <option value="MonCash">MonCash</option>
+                <option value="Natcash">Natcash</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="senderPhone">Nimewo ki voye peman an:</label>
+            <input type="tel" id="senderPhone" placeholder="Nimewo MonCash / Natcash ou" required>
+        </div>
+
+        <button type="button" class="submit-btn" onclick="sendOrder()">Voye Kòmand lan sou WhatsApp</button>
+    </form>
+</div>
 
 <script>
-  let deferredPrompt;
-  const installBtn = document.getElementById('installBtn');
+    // Script pou voye kòmand lan sou WhatsApp
+    function sendOrder() {
+        const id = document.getElementById('playerId').value;
+        const pkg = document.getElementById('package').value;
+        const method = document.getElementById('paymentMethod').value;
+        const phone = document.getElementById('senderPhone').value;
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-    // Anpeche Chrome afiche banner otomatik la imedyatman
-    e.preventDefault();
-    deferredPrompt = e;
-    // Montre bouton pa ou a
-    installBtn.style.display = 'block';
-
-    installBtn.addEventListener('click', () => {
-      // Kache bouton an
-      installBtn.style.display = 'none';
-      // Montre envit enstalasyon an
-      deferredPrompt.prompt();
-      deferredPrompt.choiceResult.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('Itilizatè a aksepte ajoute App a');
+        if(!id || !pkg || !phone) {
+            alert('Tanpri ranpli tout chan yo!');
+            return;
         }
-        deferredPrompt = null;
-      });
+
+        const myPhone = "50939055989"; // Nimewo pa w
+        const text = `Bonjou PH Joolens Store, mwen fè yon kòmand:%0A- *ID Jouè:* ${id}%0A- *Pake:* ${pkg}%0A- *Metòd:* ${method}%0A- *Nimewo Peman:* ${phone}`;
+
+        window.open(`https://wa.me/${myPhone}?text=${text}`, '_blank');
+    }
+
+    // Script pou Aplikasyon sou telefòn (PWA)
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = 'block';
+
+        installBtn.addEventListener('click', () => {
+            installBtn.style.display = 'none';
+            deferredPrompt.prompt();
+            deferredPrompt.choiceResult.then((choiceResult) => {
+                deferredPrompt = null;
+            });
+        });
     });
-  });
 </script>
+
+</body>
+</html>
+
