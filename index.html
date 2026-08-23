@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ht">
 <head>
@@ -6,31 +5,161 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PH Joolens Store - Free Fire Top Up</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
-        .header { background-color: #2c3e50; color: white; padding: 20px; text-align: center; }
-        .container { max-width: 600px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h2 { text-align: center; color: #333; }
-        .product-list { display: flex; flex-direction: column; gap: 10px; }
-        .product { display: flex; justify-content: space-between; padding: 15px; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; transition: 0.3s; }
-        .product:hover { background-color: #f0f8ff; }
-        .selected { background-color: #d1ecf1; border-color: #17a2b8; }
-        .price { font-weight: bold; color: #e74c3c; }
-        .form-group { margin-top: 20px; }
-        input[type="text"] { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        .btn-check { display: inline-block; margin-top: 8px; padding: 8px 12px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; }
-        .btn { display: block; width: 100%; padding: 15px; margin-top: 20px; background-color: #25D366; color: white; text-align: center; text-decoration: none; font-size: 18px; border-radius: 5px; font-weight: bold; }
-        .btn:hover { background-color: #1ebe5d; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #0a0a14 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px 10px;
+        }
+        .header { 
+            background: linear-gradient(90deg, #ff4b1f 0%, #ff9068 100%);
+            color: white; 
+            padding: 25px 15px; 
+            text-align: center; 
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(255, 75, 31, 0.4);
+            margin-bottom: 25px;
+        }
+        .header h1 {
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .header p {
+            margin-top: 5px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .container { 
+            max-width: 500px; 
+            margin: 0 auto; 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(10px);
+            padding: 25px; 
+            border-radius: 15px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        h2 { 
+            text-align: center; 
+            color: #00d2ff; 
+            margin-bottom: 20px;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+        .product-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        }
+        .product { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 16px; 
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 10px; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            font-weight: 600;
+        }
+        .product:hover { 
+            background: rgba(0, 210, 255, 0.15); 
+            border-color: #00d2ff;
+            transform: translateY(-2px);
+        }
+        .selected { 
+            background: rgba(255, 75, 31, 0.25) !important; 
+            border-color: #ff4b1f !important; 
+            box-shadow: 0 0 15px rgba(255, 75, 31, 0.5);
+        }
+        .price { 
+            font-weight: bold; 
+            color: #ff9068; 
+            background: rgba(0,0,0,0.3);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 15px;
+        }
+        .form-group { 
+            margin-top: 25px; 
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ccc;
+            font-size: 14px;
+        }
+        input[type="text"] { 
+            width: 100%; 
+            padding: 14px; 
+            border: 2px solid rgba(255,255,255,0.2); 
+            border-radius: 8px; 
+            background: rgba(0,0,0,0.4);
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #00d2ff;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+        .btn-check { 
+            display: inline-block; 
+            margin-top: 10px; 
+            padding: 8px 14px; 
+            background: #3a405a; 
+            color: #00d2ff; 
+            text-decoration: none; 
+            border-radius: 6px; 
+            font-size: 13px; 
+            border: 1px solid #00d2ff;
+            transition: 0.3s;
+        }
+        .btn-check:hover {
+            background: #00d2ff;
+            color: #000;
+        }
+        .btn { 
+            display: block; 
+            width: 100%; 
+            padding: 16px; 
+            margin-top: 25px; 
+            background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%); 
+            color: white; 
+            text-align: center; 
+            text-decoration: none; 
+            font-size: 18px; 
+            border-radius: 10px; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4);
+            transition: 0.3s;
+        }
+        .btn:hover { 
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(56, 239, 125, 0.6);
+        }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>PH Joolens Store</h1>
-        <p>Pi bon kote pou achte Djamon Free Fire w!</p>
+        <h1>PH JOOLENS STORE</h1>
+        <p>Achte Djamon Free Fire rapid epi an sekirite!</p>
     </div>
 
     <div class="container">
-        <h2>Chwazi kantite Djamon an</h2>
+        <h2>Chwazi Opsyon Pa w la</h2>
         <div class="product-list" id="products">
             <div class="product" onclick="selectProduct('110 Djamon', '150')">
                 <span>💎 110 Djamon</span>
@@ -56,12 +185,12 @@
                 <span>🔥 Booyah Pass</span>
                 <span class="price">500 HTG</span>
             </div>
-            <div class="product" onclick="selectProduct('Card Weekly', '300')">
-                <span>📅 Carte Hebdomadaire</span>
+            <div class="product" onclick="selectProduct('Abonnement Semaine', '300')">
+                <span>📅 Abonnement Semaine</span>
                 <span class="price">300 HTG</span>
             </div>
-            <div class="product" onclick="selectProduct('Card Monthly', '1200')">
-                <span>📅 Carte Mensuelle</span>
+            <div class="product" onclick="selectProduct('Abonnement Mois', '1200')">
+                <span>📅 Abonnement Mois</span>
                 <span class="price">1200 HTG</span>
             </div>
         </div>
@@ -69,7 +198,7 @@
         <div class="form-group">
             <label for="playerId">Mete ID Free Fire ou an:</label>
             <input type="text" id="playerId" placeholder="Egzanp: 123456789">
-            <a href="https://shop2game.com" target="_blank" class="btn-check">🔍 Kontwole ID sou Garena</a>
+            <a href="https://shop2game.com" target="_blank" class="btn-check">🔍 Verifye ID sou Garena</a>
         </div>
 
         <a href="#" class="btn" id="whatsappBtn" onclick="sendOrder()">Kòmande sou WhatsApp</a>
@@ -100,7 +229,6 @@
                 return;
             }
             
-            // Verifikasyon si ID a gen sèlman chif epi li gen omwens 8 chif
             let idPattern = /^[0-9]{8,12}$/;
             if (!idPattern.test(playerId)) {
                 alert("ID Free Fire a dwe gen sèlman chif (ant 8 ak 12 chif). Tanpri tcheke l byen!");
@@ -116,4 +244,3 @@
     </script>
 </body>
 </html>
-
