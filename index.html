@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="ht">
 <head>
@@ -55,8 +56,6 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        
-        /* Grid Layout pou ti bouton yo */
         .product-grid { 
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -91,8 +90,6 @@
             color: #ffffff !important;
             box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
         }
-
-        /* Pri ki afiche anba a */
         .price-display {
             background: #101420;
             border: 1px solid #1e293b;
@@ -106,19 +103,18 @@
             font-weight: bold;
             color: #38bdf8;
         }
-
         .form-group { 
             margin-top: 15px; 
         }
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #94a3b8;
             font-size: 13px;
         }
         input[type="text"] { 
             width: 100%; 
-            padding: 14px; 
+            padding: 12px; 
             border: 1px solid #334155; 
             border-radius: 8px; 
             background: #0f172a;
@@ -146,6 +142,16 @@
         .btn-check:hover {
             background: #38bdf8;
             color: #0f172a;
+        }
+        .notice-box {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px dashed #38bdf8;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #bae6fd;
+            margin-top: 15px;
+            text-align: center;
         }
         .btn { 
             display: block; 
@@ -217,6 +223,15 @@
             <a href="https://shop2game.com" target="_blank" class="btn-check">🔍 Verifye ID sou Garena</a>
         </div>
 
+        <div class="form-group">
+            <label for="refCode">Nimewo Transaksyon / Referans Peman:</label>
+            <input type="text" id="refCode" placeholder="Egzanp: MonCash Ref ou Tranzaksyon">
+        </div>
+
+        <div class="notice-box">
+            📸 <b>Enpòtan:</b> Apre w fin klike sou kòmande, tanpri <b>voye foto prèv transfè a</b> nan chat WhatsApp la dirèkteman!
+        </div>
+
         <a href="#" class="btn" onclick="sendOrder()">Kòmande sou WhatsApp</a>
     </div>
 
@@ -228,17 +243,16 @@
             selectedPackage = pack;
             selectedPrice = price;
             
-            // Chagrin koulè seleksyon an
             let cards = document.querySelectorAll('.product-card');
             cards.forEach(c => c.classList.remove('selected'));
             element.classList.add('selected');
 
-            // Afiche pri a anba a
             document.getElementById('selectedPriceDisplay').innerText = price + " HTG";
         }
 
         function sendOrder() {
             let playerId = document.getElementById("playerId").value.trim();
+            let refCode = document.getElementById("refCode").value.trim();
             
             if (selectedPackage === "") {
                 alert("Tanpri klike sou yon pake djamon anvan.");
@@ -255,8 +269,13 @@
                 return;
             }
 
+            if (refCode === "") {
+                alert("Tanpri antre nimewo referans transfè a.");
+                return;
+            }
+
             let phone = "50937625253";
-            let message = `Bonjou PH Joolens Store! Mwen vle achte: %0A%0A📦 Pake: ${selectedPackage} %0A💰 Pri: ${selectedPrice} HTG %0A🎮 ID Mwen: ${playerId}`;
+            let message = `Bonjou PH Joolens Store! Mwen voye kòmand sa a: %0A%0A📦 Pake: ${selectedPackage} %0A💰 Pri: ${selectedPrice} HTG %0A🎮 ID Mwen: ${playerId} %0A🧾 Referans Peman: ${refCode} %0A%0A*(M ap voye foto prèv transfè a kounye a)*`;
             
             let whatsappUrl = `https://wa.me/${phone}?text=${message}`;
             window.location.href = whatsappUrl;
