@@ -1,250 +1,119 @@
+
 <!DOCTYPE html>
 <html lang="ht">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PH Joolens Store | Top-Up Free Fire Ayiti</title>
+    <title>PH Joolens Store - Free Fire Top Up</title>
     <style>
-        :root {
-            --primary: #ff4500;
-            --dark-bg: #121214;
-            --card-bg: #1e1e24;
-            --accent-yellow: #ffb703;
-            --text-light: #f4f4f6;
-            --text-muted: #a0a0b0;
-            --border-color: #2e2e38;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            line-height: 1.6;
-            padding-bottom: 40px;
-        }
-
-        header {
-            background: linear-gradient(135deg, #111, #1a0800);
-            border-bottom: 2px solid var(--primary);
-            text-align: center;
-            padding: 25px 15px;
-        }
-
-        header h1 {
-            color: var(--primary);
-            font-size: 26px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 15px;
-        }
-
-        .section-title {
-            font-size: 16px;
-            color: var(--accent-yellow);
-            margin: 20px 0 10px 0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 13px;
-            margin-bottom: 5px;
-            color: var(--text-muted);
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background-color: var(--card-bg);
-            color: #fff;
-            font-size: 16px;
-            outline: none;
-        }
-
-        .input-group input:focus {
-            border-color: var(--primary);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            padding: 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .card.active {
-            border-color: var(--primary);
-            background-color: #2a150d;
-        }
-
-        .card-title {
-            font-size: 15px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .card-price {
-            font-size: 13px;
-            color: var(--accent-yellow);
-            margin-top: 4px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background-color: #25d366;
-            color: #fff;
-            border: none;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 25px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .header { background-color: #2c3e50; color: white; padding: 20px; text-align: center; }
+        .container { max-width: 600px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        .product-list { display: flex; flex-direction: column; gap: 10px; }
+        .product { display: flex; justify-content: space-between; padding: 15px; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .product:hover { background-color: #f0f8ff; }
+        .selected { background-color: #d1ecf1; border-color: #17a2b8; }
+        .price { font-weight: bold; color: #e74c3c; }
+        .form-group { margin-top: 20px; }
+        input[type="text"] { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .btn-check { display: inline-block; margin-top: 8px; padding: 8px 12px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; }
+        .btn { display: block; width: 100%; padding: 15px; margin-top: 20px; background-color: #25D366; color: white; text-align: center; text-decoration: none; font-size: 18px; border-radius: 5px; font-weight: bold; }
+        .btn:hover { background-color: #1ebe5d; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>PH JOOLENS STORE</h1>
-        <p>Acha Djamon Free Fire rapid ak sekire nan peyi Ayiti</p>
-    </header>
+    <div class="header">
+        <h1>PH Joolens Store</h1>
+        <p>Pi bon kote pou achte Djamon Free Fire w!</p>
+    </div>
 
     <div class="container">
-        
-        <div class="input-group">
-            <label for="player-id">Sazi ID Free Fire ou an:</label>
-            <input type="number" id="player-id" placeholder="Egzanp: 123456789">
-        </div>
-
-        <div class="section-title">💎 Opsyon Djamon</div>
-        <div class="grid">
-            <div class="card" onclick="selectOption(this, '110 Diamonds')">
-                <div class="card-title">110 Diamonds</div>
-                <div class="card-price">Mande Pri</div>
+        <h2>Chwazi kantite Djamon an</h2>
+        <div class="product-list" id="products">
+            <div class="product" onclick="selectProduct('110 Djamon', '150')">
+                <span>💎 110 Djamon</span>
+                <span class="price">150 HTG</span>
             </div>
-            <div class="card" onclick="selectOption(this, '340 Diamonds')">
-                <div class="card-title">340 Diamonds</div>
-                <div class="card-price">Mande Pri</div>
+            <div class="product" onclick="selectProduct('220 Djamon', '300')">
+                <span>💎 220 Djamon</span>
+                <span class="price">300 HTG</span>
             </div>
-            <div class="card" onclick="selectOption(this, '572 Diamonds')">
-                <div class="card-title">572 Diamonds</div>
-                <div class="card-price">Mande Pri</div>
+            <div class="product" onclick="selectProduct('341 Djamon', '450')">
+                <span>💎 341 Djamon</span>
+                <span class="price">450 HTG</span>
             </div>
-            <div class="card" onclick="selectOption(this, '1160 Diamonds')">
-                <div class="card-title">1160 Diamonds</div>
-                <div class="card-price">Mande Pri</div>
+            <div class="product" onclick="selectProduct('572 Djamon', '750')">
+                <span>💎 572 Djamon</span>
+                <span class="price">750 HTG</span>
             </div>
-            <div class="card" onclick="selectOption(this, '2390 Diamonds')">
-                <div class="card-title">2390 Diamonds</div>
-                <div class="card-price">Mande Pri</div>
+            <div class="product" onclick="selectProduct('1166 Djamon', '1500')">
+                <span>💎 1166 Djamon</span>
+                <span class="price">1500 HTG</span>
             </div>
-        </div>
-
-        <div class="section-title">🎟️ Abonman & Pase</div>
-        <div class="grid">
-            <div class="card" onclick="selectOption(this, 'Booyah Pass Premium')">
-                <div class="card-title">Booyah Pass</div>
-                <div class="card-price">Mande Pri</div>
+            <div class="product" onclick="selectProduct('Booyah Pass', '500')">
+                <span>🔥 Booyah Pass</span>
+                <span class="price">500 HTG</span>
             </div>
-            <div class="card" onclick="selectOption(this, 'Abonman Semèn (Weekly)')">
-                <div class="card-title">Weekly Membership</div>
-                <div class="card-price">Mande Pri</div>
+            <div class="product" onclick="selectProduct('Card Weekly', '300')">
+                <span>📅 Carte Hebdomadaire</span>
+                <span class="price">300 HTG</span>
             </div>
-            <div class="card" onclick="selectOption(this, 'Abonman Mwa (Monthly)')">
-                <div class="card-title">Monthly Membership</div>
-                <div class="card-price">Mande Pri</div>
+            <div class="product" onclick="selectProduct('Card Monthly', '1200')">
+                <span>📅 Carte Mensuelle</span>
+                <span class="price">1200 HTG</span>
             </div>
         </div>
 
-        <button class="btn-submit" onclick="sendOrder()">
-            Kòmande sou WhatsApp
-        </button>
+        <div class="form-group">
+            <label for="playerId">Mete ID Free Fire ou an:</label>
+            <input type="text" id="playerId" placeholder="Egzanp: 123456789">
+            <a href="https://shop2game.com" target="_blank" class="btn-check">🔍 Kontwole ID sou Garena</a>
+        </div>
 
-        <footer>
-            &copy; PH Joolens Store - Tout dwa rezeve.
-        </footer>
-
+        <a href="#" class="btn" id="whatsappBtn" onclick="sendOrder()">Kòmande sou WhatsApp</a>
     </div>
 
     <script>
-        let selectedProduct = '';
+        let selectedPackage = "";
+        let selectedPrice = "";
 
-        function selectOption(element, productName) {
-            let cards = document.querySelectorAll('.card');
-            cards.forEach(card => card.classList.remove('active'));
-            element.classList.add('active');
-            selectedProduct = productName;
+        function selectProduct(pack, price) {
+            selectedPackage = pack;
+            selectedPrice = price;
+            
+            let products = document.querySelectorAll('.product');
+            products.forEach(p => p.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
         }
 
         function sendOrder() {
-            let playerId = document.getElementById('player-id').value.trim();
-
-            if (!playerId) {
-                alert('Tanpri antre ID Free Fire ou an!');
+            let playerId = document.getElementById("playerId").value.trim();
+            
+            if (selectedPackage === "") {
+                alert("Tanpri chwazi yon kantite djamon anvan.");
                 return;
             }
-
-            if (!selectedProduct) {
-                alert('Tanpri chwazi yon opsyon (Djamon oswa Pase)!');
+            if (playerId === "") {
+                alert("Tanpri mete ID Free Fire ou an.");
+                return;
+            }
+            
+            // Verifikasyon si ID a gen sèlman chif epi li gen omwens 8 chif
+            let idPattern = /^[0-9]{8,12}$/;
+            if (!idPattern.test(playerId)) {
+                alert("ID Free Fire a dwe gen sèlman chif (ant 8 ak 12 chif). Tanpri tcheke l byen!");
                 return;
             }
 
             let phone = "50937625253";
-            let message = `Bonswa PH Joolens Store, mwen ta renmen kòmande:%0A%0A- *ID Free Fire:* ${playerId}%0A- *Opsyon:* ${selectedProduct}`;
+            let message = `Bonjou PH Joolens Store! Mwen vle achte: %0A%0A📦 Pake: ${selectedPackage} %0A💰 Pri: ${selectedPrice} HTG %0A🎮 ID Mwen: ${playerId}`;
             
             let whatsappUrl = `https://wa.me/${phone}?text=${message}`;
-            window.open(whatsappUrl, '_blank');
+            window.location.href = whatsappUrl;
         }
     </script>
-
 </body>
 </html>
+
