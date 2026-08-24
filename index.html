@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ht">
 <head>
@@ -89,11 +91,11 @@
             margin-top: 15px;
         }
         .form-group { 
-            margin-bottom: 12px; 
+            margin-bottom: 15px; 
         }
         label { 
             display: block; 
-            margin-bottom: 5px; 
+            margin-bottom: 6px; 
             font-weight: bold; 
             font-size: 13px;
             color: #334155;
@@ -112,6 +114,36 @@
         input:focus, select:focus {
             border-color: #d97706;
         }
+        /* Estil pou ti bouton pakè yo an griy (menm jan ak imaj la) */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            max-height: 220px;
+            overflow-y: auto;
+            padding: 2px;
+        }
+        .pkg-btn {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 10px 4px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            color: #334155;
+            transition: 0.2s;
+        }
+        .pkg-btn:hover {
+            border-color: #d97706;
+            background-color: #fffbeb;
+        }
+        .pkg-btn.active {
+            background-color: #d97706;
+            color: white;
+            border-color: #b45309;
+        }
         .back-btn {
             background: none;
             border: none;
@@ -124,7 +156,7 @@
         }
         .submit-btn {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background-color: #d97706;
             color: white;
             border: none;
@@ -148,7 +180,7 @@
 
     <button id="installBtn" class="install-btn">📲 Mete App a sou ekran telefòn ou</button>
 
-    <!-- LISTE JWÈT YO (Kòm nan 2zyèm imaj la) -->
+    <!-- LISTE JWÈT YO -->
     <div id="catalogView">
         <div class="catalog-grid">
             <div class="game-card" onclick="openGameForm('Free Fire')">
@@ -174,24 +206,23 @@
         </div>
     </div>
 
-    <!-- FÒM KÒMAND LAN (Lè w klike sou yon jwèt) -->
+    <!-- FÒM KÒMAND LAN -->
     <div id="formSection" class="form-section">
-        <button class="button back-btn" onclick="goBackToCatalog()">← Retounen nan Katagòi</button>
+        <button class="back-btn" onclick="goBackToCatalog()">← Retounen nan Katagòi</button>
         <h3 id="formTitle" style="margin-top: 5px; font-size: 16px; color: #d97706;">Kòmande</h3>
 
         <form id="orderForm">
-            <input type="hidden" id="selectedGame">
+            <div class="form-group">
+                <label>Chwazi Pake a:</label>
+                <div id="packagesGrid" class="packages-grid">
+                    <!-- Ti bouton pakè yo pral parèt isit la otomatikman -->
+                </div>
+                <input type="text" id="selectedPackage" placeholder="Klike sou yon pake anwo a..." required readonly style="margin-top: 8px; background: #f1f5f9;">
+            </div>
 
             <div class="form-group">
                 <label for="playerId">ID Jwèt / Kont:</label>
                 <input type="text" id="playerId" placeholder="Antre ID ou a" required>
-            </div>
-
-            <div class="form-group">
-                <label for="packageSelect">Chwazi Pake / Pri:</label>
-                <select id="packageSelect" required>
-                    <!-- Pakè yo pral chaje otomatikman -->
-                </select>
             </div>
 
             <div class="form-group">
@@ -213,79 +244,60 @@
 </div>
 
 <script>
-    // Tout pakè ak pri pou chak jwèt
+    // Lis pakè yo pou chak jwèt
     const gamePackages = {
         "Free Fire": [
-            "110 Diamants",
-            "220 Diamants",
-            "341 Diamants",
-            "451 Diamants",
-            "572 Diamants",
-            "682 Diamants",
-            "792 Diamants",
-            "913 Diamants",
-            "1166 Diamants",
-            "2398 Diamants",
-            "3564 Diamants",
-            "6160 Diamants",
-            "12260 Diamants",
-            "Booyah pass",
-            "Abonnement semaine",
-            "Abonnement mois",
-            "Super Vip"
+            "110 💎", "220 💎", "341 💎", "451 💎", 
+            "572 💎", "682 💎", "792 💎", "913 💎", 
+            "1166 💎", "2398 💎", "3564 💎", "6160 💎", 
+            "12260 💎", "Booyah pass", "Semèn", "Mwa", "Super Vip"
         ],
         "Pubg Mobile": [
-            "60 UC - 180g",
-            "325 UC - 875g",
-            "660 UC - 1600g",
-            "1800 UC - 3500g",
-            "3850 UC - 8000g",
-            "8100 UC - 16900g",
-            "16200 UC - 33000g"
+            "60 UC (180g)", "325 UC (875g)", "660 UC (1600g)", 
+            "1800 UC (3500g)", "3850 UC (8000g)", "8100 UC (16900g)", "16200 UC (33000g)"
         ],
         "Blood Strike": [
-            "51 Gold - 76g",
-            "105 Gold - 125g",
-            "320 Gold - 400g",
-            "540 Gold - 700g",
-            "1100 Gold - 1450g",
-            "2260 Gold - 2850g",
-            "5800 Gold - 7250g",
-            "Lucky bag - 155g",
-            "Season pass - 150g",
-            "Level Up pass - 310g",
-            "Strike pass Elite - 600g",
-            "Strike pass premium - 1300g",
-            "Cornucopia - 295g"
+            "51 Gold (76g)", "105 Gold (125g)", "320 Gold (400g)", 
+            "540 Gold (700g)", "1100 Gold (1450g)", "2260 Gold (2850g)", 
+            "5800 Gold (7250g)", "Lucky bag", "Season pass", "Level Up pass", 
+            "Strike Elite", "Strike Premium", "Cornucopia"
         ],
         "Flex City": [
-            "340 Diamants",
-            "520 Diamants - 2050g",
-            "1166 Diamants - 5100g",
-            "2330 Diamants - 10000g",
-            "4760 Diamants - 10700g",
-            "12320 Diamants - 20400g",
-            "Level Up - 1000g",
-            "Flex pass - 535g",
-            "Flex pass plus - 700g"
+            "340 💎", "520 💎 (2050g)", "1166 💎 (5100g)", 
+            "2330 💎 (10000g)", "4760 💎 (10700g)", "12320 💎 (20400g)", 
+            "Level Up", "Flex pass", "Flex pass +"
         ]
     };
 
+    let currentGame = "";
+
     function openGameForm(gameName) {
+        currentGame = gameName;
         document.getElementById('catalogView').style.display = 'none';
         document.getElementById('formSection').style.display = 'block';
-        document.getElementById('selectedGame').value = gameName;
         document.getElementById('formTitle').innerText = 'Kòmande pou: ' + gameName;
+        document.getElementById('selectedPackage').value = "";
+        document.getElementById('playerId').value = "";
+        document.getElementById('senderPhone').value = "";
 
-        let pkgSelect = document.getElementById('packageSelect');
-        pkgSelect.innerHTML = '<option value="">-- Chwazi yon pake --</option>';
+        let gridContainer = document.getElementById('packagesGrid');
+        gridContainer.innerHTML = '';
 
         if(gamePackages[gameName]) {
             gamePackages[gameName].forEach(pkg => {
-                let opt = document.createElement('option');
-                opt.value = pkg;
-                opt.innerText = pkg;
-                pkgSelect.appendChild(opt);
+                let btn = document.createElement('div');
+                btn.className = 'pkg-btn';
+                btn.innerText = pkg;
+                btn.onclick = function() {
+                    // Retire klas active nan tout lòt bouton yo
+                    let allBtns = gridContainer.querySelectorAll('.pkg-btn');
+                    allBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Mete klas active sou sa klike a
+                    btn.classList.add('active');
+                    document.getElementById('selectedPackage').value = pkg;
+                };
+                gridContainer.appendChild(btn);
             });
         }
     }
@@ -296,19 +308,18 @@
     }
 
     function sendOrder() {
-        const game = document.getElementById('selectedGame').value;
+        const pkg = document.getElementById('selectedPackage').value;
         const id = document.getElementById('playerId').value;
-        const pkg = document.getElementById('packageSelect').value;
         const method = document.getElementById('paymentMethod').value;
         const phone = document.getElementById('senderPhone').value;
 
-        if(!game || !id || !pkg || !phone) {
-            alert('Tanpri ranpli tout enfòmasyon yo anvan ou voye l!');
+        if(!currentGame || !pkg || !id || !phone) {
+            alert('Tanpri chwazi yon pake epi ranpli tout enfòmasyon yo anvan ou voye l!');
             return;
         }
 
         const myPhone = "50932265636"; 
-        const text = `Bonjou PH Joolens Store, mwen fè yon kòmand:%0A- *Jwèt:* ${game}%0A- *ID Jwèt:* ${id}%0A- *Pake:* ${pkg}%0A- *Metòd:* ${method}%0A- *Nimewo Peman:* ${phone}`;
+        const text = `Bonjou PH Joolens Store, mwen fè yon kòmand:%0A- *Jwèt:* ${currentGame}%0A- *Pake:* ${pkg}%0A- *ID Jwèt:* ${id}%0A- *Metòd:* ${method}%0A- *Nimewo Peman:* ${phone}`;
 
         window.open(`https://api.whatsapp.com/send?phone=${myPhone}&text=${text}`, '_blank');
     }
@@ -333,3 +344,4 @@
 
 </body>
 </html>
+
