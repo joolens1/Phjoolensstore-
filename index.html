@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PH Joolens Store - Gaming Top Up</title>
+    <title>PH Joolens Store - Gaming & Gift Cards</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#fbf7ee">
     <style>
@@ -73,7 +73,7 @@
             transform: translateY(-2px);
         }
         .game-card h3 {
-            font-size: 15px;
+            font-size: 14px;
             margin: 8px 0 4px 0;
             color: #1e293b;
         }
@@ -81,6 +81,14 @@
             font-size: 11px;
             color: #64748b;
             margin: 0;
+        }
+        .section-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #d97706;
+            margin: 15px 0 10px 0;
+            border-bottom: 1px solid #e2d9c2;
+            padding-bottom: 5px;
         }
         .form-section {
             display: none;
@@ -182,32 +190,67 @@
 
 <div class="container">
     <h2>PH Joolens Store 🎮</h2>
-    <div class="subtitle">Katalòg Top-Up Otomatik & Manuel</div>
+    <div class="subtitle">Katalòg Top-Up & Gift Cards Otomatik</div>
 
     <button id="installBtn" class="install-btn">📲 Mete App a sou ekran telefòn ou</button>
 
-    <!-- LISTE JWÈT YO -->
+    <!-- LISTE JWÈT AK SÈVIS YO -->
     <div id="catalogView">
+        <div class="section-title">🎮 Jwèt (Top-Up)</div>
         <div class="catalog-grid">
             <div class="game-card" onclick="openGameForm('Free Fire')">
-                <span style="font-size: 28px;">🔥</span>
+                <span style="font-size: 26px;">🔥</span>
                 <h3>Free Fire</h3>
-                <p>Top-up & Pass</p>
+                <p>Top-up Global</p>
+            </div>
+            <div class="game-card" onclick="openGameForm('Free Fire LATAM')">
+                <span style="font-size: 26px;">🌎</span>
+                <h3>Free Fire LATAM</h3>
+                <p>Top-up & Pin</p>
+            </div>
+            <div class="game-card" onclick="openGameForm('Free Fire Indonesia')">
+                <span style="font-size: 26px;">🇮🇩</span>
+                <h3>Free Fire ID</h3>
+                <p>Indonesia Server</p>
+            </div>
+            <div class="game-card" onclick="openGameForm('Free Fire Europe')">
+                <span style="font-size: 26px;">🇪🇺</span>
+                <h3>Free Fire Europe</h3>
+                <p>Europe Server</p>
             </div>
             <div class="game-card" onclick="openGameForm('PUBG Mobile')">
-                <span style="font-size: 28px;">🎯</span>
+                <span style="font-size: 26px;">🎯</span>
                 <h3>PUBG Mobile</h3>
                 <p>UC & Pass</p>
             </div>
             <div class="game-card" onclick="openGameForm('Blood Strike')">
-                <span style="font-size: 28px;">⚔️</span>
+                <span style="font-size: 26px;">⚔️</span>
                 <h3>Blood Strike</h3>
                 <p>Gold & Pass</p>
             </div>
             <div class="game-card" onclick="openGameForm('Flex City')">
-                <span style="font-size: 28px;">🏎️</span>
+                <span style="font-size: 26px;">🏎️</span>
                 <h3>Flex City</h3>
                 <p>Diamants & Pass</p>
+            </div>
+        </div>
+
+        <div class="section-title">💳 Kat Kado & Abònman (Gift Cards)</div>
+        <div class="catalog-grid">
+            <div class="game-card" onclick="openGameForm('Apple USA')">
+                <span style="font-size: 26px;">🍎</span>
+                <h3>Apple USA</h3>
+                <p>Gift Card</p>
+            </div>
+            <div class="game-card" onclick="openGameForm('Netflix Card USA')">
+                <span style="font-size: 26px;">🎬</span>
+                <h3>Netflix USA</h3>
+                <p>Gift Card</p>
+            </div>
+            <div class="game-card" onclick="openGameForm('Spotify USA')">
+                <span style="font-size: 26px;">🎧</span>
+                <h3>Spotify USA</h3>
+                <p>Premium Card</p>
             </div>
         </div>
     </div>
@@ -215,7 +258,7 @@
     <!-- FÒM KÒMAND LAN -->
     <div id="formSection" class="form-section">
         <button class="back-btn" onclick="goBackToCatalog()">← Retounen nan Katalòg</button>
-        <h3 id="formTitle" style="margin-top: 5px; margin-bottom: 0; font-size: 20px; color: #1e293b;">Jwèt</h3>
+        <h3 id="formTitle" style="margin-top: 5px; margin-bottom: 0; font-size: 18px; color: #1e293b;">Sèvis</h3>
         
         <div id="priceDisplay" class="price-display">G 0.00</div>
 
@@ -227,12 +270,12 @@
             </div>
 
             <div class="form-group">
-                <label for="playerName">Nom sur le compte / Non sou kont lan:</label>
-                <input type="text" id="playerName" placeholder="Antre non ki sou kont lan" required>
+                <label for="playerName">Non sou kont lan / Imèl (si w mande l):</label>
+                <input type="text" id="playerName" placeholder="Antre non oswa enfòmasyon kont lan" required>
             </div>
 
-            <div class="form-group">
-                <label for="playerId">Id du joueur / ID Jwèt:</label>
+            <div class="form-group" id="idGroup">
+                <label for="playerId">ID Jwèt / Kòd:</label>
                 <input type="text" id="playerId" placeholder="Antre ID ou a" required>
             </div>
 
@@ -255,71 +298,64 @@
 </div>
 
 <script>
-    // Lis pakè ak pri an Goud (G) ak ti ikon yo
+    // Lis tout pake ak kat kado yo ak pri yo an Goud (G)
     const gamePackages = {
-        "Blood Strike": [
-            { name: "51🪙", price: 76 },
-            { name: "105🪙", price: 125 },
-            { name: "320🪙", price: 400 },
-            { name: "540🪙", price: 700 },
-            { name: "1100🪙", price: 1450 },
-            { name: "2260🪙", price: 2850 },
-            { name: "5800🪙", price: 7250 },
-            { name: "Lucky bag", price: 155 },
-            { name: "Season Pass🏷️", price: 150 },
-            { name: "Level Up Pass🏷️", price: 310 },
-            { name: "Strike Pass Elite🏷️", price: 600 },
-            { name: "Strike Pass Premium🏷️", price: 1300 },
-            { name: "Cornucopia✨", price: 295 }
-        ],
-        "Flex City": [
-            { name: "340💎", price: 535 },
-            { name: "520💎", price: 2050 },
-            { name: "1165💎", price: 5100 },
-            { name: "2330💎", price: 10000 },
-            { name: "4750💎", price: 10700 },
-            { name: "12320💎", price: 20400 },
-            { name: "2310🪙", price: 750 },
-            { name: "6875🪙", price: 2050 },
-            { name: "18700🪙", price: 5100 },
-            { name: "80000🪙", price: 15000 },
-            { name: "150000🪙", price: 25000 },
-            { name: "635 500💵", price: 1200 },
-            { name: "2 062 500💵", price: 3500 },
-            { name: "5 610 000💵", price: 8500 },
-            { name: "36 000 000💵", price: 30000 },
-            { name: "79 200 000💵", price: 60000 },
-            { name: "Level Up💵🪙💎", price: 1000 },
-            { name: "Flex pass💵🪙💎", price: 535 },
-            { name: "flex pass plus💵🪙💎", price: 700 }
-        ],
         "Free Fire": [
             { name: "110💎", price: 160 },
             { name: "220💎", price: 320 },
             { name: "341💎", price: 500 },
-            { name: "451💎", price: 650 },
             { name: "572💎", price: 820 },
-            { name: "682💎", price: 980 },
-            { name: "792💎", price: 1140 },
-            { name: "913💎", price: 1300 },
             { name: "1166💎", price: 1650 },
-            { name: "2398💎", price: 3300 },
-            { name: "3564💎", price: 4900 },
-            { name: "6160💎", price: 8400 },
-            { name: "12260💎", price: 16500 },
-            { name: "Booyah pass🏷️", price: 500 },
-            { name: "Abonnement semaine", price: 250 },
-            { name: "Abonnement mois", price: 1000 },
-            { name: "Super Vip", price: 1300 }
+            { name: "Booyah pass🏷️", price: 500 }
+        ],
+        "Free Fire LATAM": [
+            { name: "100 + 10💎", price: 150 },
+            { name: "310 + 31💎", price: 420 },
+            { name: "520 + 52💎", price: 680 },
+            { name: "Weekly Lite", price: 130 },
+            { name: "Weekly Membership", price: 450 }
+        ],
+        "Free Fire Indonesia": [
+            { name: "70💎", price: 120 },
+            { name: "140💎", price: 230 },
+            { name: "355💎", price: 550 },
+            { name: "720💎", price: 1100 }
+        ],
+        "Free Fire Europe": [
+            { name: "100💎", price: 170 },
+            { name: "310💎", price: 480 },
+            { name: "520💎", price: 790 }
         ],
         "PUBG Mobile": [
             { name: "60 UC🎯", price: 180 },
             { name: "325 UC🎯", price: 875 },
-            { name: "660 UC🎯", price: 1600 },
-            { name: "1800 UC🎯", price: 3500 },
-            { name: "3850 UC🎯", price: 8000 },
-            { name: "8100 UC🎯", price: 16900 },
-            { name: "16200 UC🎯", price: 33000 }
+            { name: "660 UC🎯", price: 1600 }
+        ],
+        "Blood Strike": [
+            { name: "51🪙", price: 76 },
+            { name: "105🪙", price: 125 },
+            { name: "320🪙", price: 400 },
+            { name: "Season Pass🏷️", price: 150 },
+            { name: "Level Up Pass🏷️", price: 310 }
+        ],
+        "Flex City": [
+            { name: "340💎", price: 535 },
+            { name: "520💎", price: 2050 },
+            { name: "1165💎", price: 5100 }
+        ],
+        "Apple USA": [
+            { name: "Apple $5", price: 850 },
+            { name: "Apple $10", price: 1650 },
+            { name: "Apple $25", price: 4000 }
+        ],
+        "Netflix Card USA": [
+            { name: "Netflix $15", price: 2400 },
+            { name: "Netflix $25", price: 3900 },
+            { name: "Netflix $30", price: 4700 }
+        ],
+        "Spotify USA": [
+            { name: "Spotify 1 Month", price: 1500 },
+            { name: "Spotify 3 Months", price: 4200 }
         ]
     };
 
@@ -331,7 +367,7 @@
         selectedPkg = null;
         document.getElementById('catalogView').style.display = 'none';
         document.getElementById('formSection').style.display = 'block';
-        document.getElementById('formTitle').innerText = gameName + " Automatique";
+        document.getElementById('formTitle').innerText = gameName + " - Kòmande";
         document.getElementById('priceDisplay').innerText = "G 0.00";
 
         let gridContainer = document.getElementById('packagesGrid');
@@ -372,7 +408,7 @@
         }
 
         const myPhone = "50932265636"; 
-        const text = `Bonjou PH Joolens Store, mwen fè yon kòmand:%0A- *Jwèt:* ${currentGame}%0A- *Pake:* ${selectedPkg.name}%0A- *Pri:* G ${selectedPkg.price}.00%0A- *Non sou kont:* ${name}%0A- *ID Jwèt:* ${id}%0A- *Metòd:* ${method}%0A- *Nimewo Peman:* ${phone}`;
+        const text = `Bonjou PH Joolens Store, mwen fè yon kòmand:%0A- *Sèvis:* ${currentGame}%0A- *Pake:* ${selectedPkg.name}%0A- *Pri:* G ${selectedPkg.price}.00%0A- *Non/Kont:* ${name}%0A- *ID/Enfòmasyon:* ${id}%0A- *Metòd:* ${method}%0A- *Nimewo Peman:* ${phone}`;
 
         window.open(`https://api.whatsapp.com/send?phone=${myPhone}&text=${text}`, '_blank');
     }
@@ -397,5 +433,6 @@
 
 </body>
 </html>
+
 
 
