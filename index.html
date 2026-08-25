@@ -133,6 +133,8 @@
             flex-wrap: wrap;
             gap: 6px;
             margin-bottom: 15px;
+            max-height: 200px;
+            overflow-y: auto;
         }
         .pkg-btn {
             background-color: #f8fafc;
@@ -201,37 +203,22 @@
             <div class="game-card" onclick="openGameForm('Free Fire')">
                 <span style="font-size: 26px;">🔥</span>
                 <h3>Free Fire</h3>
-                <p>Top-up Global</p>
+                <p>Top-up ID</p>
             </div>
-            <div class="game-card" onclick="openGameForm('Free Fire LATAM')">
+            <div class="game-card" onclick="openGameForm('Free Fire Pin Latam')">
                 <span style="font-size: 26px;">🌎</span>
-                <h3>Free Fire LATAM</h3>
-                <p>Top-up & Pin</p>
+                <h3>Free Fire Pin Latam</h3>
+                <p>Kòd / Pin</p>
             </div>
-            <div class="game-card" onclick="openGameForm('Free Fire Indonesia')">
+            <div class="game-card" onclick="openGameForm('Freefire Indonesia')">
                 <span style="font-size: 26px;">🇮🇩</span>
-                <h3>Free Fire ID</h3>
+                <h3>Free Fire Indonesia</h3>
                 <p>Indonesia Server</p>
-            </div>
-            <div class="game-card" onclick="openGameForm('Free Fire Europe')">
-                <span style="font-size: 26px;">🇪🇺</span>
-                <h3>Free Fire Europe</h3>
-                <p>Europe Server</p>
-            </div>
-            <div class="game-card" onclick="openGameForm('PUBG Mobile')">
-                <span style="font-size: 26px;">🎯</span>
-                <h3>PUBG Mobile</h3>
-                <p>UC & Pass</p>
             </div>
             <div class="game-card" onclick="openGameForm('Blood Strike')">
                 <span style="font-size: 26px;">⚔️</span>
                 <h3>Blood Strike</h3>
                 <p>Gold & Pass</p>
-            </div>
-            <div class="game-card" onclick="openGameForm('Flex City')">
-                <span style="font-size: 26px;">🏎️</span>
-                <h3>Flex City</h3>
-                <p>Diamants & Pass</p>
             </div>
         </div>
 
@@ -270,13 +257,13 @@
             </div>
 
             <div class="form-group">
-                <label for="playerName">Non sou kont lan / Imèl (si w mande l):</label>
-                <input type="text" id="playerName" placeholder="Antre non oswa enfòmasyon kont lan" required>
+                <label for="playerName">Non sou kont lan / Imèl:</label>
+                <input type="text" id="playerName" placeholder="Antre non oswa imèl kliyan an" required>
             </div>
 
             <div class="form-group" id="idGroup">
-                <label for="playerId">ID Jwèt / Kòd:</label>
-                <input type="text" id="playerId" placeholder="Antre ID ou a" required>
+                <label for="playerId">ID Jwèt / Enfòmasyon:</label>
+                <input type="text" id="playerId" placeholder="Antre ID ou a oswa kont lan" required>
             </div>
 
             <div class="form-group">
@@ -298,64 +285,57 @@
 </div>
 
 <script>
-    // Lis tout pake ak kat kado yo ak pri yo an Goud (G)
+    // Vrè pakè ak pri ki soti sou Gift-Access (avèk ti benefis an Goud)
     const gamePackages = {
         "Free Fire": [
-            { name: "110💎", price: 160 },
-            { name: "220💎", price: 320 },
-            { name: "341💎", price: 500 },
-            { name: "572💎", price: 820 },
-            { name: "1166💎", price: 1650 },
-            { name: "Booyah pass🏷️", price: 500 }
+            { name: "100 + 10💎 ($0.77)", price: 150 },
+            { name: "310 + 31💎 ($2.39)", price: 400 },
+            { name: "520 + 52💎 ($3.91)", price: 650 },
+            { name: "1060 + 106💎 ($7.19)", price: 1150 },
+            { name: "Weekly Lite ($0.69)", price: 120 },
+            { name: "Weekly Membership ($2.59)", price: 420 },
+            { name: "Monthly Membership ($11.09)", price: 1750 }
         ],
-        "Free Fire LATAM": [
-            { name: "100 + 10💎", price: 150 },
-            { name: "310 + 31💎", price: 420 },
-            { name: "520 + 52💎", price: 680 },
-            { name: "Weekly Lite", price: 130 },
-            { name: "Weekly Membership", price: 450 }
+        "Free Fire Pin Latam": [
+            { name: "100 + 10 Pin ($0.79)", price: 155 },
+            { name: "310 + 31 Pin ($2.59)", price: 420 },
+            { name: "520 + 52 Pin ($4.09)", price: 680 },
+            { name: "1060 + 106 Pin ($7.49)", price: 1200 },
+            { name: "2180 + 218 Pin ($14.79)", price: 2350 },
+            { name: "5600 + 560 Pin ($37.49)", price: 5800 }
         ],
-        "Free Fire Indonesia": [
-            { name: "70💎", price: 120 },
-            { name: "140💎", price: 230 },
-            { name: "355💎", price: 550 },
-            { name: "720💎", price: 1100 }
-        ],
-        "Free Fire Europe": [
-            { name: "100💎", price: 170 },
-            { name: "310💎", price: 480 },
-            { name: "520💎", price: 790 }
-        ],
-        "PUBG Mobile": [
-            { name: "60 UC🎯", price: 180 },
-            { name: "325 UC🎯", price: 875 },
-            { name: "660 UC🎯", price: 1600 }
+        "Freefire Indonesia": [
+            { name: "5💎 ($0.06)", price: 20 },
+            { name: "10💎 ($0.12)", price: 30 },
+            { name: "50💎 ($0.45)", price: 90 },
+            { name: "70💎 ($0.58)", price: 115 },
+            { name: "100💎 ($0.82)", price: 150 },
+            { name: "140💎 ($1.10)", price: 200 }
         ],
         "Blood Strike": [
-            { name: "51🪙", price: 76 },
-            { name: "105🪙", price: 125 },
-            { name: "320🪙", price: 400 },
-            { name: "Season Pass🏷️", price: 150 },
-            { name: "Level Up Pass🏷️", price: 310 }
-        ],
-        "Flex City": [
-            { name: "340💎", price: 535 },
-            { name: "520💎", price: 2050 },
-            { name: "1165💎", price: 5100 }
+            { name: "51 Gold ($0.50)", price: 100 },
+            { name: "105 Gold ($0.80)", price: 150 },
+            { name: "320 Gold ($2.31)", price: 380 },
+            { name: "540 Gold ($3.80)", price: 620 },
+            { name: "Season Pass ($1.00)", price: 180 },
+            { name: "Level Up Pass ($1.85)", price: 310 }
         ],
         "Apple USA": [
-            { name: "Apple $5", price: 850 },
-            { name: "Apple $10", price: 1650 },
-            { name: "Apple $25", price: 4000 }
+            { name: "Apple $2 ($1.94)", price: 350 },
+            { name: "Apple $5 ($4.85)", price: 850 },
+            { name: "Apple $10 ($9.70)", price: 1650 },
+            { name: "Apple $15 ($14.55)", price: 2450 },
+            { name: "Apple $25 ($24.25)", price: 4000 }
         ],
         "Netflix Card USA": [
-            { name: "Netflix $15", price: 2400 },
-            { name: "Netflix $25", price: 3900 },
-            { name: "Netflix $30", price: 4700 }
+            { name: "Netflix $15 ($14.75)", price: 2450 },
+            { name: "Netflix $20 ($18.99)", price: 3150 },
+            { name: "Netflix $25 ($23.99)", price: 3950 },
+            { name: "Netflix $30 ($29.50)", price: 4800 }
         ],
         "Spotify USA": [
-            { name: "Spotify 1 Month", price: 1500 },
-            { name: "Spotify 3 Months", price: 4200 }
+            { name: "Spotify 12 USD ($16.38)", price: 2700 },
+            { name: "Spotify 36 USD ($48.26)", price: 7800 }
         ]
     };
 
@@ -433,6 +413,7 @@
 
 </body>
 </html>
+
 
 
 
