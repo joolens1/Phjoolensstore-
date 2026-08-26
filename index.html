@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ht">
 <head>
@@ -225,6 +227,15 @@
             margin-bottom: 8px;
             font-size: 12px;
         }
+        /* Seksyon Dekoneksyon anba paj la */
+        .bottom-logout-trigger {
+            margin-top: 40px;
+            padding: 20px 10px;
+            background-color: #f1f5f9;
+            border-top: 1px dashed #cbd5e1;
+            text-align: center;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -336,8 +347,8 @@
                 <div class="form-group">
                     <label for="paymentMethod">Metòd Peman:</label>
                     <select id="paymentMethod" required>
-                        <option value="MonCash">MonCash</option>
                         <option value="Natcash">Natcash</option>
+                        <option value="MonCash">MonCash</option>
                     </select>
                 </div>
 
@@ -346,8 +357,20 @@
                     <input type="tel" id="senderPhone" placeholder="Antre nimewo ou voye l la" required>
                 </div>
 
+                <!-- KÒD VALIDASYON TRANZAKSYON -->
+                <div class="form-group">
+                    <label for="txnCode">🔑 Kòd Tranzaksyon / Konfimasyon SMS:</label>
+                    <input type="text" id="txnCode" placeholder="Antre kòd SMS peman an (ex: 859403)" required>
+                </div>
+
                 <button type="button" class="submit-btn" onclick="sendOrder()">ACHETER MAINTENANT</button>
             </form>
+        </div>
+
+        <!-- SEKSYON ANBA PAJ LA KI DEKONEKTE OTO MIKTAN LÈ MOUN LAN DESANN -->
+        <div class="bottom-logout-trigger">
+            <p style="font-size: 12px; color: #64748b; margin: 0 0 10px 0;">🔒 Sekirite Session Kont</p>
+            <button style="background: #e2e8f0; color: #334155; border: 1px solid #cbd5e1; padding: 8px 15px; border-radius: 6px; font-size: 12px; cursor: pointer; font-weight: bold;" onclick="autoLogoutAndAskAuth()">🔄 Rekonekte Kont Gmail Ou</button>
         </div>
     </div>
 </div>
@@ -374,6 +397,23 @@
             document.getElementById('googleAuthSection').style.display = 'block';
             document.getElementById('orderForm').style.display = 'none';
             document.getElementById('showHistoryBtn').style.display = 'none';
+        }
+    }
+
+    // Dekoneksyon otomatik lè desann anba epi fenèt la rive nan bout
+    window.onscroll = function() {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
+            if(userGmail) {
+                autoLogoutAndAskAuth();
+            }
+        }
+    };
+
+    function autoLogoutAndAskAuth() {
+        if(userGmail) {
+            logout();
+            alert("🔒 Session an rive nan bout li! Tanpri rekonekte kont Gmail ou pou w ka kontinye.");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
 
@@ -493,23 +533,24 @@
         const id = document.getElementById('playerId').value;
         const method = document.getElementById('paymentMethod').value;
         const phone = document.getElementById('senderPhone').value;
+        const txnCode = document.getElementById('txnCode').value;
 
-        if(!selectedPkg || !id || !phone) {
-            alert('Tanpri chwazi yon pake epi ranpli tout enfòmasyon yo!');
+        if(!selectedPkg || !id || !phone || !txnCode) {
+            alert('Tanpri chwazi yon pake epi ranpli tout enfòmasyon yo ak tout Kòd Tranzaksyon an!');
             return;
         }
 
-        // Sove kòmand lan nan istorik kliyan an
         saveOrderToHistory({
             service: currentGame,
             package: selectedPkg.name,
             price: selectedPkg.price,
             id: id,
+            txnCode: txnCode,
             date: new Date().toLocaleDateString('fr-FR') + ' ' + new Date().toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})
         });
 
         const myPhone = "50932265636"; 
-        const text = `Bonjou PH Joolens Store, mwen fè yon kòmand:%0A- *Gmail:* ${userGmail}%0A- *Sèvis:* ${currentGame}%0A- *Pake:* ${selectedPkg.name}%0A- *Pri:* G ${selectedPkg.price}.00%0A- *Non/Kont:* ${name}%0A- *ID/Enfòmasyon:* ${id}%0A- *Metòd:* ${method}%0A- *Nimewo Peman:* ${phone}`;
+        const text = `Bonjou PH Joolens Store, mwen fè yon kòmand:%0A- *Gmail:* ${userGmail}%0A- *Sèvis:* ${currentGame}%0A- *Pake:* ${selectedPkg.name}%0A- *Pri:* G ${selectedPkg.price}.00%0A- *Non/Kont:* ${name}%0A- *ID/Enfòmasyon:* ${id}%0A- *Metòd:* ${method}%0A- *Nimewo Peman:* ${phone}%0A- *🔑 Kòd Tranzaksyon:* ${txnCode}`;
 
         window.open(`https://api.whatsapp.com/send?phone=${myPhone}&text=${text}`, '_blank');
     }
@@ -539,6 +580,7 @@
                 <strong style="color:#d97706;">${ord.service}</strong> - ${ord.package}<br>
                 <span>💰 Pri: G ${ord.price}.00</span><br>
                 <span>🆔 ID/Kont: ${ord.id}</span><br>
+                <span>🔑 Kòd Tranzaksyon: ${ord.txnCode || 'N/A'}</span><br>
                 <span style="color:#64748b; font-size:10px;">📅 ${ord.date}</span>
             </div>
         `).join('');
@@ -547,3 +589,4 @@
 
 </body>
 </html>
+
