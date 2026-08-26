@@ -227,11 +227,10 @@
             margin-bottom: 8px;
             font-size: 12px;
         }
-        /* Seksyon Dekoneksyon anba paj la */
         .bottom-logout-trigger {
-            margin-top: 40px;
-            padding: 20px 10px;
-            background-color: #f1f5f9;
+            margin-top: 30px;
+            padding: 15px 10px;
+            background-color: #f8fafc;
             border-top: 1px dashed #cbd5e1;
             text-align: center;
             border-radius: 8px;
@@ -367,16 +366,16 @@
             </form>
         </div>
 
-        <!-- SEKSYON ANBA PAJ LA KI DEKONEKTE OTO MIKTAN LÈ MOUN LAN DESANN -->
-        <div class="bottom-logout-trigger">
-            <p style="font-size: 12px; color: #64748b; margin: 0 0 10px 0;">🔒 Sekirite Session Kont</p>
-            <button style="background: #e2e8f0; color: #334155; border: 1px solid #cbd5e1; padding: 8px 15px; border-radius: 6px; font-size: 12px; cursor: pointer; font-weight: bold;" onclick="autoLogoutAndAskAuth()">🔄 Rekonekte Kont Gmail Ou</button>
+        <!-- BOUTON DEKONEKSYON ANBA PAJ LA -->
+        <div id="bottomLogoutBox" class="bottom-logout-trigger" style="display:none;">
+            <button style="background: #ef4444; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: bold;" onclick="logout()">🔒 Dekonekte / Change Kont</button>
         </div>
     </div>
 </div>
 
 <script>
-    let userGmail = localStorage.getItem('ph_user_gmail') || null;
+    // Nou SÈVI ak sessionStorage nan plas localStorage pou kont lan DEKONEKTE dèske moun lan soti sou paj la!
+    let userGmail = sessionStorage.getItem('ph_user_gmail') || null;
 
     function enterStore() {
         document.getElementById('welcomeScreen').style.display = 'none';
@@ -391,29 +390,14 @@
             document.getElementById('googleAuthSection').style.display = 'none';
             document.getElementById('orderForm').style.display = 'block';
             document.getElementById('showHistoryBtn').style.display = 'block';
+            document.getElementById('bottomLogoutBox').style.display = 'block';
         } else {
             document.getElementById('userInfo').innerText = "👤 Kont: Pokokalifye";
             document.getElementById('logoutBtn').style.display = 'none';
             document.getElementById('googleAuthSection').style.display = 'block';
             document.getElementById('orderForm').style.display = 'none';
             document.getElementById('showHistoryBtn').style.display = 'none';
-        }
-    }
-
-    // Dekoneksyon otomatik lè desann anba epi fenèt la rive nan bout
-    window.onscroll = function() {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
-            if(userGmail) {
-                autoLogoutAndAskAuth();
-            }
-        }
-    };
-
-    function autoLogoutAndAskAuth() {
-        if(userGmail) {
-            logout();
-            alert("🔒 Session an rive nan bout li! Tanpri rekonekte kont Gmail ou pou w ka kontinye.");
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('bottomLogoutBox').style.display = 'none';
         }
     }
 
@@ -518,14 +502,15 @@
             return;
         }
         userGmail = input;
-        localStorage.setItem('ph_user_gmail', userGmail);
+        sessionStorage.setItem('ph_user_gmail', userGmail);
         checkUserSession();
     }
 
     function logout() {
         userGmail = null;
-        localStorage.removeItem('ph_user_gmail');
+        sessionStorage.removeItem('ph_user_gmail');
         checkUserSession();
+        alert("🔒 Ou dekonekte ak siksè!");
     }
 
     function sendOrder() {
@@ -589,4 +574,5 @@
 
 </body>
 </html>
+
 
