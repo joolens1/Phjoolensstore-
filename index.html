@@ -1,18 +1,16 @@
 
 
-
-
 <!DOCTYPE html>
 <html lang="ht">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PH JOOLENS STORE - Free Fire Diamonds</title>
+    <title>PHJoolens Store - Freefire Indonesia</title>
     <style>
         :root {
-            --primary-color: #ff4757;
+            --primary-color: #d4a373;
             --secondary-color: #2f3542;
-            --bg-color: #f1f2f6;
+            --bg-color: #f8f9fa;
             --card-bg: #ffffff;
             --text-color: #333333;
         }
@@ -22,205 +20,448 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 0;
+            padding-bottom: 90px;
         }
 
-        header {
-            background: linear-gradient(135deg, #ff4757, #ff6b81);
-            color: white;
+        /* MODAL KONEKSYON GMAIL */
+        #login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .login-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
             text-align: center;
-            padding: 2.5rem 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .login-box h2 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
         }
 
-        header p {
-            margin-top: 0.5rem;
-            font-size: 1.1rem;
-            opacity: 0.9;
+        .login-box p {
+            color: #666;
+            margin-bottom: 1.5rem;
         }
 
+        .login-box input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .login-box button {
+            background-color: #c59b27;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* HEADER */
+        header {
+            background: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-area {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .wallet-info {
+            background: #fff3cd;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #856404;
+        }
+
+        /* CONTAINER */
         .container {
-            max-width: 1100px;
-            margin: 2rem auto;
+            max-width: 700px;
+            margin: 1.5rem auto;
             padding: 0 1rem;
         }
 
-        .section-title {
-            text-align: center;
-            color: var(--secondary-color);
+        h2.section-heading {
             font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 3px solid var(--primary-color);
-            display: table;
-            margin-left: auto;
-            margin-right: auto;
-            padding-bottom: 0.3rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 5px solid var(--primary-color);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .card h3 {
-            margin: 0 0 0.5rem 0;
             color: var(--secondary-color);
-            font-size: 1.4rem;
+            margin-bottom: 0.2rem;
         }
 
-        .price {
-            font-size: 1.6rem;
+        .price-range {
+            font-size: 1.1rem;
             font-weight: bold;
-            color: var(--primary-color);
-            margin: 1rem 0;
+            color: #222;
+            margin-bottom: 0.5rem;
         }
 
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
+        .availability {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 1.2rem;
+        }
+
+        /* PAKÈ GRID / BUTTONS */
+        .packages-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .pkg-btn {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #333;
+            transition: all 0.2s;
+        }
+
+        .pkg-btn.active {
+            border-color: #222;
+            background-color: #f1f2f6;
+            font-weight: bold;
+        }
+
+        .clear-btn {
+            background: none;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            font-size: 1rem;
+            color: #666;
+            font-size: 0.8rem;
             cursor: pointer;
             text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        /* PRICE DISPLAY */
+        .selected-price {
+            font-size: 2rem;
             font-weight: bold;
-            transition: background 0.2s ease;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+
+        /* FORM BOX */
+        .form-card {
+            background: white;
+            border: 1px solid #e1e1e1;
+            border-radius: 12px;
+            padding: 1.2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            margin-bottom: 1.5rem;
+        }
+
+        .verification-badge {
+            background: #fcf8e3;
+            border: 1px solid #faebcc;
+            color: #8a6d3b;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-group input {
             width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            outline: none;
         }
 
-        .btn:hover {
-            background-color: #ff253a;
+        .input-group input:focus {
+            border-color: #222;
         }
 
-        footer {
+        .input-hint {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* ACTION BUTTON */
+        .btn-acheter-maintenant {
+            background-color: #dfc293;
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
             text-align: center;
-            padding: 1.5rem;
-            background-color: var(--secondary-color);
-            color: white;
-            margin-top: 3rem;
-            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .btn-acheter-maintenant:hover {
+            background-color: #d1b17d;
+        }
+
+        /* ENFÒMASYON PEMÈN */
+        .payment-info {
+            background: #e8f4fd;
+            border-left: 5px solid #2196F3;
+            padding: 1rem;
+            margin-top: 2rem;
+            border-radius: 8px;
+        }
+
+        .payment-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: #0d47a1;
+        }
+
+        .payment-info p {
+            margin: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* BOTTOM NAVIGATION BAR */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            z-index: 99;
+        }
+
+        .nav-item {
+            text-align: center;
+            text-decoration: none;
+            color: #666;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: #c59b27;
+            font-weight: bold;
+        }
+
+        .nav-item div {
+            font-size: 1.2rem;
+            margin-bottom: 2px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>PH JOOLENS STORE</h1>
-        <p>Pi bon sèvis rechaj Diamonds Free Fire pou ou menm!</p>
-    </header>
-
-    <div class="container">
-        
-        <!-- Seksyon Pin Free Fire -->
-        <h2 class="section-title">Pin Free Fire</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>110 Diamonds</h3>
-                <div class="price">G 150.00</div>
-                <button class="btn" onclick="kòmande('Pin Free Fire - 110 Diamonds')">Kòmande Kounye a</button>
-            </div>
-            <div class="card">
-                <h3>341 Diamonds</h3>
-                <div class="price">G 750.00</div>
-                <button class="btn" onclick="kòmande('Pin Free Fire - 341 Diamonds')">Kòmande Kounye a</button>
-            </div>
-            <div class="card">
-                <h3>572 Diamonds</h3>
-                <div class="price">G 1,450.00</div>
-                <button class="btn" onclick="kòmande('Pin Free Fire - 572 Diamonds')">Kòmande Kounye a</button>
-            </div>
-            <div class="card">
-                <h3>1166 Diamonds</h3>
-                <div class="price">G 2,800.00</div>
-                <button class="btn" onclick="kòmande('Pin Free Fire - 1166 Diamonds')">Kòmande Kounye a</button>
-            </div>
-            <div class="card">
-                <h3>2398 Diamonds</h3>
-                <div class="price">G 7,500.00</div>
-                <button class="btn" onclick="kòmande('Pin Free Fire - 2398 Diamonds')">Kòmande Kounye a</button>
-            </div>
-            <div class="card">
-                <h3>6160 Diamonds</h3>
-                <div class="price">G 7,500.00</div>
-                <button class="btn" onclick="kòmande('Pin Free Fire - 6160 Diamonds')">Kòmande Kounye a</button>
-            </div>
+    <!-- MODAL KONEKSYON GMAIL -->
+    <div id="login-modal">
+        <div class="login-box">
+            <h2>PHJoolens Store</h2>
+            <p>Antre adrès Gmail ou pou w ka konekte.</p>
+            <input type="email" id="gmail-input" placeholder="egzanp@gmail.com" required>
+            <button onclick="konekte()">Konekte</button>
         </div>
-
-        <!-- Seksyon Free Fire Nord-Amérique -->
-        <h2 class="section-title">Free Fire Nord-Amérique</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>110 Diamonds</h3>
-                <div class="price">G 150.00</div>
-                <button class="btn" onclick="kòmande('Free Fire NA - 110 Diamonds')">Kòmande Kounye a</button>
-            </div>
-            <div class="card">
-                <h3>341 Diamonds</h3>
-                <div class="price">G 375.00</div>
-                <button class="btn" onclick="kòmande('Free Fire NA - 341 Diamonds')">Kòmande Kounye a</button>
-            </div>
-            <div class="card">
-                <h3>572 Diamonds</h3>
-                <div class="price">G 500.00</div>
-                <button class="btn" onclick="kòmande('Free Fire NA - 572 Diamonds')">Kòmande Kounye a</button>
-            </div>
-            <div class="card">
-                <h3>1166 Diamonds</h3>
-                <div class="price">G 1,650.00</div>
-                <button class="btn" onclick="kòmande('Free Fire NA - 1166 Diamonds')">Kòmande Kounye a</button>
-            </div>
-            <div class="card">
-                <h3>2398 Diamonds</h3>
-                <div class="price">G 1,650.00</div>
-                <button class="btn" onclick="kòmande('Free Fire NA - 2398 Diamonds')">Kòmande Kounye a</button>
-            </div>
-            <div class="card">
-                <h3>6160 Diamonds</h3>
-                <div class="price">G 7,500.00</div>
-                <button class="btn" onclick="kòmande('Free Fire NA - 6160 Diamonds')">Kòmande Kounye a</button>
-            </div>
-        </div>
-
     </div>
 
-    <footer>
-        <p>&copy; 2026 PH JOOLENS STORE. Tout dwa rezève.</p>
-    </footer>
+    <!-- HEADER -->
+    <header>
+        <div class="logo-area">⚡ PHJoolens</div>
+        <div class="wallet-info">G 0.00</div>
+        <button onclick="soti()" style="background: #ff4757; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 5px; cursor: pointer; font-size: 0.8rem;">Dekonekte</button>
+    </header>
+
+    <!-- KONTNI -->
+    <div class="container">
+        <h2 class="section-heading">Freefire Indonesia</h2>
+        <div class="price-range">G 50.00 – G 5,130.00</div>
+        <div class="availability">Instant Freefire Indonesia top-up. Enter the player’s User ID before ordering.</div>
+
+        <!-- LIS PAKÈ YO -->
+        <div class="packages-grid" id="packages-container">
+            <!-- Pakè yo pral antre otomatikman la a via JavaScript -->
+        </div>
+        <button class="clear-btn" onclick="effaseSeleksyon()">Effacer</button>
+
+        <!-- PRI KAP CHANJE A -->
+        <div class="selected-price" id="display-price">G 210.00</div>
+
+        <!-- FÒM ID -->
+        <div class="form-card">
+            <div class="verification-badge">Vérification requise</div>
+            <div class="input-group">
+                <input type="text" id="player-id" placeholder="ID" required>
+            </div>
+            <div class="input-hint">Vérification ID requise pour Freefire Indonesia.</div>
+        </div>
+
+        <!-- BOUTON ACHETE -->
+        <button class="btn-acheter-maintenant" onclick="paseKomandWhatsApp()">ACHETER MAINTENANT</button>
+
+        <!-- ENFÒMASYON PEMÈN AK TRANSFÈ -->
+        <div class="payment-info">
+            <h4>Enfòmasyon sou Peman ak Kòmand</h4>
+            <p>📲 <strong>Pase kòmand ou sou WhatsApp:</strong> +509 32 26 5636</p>
+            <p>💸 <strong>Nimewo pou fè transfè lajan:</strong> +509 48828406</p>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active"><div>🏠</div> Accueil</a>
+        <a href="#" class="nav-item"><div>🛒</div> Services</a>
+        <a href="#" class="nav-item"><div>💳</div> Portefeuille</a>
+        <a href="#" class="nav-item"><div>📋</div> Commandes</a>
+        <a href="#" class="nav-item" onclick="window.open('https://wa.me/50932265636', '_blank')"><div>💬</div> Support</a>
+    </div>
 
     <script>
-        function kòmande(sèvis) {
-            alert("Mèsi dèske ou vle kòmande: " + sèvis + "! Sistèm nan prèt pou konekte ak API a pou trete l." );
-            // Ou ka konekte fonksyon sa a ak backend Node.js ou a oswa Gift Access API a isit la.
+        // Tout pakè Indonesia yo ak pri egzak ki soti nan imaj ou yo
+        const pakèList = [
+            { name: "20 Diamonds", price: 50 },
+            { name: "50 Diamonds", price: 100 },
+            { name: "100 Diamonds", price: 190 },
+            { name: "140 Diamonds", price: 210 },
+            { name: "200 Diamonds", price: 305 },
+            { name: "280 Diamonds", price: 405 },
+            { name: "355 Diamonds", price: 504 },
+            { name: "500 Diamonds", price: 720 },
+            { name: "720 Diamonds", price: 1010 },
+            { name: "1000 Diamonds", price: 1415 },
+            { name: "1080 Diamonds", price: 1525 },
+            { name: "1450 Diamonds", price: 2040 },
+            { name: "2180 Diamonds", price: 3770 },
+            { name: "3640 Diamonds", price: 5130 },
+            { name: "Weekly Membership", price: 310 },
+            { name: "Monthly Membership", price: 930 },
+            { name: "Level Up Package - Level 6", price: 100 },
+            { name: "Level Up Package - Level 10", price: 100 },
+            { name: "Level Up Package - Level 15", price: 100 },
+            { name: "Level Up Package - Level 20", price: 100 },
+            { name: "Level Up Package - Level 25", price: 100 },
+            { name: "Level Up Package - Level 30", price: 100 }
+        ];
+
+        let selectedPackage = pakèList[3]; // Pa defo 140 Diamonds (G 210.00 daprè dènye imaj la)
+
+        // Afiche pakè yo nan paj la
+        function renderPackages() {
+            const container = document.getElementById('packages-container');
+            container.innerHTML = '';
+            pakèList.forEach((pkg, index) => {
+                const btn = document.createElement('button');
+                btn.className = `pkg-btn ${selectedPackage.name === pkg.name ? 'active' : ''}`;
+                btn.innerText = pkg.name;
+                btn.onclick = () => selectPackage(index);
+                container.appendChild(btn);
+            });
+            updatePriceDisplay();
+        }
+
+        function selectPackage(index) {
+            selectedPackage = pakèList[index];
+            renderPackages();
+        }
+
+        function updatePriceDisplay() {
+            document.getElementById('display-price').innerText = `G ${selectedPackage.price.toLocaleString()}.00`;
+        }
+
+        function effaseSeleksyon() {
+            selectedPackage = pakèList[0];
+            renderPackages();
+        }
+
+        // Tcheke Gmail sou konsole
+        window.onload = function() {
+            const savedGmail = sessionStorage.getItem('user_gmail');
+            if (savedGmail) {
+                document.getElementById('login-modal').style.display = 'none';
+            } else {
+                document.getElementById('login-modal').style.display = 'flex';
+            }
+            renderPackages();
+        };
+
+        function konekte() {
+            const gmail = document.getElementById('gmail-input').value;
+            if(gmail && gmail.includes('@gmail.com')) {
+                sessionStorage.setItem('user_gmail', gmail);
+                document.getElementById('login-modal').style.display = 'none';
+            } else {
+                alert('Tanpri antre yon adrès Gmail valab.');
+            }
+        }
+
+        function soti() {
+            sessionStorage.removeItem('user_gmail');
+            location.reload();
+        }
+
+        // Voye sou WhatsApp (+509 32 26 5636)
+        function paseKomandWhatsApp() {
+            const playerId = document.getElementById('player-id').value.trim();
+            if(!playerId) {
+                alert('Tanpri antre ID Freefire ou a!');
+                document.getElementById('player-id').focus();
+                return;
+            }
+
+            const userGmail = sessionStorage.getItem('user_gmail');
+            const message = `Salut PHJoolens Store! Mwen ta renmen achte:\n\n🎮 Sèvis: Freefire Indonesia\n📦 Pakè: ${selectedPackage.name}\n🆔 ID Jwè: ${playerId}\n💰 Pri: G ${selectedPackage.price}.00\n📧 Gmail mwen: ${userGmail}`;
+            
+            const whatsappURL = `https://wa.me/50932265636?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
         }
     </script>
-
 </body>
 </html>
+
 
 
 
