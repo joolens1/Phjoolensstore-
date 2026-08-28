@@ -1,37 +1,36 @@
 
 
+
+
 <!DOCTYPE html>
 <html lang="ht">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PH Joolens Store - Gaming & Gift Cards</title>
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#fbf7ee">
+    <title>PH JOOLENS STORE - Top-Up Free Fire</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #fbf7ee;
-            color: #1e293b;
             margin: 0;
-            padding: 15px;
+            padding: 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
-            max-width: 480px;
-            width: 100%;
-            background-color: #ffffff;
+            background: #ffffff;
             padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border: 1px solid #e2d9c2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
         }
-        h2 { 
-            text-align: center; 
-            color: #27272a; 
+        h2 {
+            text-align: center;
+            color: #333;
             margin-bottom: 5px;
-            font-size: 22px;
         }
         .subtitle {
             text-align: center;
@@ -39,540 +38,132 @@
             color: #64748b;
             margin-bottom: 20px;
         }
-        
-        /* EKRAM BYENVENI */
-        .welcome-screen {
-            text-align: center;
-            padding: 30px 10px;
-        }
-        .welcome-screen h1 {
-            color: #d97706;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .welcome-screen p {
-            color: #475569;
-            font-size: 15px;
-            margin-bottom: 25px;
-        }
-        .enter-btn {
-            background-color: #d97706;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* KATALÒG AK FÒM */
-        #mainStore {
-            display: none;
-        }
-        .user-profile {
-            background-color: #fffbeb;
-            border: 1px solid #fef3c7;
-            padding: 10px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .form-group {
             margin-bottom: 15px;
-            font-size: 13px;
         }
-        .catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        .game-card {
-            background-color: #f8fafc;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            padding: 15px 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .game-card:hover {
-            border-color: #d97706;
-            background-color: #fffbeb;
-            transform: translateY(-2px);
-        }
-        .game-card h3 {
-            font-size: 14px;
-            margin: 8px 0 4px 0;
-            color: #1e293b;
-        }
-        .game-card p {
-            font-size: 11px;
-            color: #64748b;
-            margin: 0;
-        }
-        .section-title {
-            font-size: 15px;
+        label {
+            display: block;
+            margin-bottom: 5px;
             font-weight: bold;
-            color: #d97706;
-            margin: 15px 0 10px 0;
-            border-bottom: 1px solid #e2d9c2;
-            padding-bottom: 5px;
-        }
-        .form-section {
-            display: none;
-            background: #ffffff;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #e2d9c2;
-            margin-top: 15px;
-        }
-        .price-display {
-            font-size: 22px;
-            font-weight: bold;
-            color: #1e293b;
-            margin: 10px 0;
-        }
-        .form-group { 
-            margin-bottom: 15px; 
-        }
-        label { 
-            display: block; 
-            margin-bottom: 6px; 
-            font-weight: bold; 
-            font-size: 13px;
-            color: #334155;
+            color: #555;
         }
         input, select {
             width: 100%;
             padding: 10px;
+            border: 1px solid #ccc;
             border-radius: 6px;
-            border: 1px solid #cbd5e1;
-            background-color: #ffffff;
-            color: #0f172a;
             box-sizing: border-box;
-            font-size: 13px;
-            outline: none;
         }
-        .packages-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 15px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .pkg-btn {
-            background-color: #f8fafc;
-            border: 1px solid #cbd5e1;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            color: #334155;
-        }
-        .pkg-btn.active {
-            background-color: #ffffff;
-            color: #0f172a;
-            border: 2px solid #0f172a;
-            font-weight: bold;
-        }
-        .back-btn {
-            background: none;
-            border: none;
-            color: #d97706;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 13px;
-            margin-bottom: 10px;
-            padding: 0;
-        }
-        .submit-btn {
+        button {
             width: 100%;
-            padding: 14px;
-            background-color: #d97706;
+            padding: 12px;
+            background-color: #ff5722;
             color: white;
             border: none;
             border-radius: 6px;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
         }
-        .auth-box {
-            background-color: #fffbeb;
-            border: 1px solid #fde68a;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
+        button:hover {
+            background-color: #e64a19;
         }
-        .history-btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #1e293b;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: bold;
-            cursor: pointer;
+        #resultMessage {
             margin-top: 15px;
-            display: none;
-        }
-        .history-card {
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 8px;
-            font-size: 12px;
-        }
-        .bottom-logout-trigger {
-            margin-top: 30px;
-            padding: 15px 10px;
-            background-color: #f8fafc;
-            border-top: 1px dashed #cbd5e1;
             text-align: center;
-            border-radius: 8px;
+            font-weight: bold;
+        }
+        .github-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .github-link a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .github-link a:hover {
+            color: #ff5722;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- 1. EKRAM BYENVENI -->
-    <div id="welcomeScreen" class="welcome-screen">
-        <span style="font-size: 50px;">🎮</span>
-        <h1>Bienvenue à PH Joolens Store</h1>
-        <p>Achte Top-Up jwèt ak Gift Cards rapid epi an sekirite.</p>
-        <button class="enter-btn" onclick="enterStore()">Antre nan Sit la 👋</button>
-    </div>
-
-    <!-- 2. KONTNI SIT LA (KATALÒG AK FÒM) -->
-    <div id="mainStore">
-        <h2>PH Joolens Store 🎮</h2>
-        <div class="subtitle">Katalòg Top-Up & Gift Cards Otomatik</div>
-
-        <!-- Profil Moun lan -->
-        <div class="user-profile">
-            <span id="userInfo">👤 Kont: Pokokalifye</span>
-            <button id="logoutBtn" style="display:none; background:#ef4444; color:white; border:none; border-radius:4px; padding:4px 8px; font-size:11px; cursor:pointer;" onclick="logout()">Sòti</button>
-        </div>
-
-        <!-- LISTE JWÈT AK SÈVIS YO -->
-        <div id="catalogView">
-            <div class="section-title">🎮 Jwèt (Top-Up)</div>
-            <div class="catalog-grid">
-                <div class="game-card" onclick="openGameForm('Free Fire')">
-                    <span style="font-size: 26px;">🔥</span>
-                    <h3>Free Fire</h3>
-                    <p>Top-up ID</p>
-                </div>
-                <div class="game-card" onclick="openGameForm('Free Fire Pin Latam')">
-                    <span style="font-size: 26px;">🌎</span>
-                    <h3>Free Fire Pin Latam</h3>
-                    <p>Kòd / Pin</p>
-                </div>
-                <div class="game-card" onclick="openGameForm('Freefire Indonesia')">
-                    <span style="font-size: 26px;">🇮🇩</span>
-                    <h3>Free Fire Indonesia</h3>
-                    <p>Indonesia Server</p>
-                </div>
-                <div class="game-card" onclick="openGameForm('Blood Strike')">
-                    <span style="font-size: 26px;">⚔️</span>
-                    <h3>Blood Strike</h3>
-                    <p>Gold & Pass</p>
-                </div>
-            </div>
-
-            <div class="section-title">💳 Kat Kado & Abònman (Gift Cards)</div>
-            <div class="catalog-grid">
-                <div class="game-card" onclick="openGameForm('Apple USA')">
-                    <span style="font-size: 26px;">🍎</span>
-                    <h3>Apple USA</h3>
-                    <p>Gift Card</p>
-                </div>
-                <div class="game-card" onclick="openGameForm('Netflix Card USA')">
-                    <span style="font-size: 26px;">🎬</span>
-                    <h3>Netflix USA</h3>
-                    <p>Gift Card</p>
-                </div>
-                <div class="game-card" onclick="openGameForm('Spotify USA')">
-                    <span style="font-size: 26px;">🎧</span>
-                    <h3>Spotify USA</h3>
-                    <p>Premium Card</p>
-                </div>
-            </div>
-
-            <button id="showHistoryBtn" class="history-btn" onclick="toggleHistoryView()">📋 Istorik Kòmand Mwen Yo</button>
-        </div>
-
-        <!-- SEKSYON ISTORIK KÒMAND -->
-        <div id="historySection" class="form-section">
-            <button class="back-btn" onclick="goBackToCatalog()">← Retounen nan Katalòg</button>
-            <h3 style="margin-top: 5px; font-size: 18px; color: #1e293b;">📋 Istorik Kòmand Ou Yo</h3>
-            <div id="historyList" style="margin-top: 15px;"></div>
-        </div>
-
-        <!-- FÒM KÒMAND LAN -->
-        <div id="formSection" class="form-section">
-            <button class="back-btn" onclick="goBackToCatalog()">← Retounen nan Katalòg</button>
-            <h3 id="formTitle" style="margin-top: 5px; margin-bottom: 0; font-size: 18px; color: #1e293b;">Sèvis</h3>
-            
-            <div id="priceDisplay" class="price-display">G 0.00</div>
-
-            <!-- BOUTON KONEKSYON GMAIL -->
-            <div id="googleAuthSection" class="auth-box">
-                <label for="gmailInput">✉️ Antre adrès Gmail ou anvan w kontinye:</label>
-                <input type="email" id="gmailInput" placeholder="ekzanp: nonou@gmail.com" style="margin-bottom: 10px;">
-                <button type="button" class="submit-btn" style="padding: 10px; font-size: 13px;" onclick="connectGmail()">Konekte Kont Gmail</button>
-            </div>
-
-            <form id="orderForm" style="display: none;">
-                <div class="form-group">
-                    <div id="packagesGrid" class="packages-grid"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="playerName">Non sou kont lan / Imèl:</label>
-                    <input type="text" id="playerName" placeholder="Antre non oswa imèl kliyan an" required>
-                </div>
-
-                <div class="form-group" id="idGroup">
-                    <label for="playerId">ID Jwèt / Enfòmasyon:</label>
-                    <input type="text" id="playerId" placeholder="Antre ID ou a oswa kont lan" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="paymentMethod">Metòd Peman:</label>
-                    <select id="paymentMethod" required>
-                        <option value="Natcash">Natcash</option>
-                        <option value="MonCash">MonCash</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="senderPhone">Nimewo ki voye peman an:</label>
-                    <input type="tel" id="senderPhone" placeholder="Antre nimewo ou voye l la" required>
-                </div>
-
-                <!-- KÒD VALIDASYON TRANZAKSYON -->
-                <div class="form-group">
-                    <label for="txnCode">🔑 Kòd Tranzaksyon / Konfimasyon SMS:</label>
-                    <input type="text" id="txnCode" placeholder="Antre kòd SMS peman an (ex: 859403)" required>
-                </div>
-
-                <button type="button" class="submit-btn" onclick="sendOrder()">ACHETER MAINTENANT</button>
-            </form>
-        </div>
-
-        <!-- BOUTON DEKONEKSYON ANBA PAJ LA -->
-        <div id="bottomLogoutBox" class="bottom-logout-trigger" style="display:none;">
-            <button style="background: #ef4444; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: bold;" onclick="logout()">🔒 Dekonekte / Change Kont</button>
-        </div>
-    </div>
-</div>
-
-<script>
-    // Nou SÈVI ak sessionStorage nan plas localStorage pou kont lan DEKONEKTE dèske moun lan soti sou paj la!
-    let userGmail = sessionStorage.getItem('ph_user_gmail') || null;
-
-    function enterStore() {
-        document.getElementById('welcomeScreen').style.display = 'none';
-        document.getElementById('mainStore').style.display = 'block';
-        checkUserSession();
-    }
-
-    function checkUserSession() {
-        if(userGmail) {
-            document.getElementById('userInfo').innerText = "👤 Konekte: " + userGmail;
-            document.getElementById('logoutBtn').style.display = 'inline-block';
-            document.getElementById('googleAuthSection').style.display = 'none';
-            document.getElementById('orderForm').style.display = 'block';
-            document.getElementById('showHistoryBtn').style.display = 'block';
-            document.getElementById('bottomLogoutBox').style.display = 'block';
-        } else {
-            document.getElementById('userInfo').innerText = "👤 Kont: Pokokalifye";
-            document.getElementById('logoutBtn').style.display = 'none';
-            document.getElementById('googleAuthSection').style.display = 'block';
-            document.getElementById('orderForm').style.display = 'none';
-            document.getElementById('showHistoryBtn').style.display = 'none';
-            document.getElementById('bottomLogoutBox').style.display = 'none';
-        }
-    }
-
-    const gamePackages = {
-        "Free Fire": [
-            { name: "100 + 10💎", price: 150 },
-            { name: "200 + 20💎", price: 300 },
-            { name: "310 + 31💎", price: 420 },
-            { name: "520 + 52💎", price: 680 },
-            { name: "1060 + 106💎", price: 1500 },
-            { name: "Weekly Lite", price: 150 },
-            { name: "Booyah Pass", price: 500 },
-            { name: "Abònman Semèn", price: 375 },
-            { name: "Abònman Mwa", price: 1650 }
-        ],
-        "Free Fire Pin Latam": [
-            { name: "100 + 10 Pin", price: 155 },
-            { name: "310 + 31 Pin", price: 450 },
-            { name: "520 + 52 Pin", price: 700 },
-            { name: "1060 + 106 Pin", price: 1550 },
-            { name: "2180 + 218 Pin", price: 2500 },
-            { name: "5600 + 560 Pin", price: 6200 }
-        ],
-        "Freefire Indonesia": [
-            { name: "5💎", price: 25 },
-            { name: "10💎", price: 40 },
-            { name: "50💎", price: 110 },
-            { name: "70💎", price: 135 },
-            { name: "100💎", price: 165 },
-            { name: "140💎", price: 210 }
-        ],
-        "Blood Strike": [
-            { name: "51 Gold", price: 120 },
-            { name: "105 Gold", price: 165 },
-            { name: "320 Gold", price: 420 },
-            { name: "540 Gold", price: 650 },
-            { name: "Season Pass", price: 190 },
-            { name: "Level Up Pass", price: 320 }
-        ],
-        "Apple USA": [
-            { name: "Apple $2", price: 350 },
-            { name: "Apple $5", price: 900 },
-            { name: "Apple $10", price: 1750 },
-            { name: "Apple $15", price: 2550 },
-            { name: "Apple $25", price: 4200 }
-        ],
-        "Netflix Card USA": [
-            { name: "Netflix $15", price: 2550 },
-            { name: "Netflix $20", price: 3300 },
-            { name: "Netflix $25", price: 4100 },
-            { name: "Netflix $30", price: 4900 }
-        ],
-        "Spotify USA": [
-            { name: "Spotify 12 USD", price: 2650 },
-            { name: "Spotify 36 USD", price: 7800 }
-        ]
-    };
-
-    let currentGame = "";
-    let selectedPkg = null;
-
-    function openGameForm(gameName) {
-        currentGame = gameName;
-        selectedPkg = null;
-        document.getElementById('catalogView').style.display = 'none';
-        document.getElementById('historySection').style.display = 'none';
-        document.getElementById('formSection').style.display = 'block';
-        document.getElementById('formTitle').innerText = gameName + " - Kòmande";
-        document.getElementById('priceDisplay').innerText = "G 0.00";
-
-        let gridContainer = document.getElementById('packagesGrid');
-        gridContainer.innerHTML = '';
-
-        if(gamePackages[gameName]) {
-            gamePackages[gameName].forEach(pkg => {
-                let btn = document.createElement('div');
-                btn.className = 'pkg-btn';
-                btn.innerText = pkg.name;
-                btn.onclick = function() {
-                    let allBtns = gridContainer.querySelectorAll('.pkg-btn');
-                    allBtns.forEach(b => b.classList.remove('active'));
-                    
-                    btn.classList.add('active');
-                    selectedPkg = pkg;
-                    document.getElementById('priceDisplay').innerText = "G " + pkg.price.toLocaleString() + ".00";
-                };
-                gridContainer.appendChild(btn);
-            });
-        }
-    }
-
-    function goBackToCatalog() {
-        document.getElementById('formSection').style.display = 'none';
-        document.getElementById('historySection').style.display = 'none';
-        document.getElementById('catalogView').style.display = 'block';
-    }
-
-    function connectGmail() {
-        const input = document.getElementById('gmailInput').value.trim();
-        if(!input || !input.includes('@')) {
-            alert('Tanpri antre yon adrès Gmail ki valid!');
-            return;
-        }
-        userGmail = input;
-        sessionStorage.setItem('ph_user_gmail', userGmail);
-        checkUserSession();
-    }
-
-    function logout() {
-        userGmail = null;
-        sessionStorage.removeItem('ph_user_gmail');
-        checkUserSession();
-        alert("🔒 Ou dekonekte ak siksè!");
-    }
-
-    function sendOrder() {
-        const name = document.getElementById('playerName').value;
-        const id = document.getElementById('playerId').value;
-        const method = document.getElementById('paymentMethod').value;
-        const phone = document.getElementById('senderPhone').value;
-        const txnCode = document.getElementById('txnCode').value;
-
-        if(!selectedPkg || !id || !phone || !txnCode) {
-            alert('Tanpri chwazi yon pake epi ranpli tout enfòmasyon yo ak tout Kòd Tranzaksyon an!');
-            return;
-        }
-
-        saveOrderToHistory({
-            service: currentGame,
-            package: selectedPkg.name,
-            price: selectedPkg.price,
-            id: id,
-            txnCode: txnCode,
-            date: new Date().toLocaleDateString('fr-FR') + ' ' + new Date().toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})
-        });
-
-        const myPhone = "50932265636"; 
-        const text = `Bonjou PH Joolens Store, mwen fè yon kòmand:%0A- *Gmail:* ${userGmail}%0A- *Sèvis:* ${currentGame}%0A- *Pake:* ${selectedPkg.name}%0A- *Pri:* G ${selectedPkg.price}.00%0A- *Non/Kont:* ${name}%0A- *ID/Enfòmasyon:* ${id}%0A- *Metòd:* ${method}%0A- *Nimewo Peman:* ${phone}%0A- *🔑 Kòd Tranzaksyon:* ${txnCode}`;
-
-        window.open(`https://api.whatsapp.com/send?phone=${myPhone}&text=${text}`, '_blank');
-    }
-
-    function saveOrderToHistory(order) {
-        let historyKey = 'ph_history_' + userGmail;
-        let orders = JSON.parse(localStorage.getItem(historyKey)) || [];
-        orders.unshift(order);
-        localStorage.setItem(historyKey, JSON.stringify(orders));
-    }
-
-    function toggleHistoryView() {
-        document.getElementById('catalogView').style.display = 'none';
-        document.getElementById('historySection').style.display = 'block';
+    <div class="container">
+        <h2>PH JOOLENS STORE</h2>
+        <div class="subtitle">Top-Up Free Fire Otomatik</div>
         
-        let historyList = document.getElementById('historyList');
-        let historyKey = 'ph_history_' + userGmail;
-        let orders = JSON.parse(localStorage.getItem(historyKey)) || [];
-
-        if(orders.length === 0) {
-            historyList.innerHTML = "<p style='text-align:center; color:#64748b; font-size:13px;'>Ou poko fè okenn kòmand sou kont sa a.</p>";
-            return;
-        }
-
-        historyList.innerHTML = orders.map(ord => `
-            <div class="history-card">
-                <strong style="color:#d97706;">${ord.service}</strong> - ${ord.package}<br>
-                <span>💰 Pri: G ${ord.price}.00</span><br>
-                <span>🆔 ID/Kont: ${ord.id}</span><br>
-                <span>🔑 Kòd Tranzaksyon: ${ord.txnCode || 'N/A'}</span><br>
-                <span style="color:#64748b; font-size:10px;">📅 ${ord.date}</span>
+        <form id="topupForm">
+            <div class="form-group">
+                <label for="playerId">ID Jwè Free Fire:</label>
+                <input type="text" id="playerId" placeholder="Antre ID jwè a" required>
             </div>
-        `).join('');
-    }
-</script>
+
+            <div class="form-group">
+                <label for="packageId">Pake Dyaman:</label>
+                <select id="packageId">
+                    <option value="100_diamonds">100 Dyaman - 150 HTG</option>
+                    <option value="310_diamonds">310 Dyaman - 400 HTG</option>
+                    <option value="520_diamonds">520 Dyaman - 650 HTG</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="paymentCode">Kòd Peman (Opsyonèl):</label>
+                <input type="text" id="paymentCode" placeholder="Antre kòd tranzaksyon an">
+            </div>
+
+            <button type="submit">Voye Top-Up la</button>
+        </form>
+
+        <div id="resultMessage"></div>
+
+        <!-- Lyen GitHub ou -->
+        <div class="github-link">
+            <a href="https://github.com/joolens1/ph-joolens-store-app" target="_blank">
+                📂 Vizite GitHub mwen
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('topupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const playerId = document.getElementById('playerId').value;
+            const packageId = document.getElementById('packageId').value;
+            const paymentCode = document.getElementById('paymentCode').value;
+            const resultDiv = document.getElementById('resultMessage');
+
+            resultDiv.style.color = '#333';
+            resultDiv.innerText = 'Ap voye demann lan...';
+
+            try {
+                const response = await fetch('/api/topup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ playerId, packageId, paymentCode })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    resultDiv.style.color = 'green';
+                    resultDiv.innerText = data.message;
+                } else {
+                    resultDiv.style.color = 'red';
+                    resultDiv.innerText = 'Erè: ' + data.message;
+                }
+            } catch (err) {
+                resultDiv.style.color = 'red';
+                resultDiv.innerText = 'Gen yon pwoblèm koneksyon ki fèt!';
+            }
+        });
+    </script>
 
 </body>
 </html>
+
 
 
