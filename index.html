@@ -1,6 +1,6 @@
 
 
-DOCTYPE html>
+!DOCTYPE html>
 
 <html lang="ht">
 
@@ -453,22 +453,6 @@ DOCTYPE html>
 
         }
 
-        .bottom-logout-trigger {
-
-            margin-top: 30px;
-
-            padding: 15px 10px;
-
-            background-color: #f8fafc;
-
-            border-top: 1px dashed #cbd5e1;
-
-            text-align: center;
-
-            border-radius: 8px;
-
-        }
-
     </style>
 
 </head>
@@ -678,9 +662,9 @@ DOCTYPE html>
 
                     <select id="paymentMethod" required>
 
-                        <option value="Natcash">Natcash</option>
-
                         <option value="MonCash">MonCash</option>
+
+                        <option value="Natcash">Natcash</option>
 
                     </select>
 
@@ -696,29 +680,9 @@ DOCTYPE html>
                 </div>
 
 
-                <!-- KÒD VALIDASYON TRANZAKSYON -->
-
-                <div class="form-group">
-
-                    <label for="txnCode">🔑 Kòd Tranzaksyon / Konfimasyon SMS:</label>
-
-                    <input type="text" id="txnCode" placeholder="Antre kòd SMS peman an (ex: 859403)" required>
-
-                </div>
-
-
                 <button type="button" class="submit-btn" onclick="sendOrder()">ACHETER MAINTENANT</button>
 
             </form>
-
-        </div>
-
-
-        <!-- BOUTON DEKONEKSYON ANBA PAJ LA -->
-
-        <div id="bottomLogoutBox" class="bottom-logout-trigger" style="display:none;">
-
-            <button style="background: #ef4444; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: bold;" onclick="logout()">🔒 Dekonekte / Change Kont</button>
 
         </div>
 
@@ -729,9 +693,7 @@ DOCTYPE html>
 
 <script>
 
-    // Nou SÈVI ak sessionStorage nan plas localStorage pou kont lan DEKONEKTE dèske moun lan soti sou paj la!
-
-    let userGmail = sessionStorage.getItem('ph_user_gmail') || null;
+    let userGmail = localStorage.getItem('ph_user_gmail') || null;
 
 
     function enterStore() {
@@ -759,8 +721,6 @@ DOCTYPE html>
 
             document.getElementById('showHistoryBtn').style.display = 'block';
 
-            document.getElementById('bottomLogoutBox').style.display = 'block';
-
         } else {
 
             document.getElementById('userInfo').innerText = "👤 Kont: Pokokalifye";
@@ -772,8 +732,6 @@ DOCTYPE html>
             document.getElementById('orderForm').style.display = 'none';
 
             document.getElementById('showHistoryBtn').style.display = 'none';
-
-            document.getElementById('bottomLogoutBox').style.display = 'none';
 
         }
 
@@ -976,7 +934,7 @@ DOCTYPE html>
 
         userGmail = input;
 
-        sessionStorage.setItem('ph_user_gmail', userGmail);
+        localStorage.setItem('ph_user_gmail', userGmail);
 
         checkUserSession();
 
@@ -987,11 +945,9 @@ DOCTYPE html>
 
         userGmail = null;
 
-        sessionStorage.removeItem('ph_user_gmail');
+        localStorage.removeItem('ph_user_gmail');
 
         checkUserSession();
-
-        alert("🔒 Ou dekonekte ak siksè!");
 
     }
 
@@ -1006,17 +962,17 @@ DOCTYPE html>
 
         const phone = document.getElementById('senderPhone').value;
 
-        const txnCode = document.getElementById('txnCode').value;
 
+        if(!selectedPkg || !id || !phone) {
 
-        if(!selectedPkg || !id || !phone || !txnCode) {
-
-            alert('Tanpri chwazi yon pake epi ranpli tout enfòmasyon yo ak tout Kòd Tranzaksyon an!');
+            alert('Tanpri chwazi yon pake epi ranpli tout enfòmasyon yo!');
 
             return;
 
         }
 
+
+        // Sove kòmand lan nan istorik kliyan an
 
         saveOrderToHistory({
 
@@ -1028,8 +984,6 @@ DOCTYPE html>
 
             id: id,
 
-            txnCode: txnCode,
-
             date: new Date().toLocaleDateString('fr-FR') + ' ' + new Date().toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})
 
         });
@@ -1037,7 +991,7 @@ DOCTYPE html>
 
         const myPhone = "50932265636"; 
 
-        const text = `Bonjou PH Joolens Store, mwen fè yon kòmand:%0A- *Gmail:* ${userGmail}%0A- *Sèvis:* ${currentGame}%0A- *Pake:* ${selectedPkg.name}%0A- *Pri:* G ${selectedPkg.price}.00%0A- *Non/Kont:* ${name}%0A- *ID/Enfòmasyon:* ${id}%0A- *Metòd:* ${method}%0A- *Nimewo Peman:* ${phone}%0A- *🔑 Kòd Tranzaksyon:* ${txnCode}`;
+        const text = `Bonjou PH Joolens Store, mwen fè yon kòmand:%0A- *Gmail:* ${userGmail}%0A- *Sèvis:* ${currentGame}%0A- *Pake:* ${selectedPkg.name}%0A- *Pri:* G ${selectedPkg.price}.00%0A- *Non/Kont:* ${name}%0A- *ID/Enfòmasyon:* ${id}%0A- *Metòd:* ${method}%0A- *Nimewo Peman:* ${phone}`;
 
 
         window.open(`https://api.whatsapp.com/send?phone=${myPhone}&text=${text}`, '_blank');
@@ -1092,8 +1046,6 @@ DOCTYPE html>
 
                 <span>🆔 ID/Kont: ${ord.id}</span><br>
 
-                <span>🔑 Kòd Tranzaksyon: ${ord.txnCode || 'N/A'}</span><br>
-
                 <span style="color:#64748b; font-size:10px;">📅 ${ord.date}</span>
 
             </div>
@@ -1108,5 +1060,7 @@ DOCTYPE html>
 </body>
 
 </html>
+
+
 
 
