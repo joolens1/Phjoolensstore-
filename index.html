@@ -1,6 +1,6 @@
 
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
@@ -8,397 +8,1253 @@
 <title>PHJoolens Store</title>
 
 <style>
-:root{
-    --gold:#c59b27;
-    --gold2:#d4a373;
-    --dark:#2f3542;
-    --bg:#f7f7f7;
+:root {
+    --primary-color: #d4a373;
+    --secondary-color: #2f3542;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-color: #333333;
 }
 
-*{box-sizing:border-box}
-
-body{
-    margin:0;
-    padding-bottom:90px;
-    font-family:Arial,sans-serif;
-    background:var(--bg);
-    color:#333;
+* {
+    box-sizing: border-box;
 }
 
-header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:white;
-    padding:14px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    box-shadow:0 2px 6px #0002;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding-bottom: 90px;
 }
 
-.logo{
-    font-size:20px;
-    font-weight:bold;
-    color:var(--dark);
+/* LOGIN */
+#login-modal {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.88);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-.wallet{
-    background:#fff3cd;
-    color:#856404;
-    padding:7px 12px;
-    border-radius:20px;
-    font-weight:bold;
+.login-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-.container{
-    max-width:700px;
-    margin:auto;
-    padding:20px 15px;
+.login-box h2 {
+    color: var(--secondary-color);
+    margin-bottom: 8px;
 }
 
-h1{
-    margin-bottom:5px;
+.login-box p {
+    color: #666;
+    margin-bottom: 20px;
 }
 
-.subtitle{
-    color:#666;
+.login-box input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
 }
 
-.services{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-    margin:20px 0;
+.login-box button {
+    background-color: #c59b27;
+    color: white;
+    border: none;
+    padding: 13px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.service{
-    background:white;
-    border:1px solid #ddd;
-    border-radius:12px;
-    padding:15px 8px;
-    font-weight:bold;
-    cursor:pointer;
+/* HEADER */
+header {
+    background: white;
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.service.active{
-    border:2px solid var(--gold);
-    background:#fff8e8;
+.logo-area {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
 }
 
-.card{
-    background:white;
-    border-radius:14px;
-    padding:18px;
-    border:1px solid #ddd;
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.card h2{
-    margin-top:0;
+.wallet-info {
+    background: #fff3cd;
+    padding: 7px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #856404;
+    font-size: 13px;
 }
 
-.packages{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:9px;
+.logout-btn {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 7px 9px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
 }
 
-.package{
-    background:white;
-    border:1px solid #ccc;
-    border-radius:9px;
-    padding:12px 8px;
-    cursor:pointer;
-    font-weight:bold;
+/* MAIN */
+.container {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 0 15px;
 }
 
-.package.active{
-    border:2px solid var(--gold);
-    background:#fff8e8;
+.section-heading {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
 }
 
-.price{
-    display:block;
-    margin-top:6px;
-    color:#a16d2f;
+.subtitle {
+    color: #666;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
-.coming{
-    color:#777;
-    font-size:13px;
+/* SERVICES */
+.services-title {
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
-.selected{
-    margin-top:18px;
-    padding:14px;
-    background:#f1f1f1;
-    border-radius:9px;
-    font-size:20px;
-    font-weight:bold;
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
+    margin-bottom: 20px;
 }
 
-.input-group{
-    margin-top:18px;
+.service-btn {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 13px 8px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-.input-group label{
-    display:block;
-    font-weight:bold;
-    margin-bottom:7px;
+.service-btn.active {
+    border: 2px solid #c59b27;
+    background: #fff8e8;
 }
 
-.input-group input{
-    width:100%;
-    padding:13px;
-    border:1px solid #ccc;
-    border-radius:9px;
-    font-size:16px;
+/* PRODUCT */
+.form-card {
+    background: white;
+    border: 1px solid #e1e1e1;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    margin-bottom: 18px;
 }
 
-.buy{
-    width:100%;
-    margin-top:18px;
-    padding:15px;
-    border:none;
-    border-radius:10px;
-    background:var(--gold2);
-    color:white;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
+.product-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
 }
 
-.buy:hover{
-    background:#bd8e58;
+.product-description {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 18px;
 }
 
-.payment{
-    margin-top:20px;
-    background:#e8f4fd;
-    border-left:5px solid #2196f3;
-    padding:15px;
-    border-radius:8px;
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
 }
 
-.bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:white;
-    display:flex;
-    justify-content:space-around;
-    padding:8px 0;
-    box-shadow:0 -2px 6px #0002;
-    z-index:99;
+.pkg-btn {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 12px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
 }
 
-.nav-item{
-    text-align:center;
-    color:#666;
-    font-size:12px;
-    cursor:pointer;
+.pkg-btn.active {
+    border: 2px solid #c59b27;
+    background: #fff8e8;
 }
 
-.nav-item div{
-    font-size:21px;
+.pkg-price {
+    display: block;
+    margin-top: 5px;
+    color: #a16d2f;
+    font-weight: bold;
 }
 
-.nav-item.active{
-    color:var(--gold);
-    font-weight:bold;
+.coming-price {
+    color: #777;
+    font-size: 12px;
+}
+
+.selected-price {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #222;
+    margin: 18px 0;
+    background: #f4f4f4;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.verification-badge {
+    background: #fcf8e3;
+    border: 1px solid #faebcc;
+    color: #8a6d3b;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+.input-group {
+    margin-bottom: 8px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #c59b27;
+}
+
+.input-hint {
+    font-size: 12px;
+    color: #666;
+}
+
+.btn-acheter {
+    background-color: #dfc293;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-acheter:hover {
+    background-color: #d1b17d;
+}
+
+/* PAYMENT */
+.payment-info {
+    background: #e8f4fd;
+    border-left: 5px solid #2196F3;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.payment-info h4 {
+    margin: 0 0 8px 0;
+    color: #0d47a1;
+}
+
+.payment-info p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+/* BOTTOM NAV */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.08);
+    z-index: 99;
+}
+
+.nav-item {
+    text-align: center;
+    text-decoration: none;
+    color: #666;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nav-item div {
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.nav-item.active {
+    color: #c59b27;
+    font-weight: bold;
+}
+
+/* MOBILE */
+@media (max-width: 450px) {
+    .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .logo-area {
+        font-size: 16px;
+    }
+
+    .wallet-info {
+        font-size: 11px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- LOGIN -->
+<div id="login-modal">
+
+    <div class="login-box">
+
+        <h2>⚡ PHJoolens Store</h2>
+
+        <p>
+            Antre adrès Gmail ou pou w ka konekte.
+        </p>
+
+        <input
+            type="email"
+            id="gmail-input"
+            placeholder="egzanp@gmail.com"
+            autocomplete="email"
+        >
+
+        <button onclick="konekte()">
+            Konekte
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- HEADER -->
 <header>
-    <div class="logo">⚡ PHJoolens Store</div>
-    <div class="wallet">G 0.00</div>
+
+    <div class="logo-area">
+        ⚡ PHJoolens Store
+    </div>
+
+    <div class="header-right">
+
+        <div class="wallet-info">
+            G 0.00
+        </div>
+
+        <button
+            class="logout-btn"
+            onclick="soti()">
+            Dekonekte
+        </button>
+
+    </div>
+
 </header>
 
+
+<!-- CONTENT -->
 <div class="container">
 
-<h1>🛒 Services</h1>
-<p class="subtitle">
-Chwazi jwèt oswa sèvis ou vle achte.
-</p>
+    <h2 class="section-heading">
+        Bienvenue sou PHJoolens Store
+    </h2>
 
-<div class="services">
+    <p class="subtitle">
+        Chwazi jwèt oswa sèvis ou vle achte.
+    </p>
 
-<button class="service active" onclick="changeService('freefire',this)">
-🎮<br>Free Fire LATAM
-</button>
 
-<button class="service" onclick="changeService('pubg',this)">
-🎯<br>PUBG Mobile
-</button>
+    <!-- SERVICES -->
+    <h3 class="services-title">
+        🛒 Services
+    </h3>
 
-<button class="service" onclick="changeService('mobilelegends',this)">
-⚔️<br>Mobile Legends
-</button>
+    <div class="services-grid">
 
-<button class="service" onclick="changeService('cod',this)">
-🎯<br>Call of Duty
-</button>
+        <button
+            class="service-btn active"
+            onclick="changeService('freefire', this)">
+            🎮<br>
+            Free Fire
+        </button>
 
-<button class="service" onclick="changeService('efootball',this)">
-⚽<br>eFootball
-</button>
+        <button
+            class="service-btn"
+            onclick="changeService('pubg', this)">
+            🎯<br>
+            PUBG Mobile
+        </button>
 
-<button class="service" onclick="changeService('roblox',this)">
-🎮<br>Roblox
-</button>
+        <button
+            class="service-btn"
+            onclick="changeService('mobilelegends', this)">
+            ⚔️<br>
+            Mobile Legends
+        </button>
 
-<button class="service" onclick="changeService('playstation',this)">
-🎁<br>PlayStation
-</button>
+        <button
+            class="service-btn"
+            onclick="changeService('cod', this)">
+            🎯<br>
+            Call of Duty
+        </button>
 
-<button class="service" onclick="changeService('googleplay',this)">
-🎁<br>Google Play
-</button>
+        <button
+            class="service-btn"
+            onclick="changeService('efootball', this)">
+            ⚽<br>
+            eFootball
+        </button>
+
+        <button
+            class="service-btn"
+            onclick="changeService('roblox', this)">
+            🎮<br>
+            Roblox
+        </button>
+
+        <button
+            class="service-btn"
+            onclick="changeService('playstation', this)">
+            🎁<br>
+            PlayStation
+        </button>
+
+        <button
+            class="service-btn"
+            onclick="changeService('googleplay', this)">
+            🎁<br>
+            Google Play
+        </button>
+
+    </div>
+
+
+    <!-- PRODUCT CARD -->
+    <div class="form-card">
+
+        <div
+            class="product-title"
+            id="product-title">
+            Free Fire
+        </div>
+
+        <div
+            class="product-description"
+            id="product-description">
+            Recharge Free Fire. Antre ID jwè a anvan kòmand lan.
+        </div>
+
+
+        <div
+            class="packages-grid"
+            id="packages-container">
+        </div>
+
+
+        <div
+            class="selected-price"
+            id="display-price">
+            G 150
+        </div>
+
+
+        <div class="verification-badge">
+            Vérification requise
+        </div>
+
+
+        <div class="input-group">
+
+            <label id="input-label">
+                🆔 ID Jwè
+            </label>
+
+            <input
+                type="text"
+                id="customer-info"
+                placeholder="Antre ID Free Fire ou"
+            >
+
+        </div>
+
+        <div
+            class="input-hint"
+            id="input-hint">
+            Vérification ID requise pou sèvis sa a.
+        </div>
+
+        <br>
+
+        <button
+            class="btn-acheter"
+            onclick="paseKomandWhatsApp()">
+
+            ACHETER MAINTENANT
+
+        </button>
+
+    </div>
+
+
+    <!-- PAYMENT -->
+    <div class="payment-info">
+
+        <h4>
+            Enfòmasyon sou Peman ak Kòmand
+        </h4>
+
+        <p>
+            📲 <strong>Pase kòmand ou sou WhatsApp:</strong>
+            +509 32 26 5636
+        </p>
+
+        <p>
+            💸 <strong>Nimewo pou fè transfè lajan:</strong>
+            +509 48828406
+        </p>
+
+    </div>
 
 </div>
 
-<div class="card">
 
-<h2 id="title">Free Fire LATAM</h2>
-
-<p id="description">
-Recharge Free Fire LATAM. Antre ID jwè a.
-</p>
-
-<div class="packages" id="packages"></div>
-
-<div class="selected" id="selected">
-Pri: G 150
-</div>
-
-<div class="input-group">
-
-<label id="inputLabel">🆔 ID Jwè</label>
-
-<input
-id="customerInfo"
-type="text"
-placeholder="Antre ID Free Fire ou"
->
-
-</div>
-
-<button class="buy" onclick="orderWhatsApp()">
-🛒 ACHETER MAINTENANT
-</button>
-
-</div>
-
-<div class="payment">
-
-<h4>💳 Enfòmasyon sou Peman</h4>
-
-<p>📲 WhatsApp: <b>+509 32 26 5636</b></p>
-
-<p>💸 Transfè: <b>+509 48828406</b></p>
-
-</div>
-
-</div>
-
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
 
-<div class="nav-item active" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-<div>🏠</div>
-Accueil
+    <div
+        class="nav-item active"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})">
+
+        <div>🏠</div>
+        Accueil
+
+    </div>
+
+
+    <div
+        class="nav-item"
+        onclick="document.querySelector('.services-title').scrollIntoView({behavior:'smooth'})">
+
+        <div>🛒</div>
+        Services
+
+    </div>
+
+
+    <div class="nav-item">
+
+        <div>💳</div>
+        Portefeuille
+
+    </div>
+
+
+    <div class="nav-item">
+
+        <div>📋</div>
+        Commandes
+
+    </div>
+
+
+    <div
+        class="nav-item"
+        onclick="window.open('https://wa.me/50932265636','_blank')">
+
+        <div>💬</div>
+        Support
+
+    </div>
+
 </div>
 
-<div class="nav-item" onclick="document.querySelector('.services').scrollIntoView({behavior:'smooth'})">
-<div>🛒</div>
-Services
-</div>
-
-<div class="nav-item">
-<div>💳</div>
-Portefeuille
-</div>
-
-<div class="nav-item">
-<div>📋</div>
-Commandes
-</div>
-
-<div class="nav-item"
-onclick="window.open('https://wa.me/50932265636','_blank')">
-<div>💬</div>
-Support
-</div>
-
-</div>
 
 <script>
 
+/* =========================
+   SERVICES + PRICES
+========================= */
+
 const services = {
 
-freefire:{
-title:"Free Fire LATAM",
-description:"Recharge Free Fire LATAM. Antre ID jwè a.",
-input:"ID Jwè",
-placeholder:"Antre ID Free Fire ou",
-packages:[
-["100 + 10 Diamonds",150],
-["310 + 31 Diamonds",450],
-["520 + 52 Diamonds",700],
-["1060 + 106 Diamonds",1400],
-["2180 + 218 Diamonds",2800],
-["5600 + 560 Diamonds",7000],
-["Weekly Lite",150],
-["Weekly Membership",450],
-["Monthly Membership",1500]
-]
-},
+    /* FREE FIRE */
+    freefire: {
 
-pubg:{
-title:"PUBG Mobile",
-description:"PUBG Mobile UC. Pri ap vini.",
-input:"ID Jw
-freefire: {
-    title: "Free Fire",
-    description: "Recharge Free Fire. Antre ID jwè a anvan kòmand lan.",
-    input: "ID Jwè",
-    placeholder: "Antre ID Free Fire ou",
-    packages: [
-        ["110 Diamonds", 150],
-        ["220 Diamonds", 300],
-        ["341 Diamonds", 450],
-        ["572 Diamonds", 750],
-        ["682 Diamonds", 900],
-        ["792 Diamonds", 1050],
-        ["913 Diamonds", 1350],
-        ["1166 Diamonds", 1500],
-        ["2398 Diamonds", 3000],
-        ["3564 Diamonds", 9300],
-        ["Booyah Pass", 500],
-        ["Abonnement semaine", 375],
-        ["Abonnement mois", 1650]
-    ]
-},
+        title: "Free Fire",
 
-pubg: {
-    title: "PUBG Mobile",
-    description: "Recharge PUBG Mobile UC. Antre ID jwè a anvan kòmand lan.",
-    input: "ID Jwè",
-    placeholder: "Antre ID PUBG ou",
-    packages: [
-        ["60 UC", 180],
-        ["325 UC", 875],
-        ["660 UC", 1600],
-        ["1800 UC", 3500],
-        ["3850 UC", 8000],
-        ["8100 UC", 16900],
-        ["16200 UC", 33000]
-    ]
-},
+        description:
+        "Recharge Free Fire. Antre ID jwè a anvan kòmand lan.",
+
+        input:
+        "ID Jwè",
+
+        placeholder:
+        "Antre ID Free Fire ou",
+
+        packages: [
+
+            ["110 Diamonds", 150],
+
+            ["220 Diamonds", 300],
+
+            ["341 Diamonds", 450],
+
+            ["572 Diamonds", 750],
+
+            ["682 Diamonds", 900],
+
+            ["792 Diamonds", 1050],
+
+            ["913 Diamonds", 1350],
+
+            ["1166 Diamonds", 1500],
+
+            ["2398 Diamonds", 3000],
+
+            ["3564 Diamonds", 9300],
+
+            ["Booyah Pass", 500],
+
+            ["Abonnement semaine", 375],
+
+            ["Abonnement mois", 1650]
+
+        ]
+
+    },
 
 
+    /* PUBG */
+    pubg: {
+
+        title: "PUBG Mobile",
+
+        description:
+        "Recharge PUBG Mobile UC. Antre ID jwè a anvan kòmand lan.",
+
+        input:
+        "ID Jwè",
+
+        placeholder:
+        "Antre ID PUBG ou",
+
+        packages: [
+
+            ["60 UC", 180],
+
+            ["325 UC", 875],
+
+            ["660 UC", 1600],
+
+            ["1800 UC", 3500],
+
+            ["3850 UC", 8000],
+
+            ["8100 UC", 16900],
+
+            ["16200 UC", 33000]
+
+        ]
+
+    },
 
 
+    /* MOBILE LEGENDS */
+    mobilelegends: {
+
+        title: "Mobile Legends",
+
+        description:
+        "Mobile Legends Diamonds. Pri ap vini.",
+
+        input:
+        "ID Jwè",
+
+        placeholder:
+        "Antre ID Mobile Legends ou",
+
+        packages: [
+
+            ["86 Diamonds", null],
+
+            ["172 Diamonds", null],
+
+            ["257 Diamonds", null],
+
+            ["344 Diamonds", null],
+
+            ["429 Diamonds", null],
+
+            ["514 Diamonds", null],
+
+            ["706 Diamonds", null],
+
+            ["1412 Diamonds", null]
+
+        ]
+
+    },
+
+
+    /* CALL OF DUTY */
+    cod: {
+
+        title: "Call of Duty Mobile",
+
+        description:
+        "Call of Duty Mobile CP. Pri ap vini.",
+
+        input:
+        "ID Jwè",
+
+        placeholder:
+        "Antre ID Call of Duty ou",
+
+        packages: [
+
+            ["80 CP", null],
+
+            ["420 CP", null],
+
+            ["880 CP", null],
+
+            ["2400 CP", null],
+
+            ["5000 CP", null],
+
+            ["10800 CP", null]
+
+        ]
+
+    },
+
+
+    /* EFOOTBALL */
+    efootball: {
+
+        title: "eFootball",
+
+        description:
+        "eFootball Coins. Pri ap vini.",
+
+        input:
+        "ID Jwè",
+
+        placeholder:
+        "Antre ID eFootball ou",
+
+        packages: [
+
+            ["130 Coins", null],
+
+            ["550 Coins", null],
+
+            ["1040 Coins", null],
+
+            ["2130 Coins", null],
+
+            ["3250 Coins", null]
+
+        ]
+
+    },
+
+
+    /* ROBLOX */
+    roblox: {
+
+        title: "Roblox",
+
+        description:
+        "Robux. Pri ap vini.",
+
+        input:
+        "Username Roblox",
+
+        placeholder:
+        "Antre Username Roblox ou",
+
+        packages: [
+
+            ["400 Robux", null],
+
+            ["800 Robux", null],
+
+            ["1700 Robux", null],
+
+            ["4500 Robux", null],
+
+            ["10000 Robux", null]
+
+        ]
+
+    },
+
+
+    /* PLAYSTATION */
+    playstation: {
+
+        title: "PlayStation Gift Card",
+
+        description:
+        "PlayStation Gift Card. Pri ap vini.",
+
+        input:
+        "Email / Compte",
+
+        placeholder:
+        "Antre enfòmasyon nesesè",
+
+        packages: [
+
+            ["$10", null],
+
+            ["$20", null],
+
+            ["$50", null],
+
+            ["$100", null]
+
+        ]
+
+    },
+
+
+    /* GOOGLE PLAY */
+    googleplay: {
+
+        title: "Google Play Gift Card",
+
+        description:
+        "Google Play Gift Card. Pri ap vini.",
+
+        input:
+        "Email / Compte",
+
+        placeholder:
+        "Antre enfòmasyon nesesè",
+
+        packages: [
+
+            ["$10", null],
+
+            ["$20", null],
+
+            ["$50", null],
+
+            ["$100", null]
+
+        ]
+
+    }
+
+};
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let currentService = "freefire";
+
+let selectedPackage =
+services.freefire.packages[0];
+
+
+/* =========================
+   RENDER PACKAGES
+========================= */
+
+function renderPackages() {
+
+    const service =
+    services[currentService];
+
+
+    document.getElementById(
+        "product-title"
+    ).innerText = service.title;
+
+
+    document.getElementById(
+        "product-description"
+    ).innerText = service.description;
+
+
+    document.getElementById(
+        "input-label"
+    ).innerText = "📌 " + service.input;
+
+
+    document.getElementById(
+        "customer-info"
+    ).placeholder = service.placeholder;
+
+
+    const container =
+    document.getElementById(
+        "packages-container"
+    );
+
+
+    container.innerHTML = "";
+
+
+    service.packages.forEach(
+        (pkg, index) => {
+
+            const btn =
+            document.createElement("button");
+
+
+            btn.className =
+            "pkg-btn";
+
+
+            if (index === 0) {
+
+                btn.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            if (pkg[1] === null) {
+
+                btn.innerHTML =
+                pkg[0] +
+                '<span class="pkg-price coming-price">' +
+                'Pri ap vini' +
+                '</span>';
+
+            } else {
+
+                btn.innerHTML =
+                pkg[0] +
+                '<span class="pkg-price">' +
+                'G ' +
+                pkg[1].toLocaleString() +
+                '</span>';
+
+            }
+
+
+            btn.onclick = function() {
+
+                selectedPackage = pkg;
+
+
+                document
+                .querySelectorAll(".pkg-btn")
+                .forEach(
+                    b =>
+                    b.classList.remove("active")
+                );
+
+
+                btn.classList.add(
+                    "active"
+                );
+
+
+                updatePrice();
+
+            };
+
+
+            container.appendChild(btn);
+
+        }
+    );
+
+
+    selectedPackage =
+    service.packages[0];
+
+
+    updatePrice();
+
+}
+
+
+/* =========================
+   UPDATE PRICE
+========================= */
+
+function updatePrice() {
+
+    const display =
+    document.getElementById(
+        "display-price"
+    );
+
+
+    if (selectedPackage[1] === null) {
+
+        display.innerText =
+        "Pri: Ap vini";
+
+    } else {
+
+        display.innerText =
+        "G " +
+        selectedPackage[1].toLocaleString();
+
+    }
+
+}
+
+
+/* =========================
+   CHANGE SERVICE
+========================= */
+
+function changeService(
+    serviceName,
+    button
+) {
+
+    currentService =
+    serviceName;
+
+
+    document
+    .querySelectorAll(".service-btn")
+    .forEach(
+        btn =>
+        btn.classList.remove("active")
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    renderPackages();
+
+}
+
+
+/* =========================
+   GMAIL LOGIN
+   PA GEN LOCALSTORAGE
+========================= */
+
+function konekte() {
+
+    const gmail =
+    document.getElementById(
+        "gmail-input"
+    ).value.trim();
+
+
+    if (
+        gmail &&
+        gmail.toLowerCase().endsWith("@gmail.com")
+    ) {
+
+        document.getElementById(
+            "login-modal"
+        ).style.display = "none";
+
+
+        /*
+        Gmail la pa sove.
+        Lè paj la reload oswa moun nan
+        retounen sou sit la, login lan
+        ap mande ankò.
+        */
+
+    } else {
+
+        alert(
+            "Tanpri antre yon adrès Gmail valab."
+        );
+
+    }
+
+}
+
+
+/* =========================
+   DEKONEKTE
+========================= */
+
+function soti() {
+
+    /*
+    Nou pa sove Gmail la,
+    kidonk nou jis reload paj la.
+    Sa ap fè fenèt Gmail la parèt ankò.
+    */
+
+    location.reload();
+
+}
+
+
+/* =========================
+   WHATSAPP ORDER
+========================= */
+
+function paseKomandWhatsApp() {
+
+    const info =
+    document.getElementById(
+        "customer-info"
+    ).value.trim();
+
+
+    if (!info) {
+
+        alert(
+            "Tanpri antre " +
+            services[currentService].input +
+            "."
+        );
+
+
+        document.getElementById(
+            "customer-info"
+        ).focus();
+
+
+        return;
+
+    }
+
+
+    if (selectedPackage[1] === null) {
+
+        alert(
+            "Pri pou pakè sa a poko disponib."
+        );
+
+
+        return;
+
+    }
+
+
+    const service =
+    services[currentService];
+
+
+    const message =
+`Salut PHJoolens Store! 👋
+
+Mwen ta renmen fè yon kòmand.
+
+🎮 Sèvis: ${service.title}
+📦 Pakè: ${selectedPackage[0]}
+💰 Pri: G ${selectedPackage[1].toLocaleString()}
+📌 ${service.input}: ${info}
+
+Tanpri konfime kòmand mwen an.`;
+
+
+    const whatsappURL =
+    "https://wa.me/50932265636?text=" +
+    encodeURIComponent(message);
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+window.onload = function() {
+
+    /*
+    LOGIN TOUJOU PARÈT.
+    Nou pa itilize localStorage.
+    */
+
+    document.getElementById(
+        "login-modal"
+    ).style.display = "flex";
+
+
+    renderPackages();
+
+};
+
+</script>
+
+</body>
+</html>
