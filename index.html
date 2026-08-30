@@ -1,7 +1,5 @@
 
-
-
-            <!DOCTYPE html>
+                    <!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
@@ -29,7 +27,10 @@ body {
     padding-bottom: 90px;
 }
 
-/* LOGIN */
+/* =========================
+   LOGIN
+========================= */
+
 #login-modal {
     position: fixed;
     inset: 0;
@@ -83,7 +84,14 @@ body {
     cursor: pointer;
 }
 
-/* HEADER */
+.login-box button:hover {
+    background-color: #a98218;
+}
+
+/* =========================
+   HEADER
+========================= */
+
 header {
     background: white;
     padding: 14px;
@@ -127,7 +135,10 @@ header {
     font-size: 12px;
 }
 
-/* MAIN */
+/* =========================
+   MAIN
+========================= */
+
 .container {
     max-width: 700px;
     margin: 20px auto;
@@ -146,7 +157,10 @@ header {
     margin-bottom: 20px;
 }
 
-/* SERVICES */
+/* =========================
+   SERVICES
+========================= */
+
 .services-title {
     font-size: 20px;
     margin-bottom: 10px;
@@ -174,7 +188,10 @@ header {
     background: #fff8e8;
 }
 
-/* PRODUCT */
+/* =========================
+   PRODUCT
+========================= */
+
 .form-card {
     background: white;
     border: 1px solid #e1e1e1;
@@ -298,7 +315,10 @@ header {
     background-color: #d1b17d;
 }
 
-/* PAYMENT */
+/* =========================
+   PAYMENT
+========================= */
+
 .payment-info {
     background: #e8f4fd;
     border-left: 5px solid #2196F3;
@@ -317,7 +337,10 @@ header {
     font-size: 14px;
 }
 
-/* BOTTOM NAV */
+/* =========================
+   BOTTOM NAV
+========================= */
+
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -349,7 +372,10 @@ header {
     font-weight: bold;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 450px) {
 
     .packages-grid {
@@ -363,13 +389,20 @@ header {
     .wallet-info {
         font-size: 11px;
     }
+
+    .login-box {
+        padding: 25px 18px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- =========================
+     LOGIN
+========================= -->
+
 <div id="login-modal">
 
     <div class="login-box">
@@ -387,8 +420,12 @@ header {
             autocomplete="email"
         >
 
-        <button onclick="konekte()">
+        <button
+            type="button"
+            onclick="konekte()">
+
             Konekte
+
         </button>
 
     </div>
@@ -396,7 +433,10 @@ header {
 </div>
 
 
-<!-- HEADER -->
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
     <div class="logo-area">
@@ -412,7 +452,9 @@ header {
         <button
             class="logout-btn"
             onclick="soti()">
+
             Dekonekte
+
         </button>
 
     </div>
@@ -420,7 +462,10 @@ header {
 </header>
 
 
-<!-- CONTENT -->
+<!-- =========================
+     CONTENT
+========================= -->
+
 <div class="container">
 
     <h2 class="section-heading">
@@ -433,6 +478,7 @@ header {
 
 
     <!-- SERVICES -->
+
     <h3 class="services-title">
         🛒 Services
     </h3>
@@ -442,75 +488,106 @@ header {
         <button
             class="service-btn active"
             onclick="changeService('freefire', this)">
+
             🎮<br>
             Free Fire
+
         </button>
+
 
         <button
             class="service-btn"
             onclick="changeService('pubg', this)">
+
             🎯<br>
             PUBG Mobile
+
         </button>
+
 
         <button
             class="service-btn"
             onclick="changeService('mobilelegends', this)">
+
             ⚔️<br>
             Mobile Legends
+
         </button>
+
 
         <button
             class="service-btn"
             onclick="changeService('cod', this)">
+
             🎯<br>
             Call of Duty
+
         </button>
+
 
         <button
             class="service-btn"
             onclick="changeService('efootball', this)">
+
             ⚽<br>
             eFootball
+
         </button>
+
 
         <button
             class="service-btn"
             onclick="changeService('roblox', this)">
+
             🎮<br>
             Roblox
+
         </button>
+
 
         <button
             class="service-btn"
             onclick="changeService('playstation', this)">
+
             🎁<br>
             PlayStation
+
         </button>
+
 
         <button
             class="service-btn"
             onclick="changeService('googleplay', this)">
+
             🎁<br>
             Google Play
+
         </button>
 
     </div>
 
 
-    <!-- PRODUCT CARD -->
+    <!-- =========================
+         PRODUCT CARD
+    ========================= -->
+
     <div class="form-card">
 
         <div
             class="product-title"
             id="product-title">
+
             Free Fire
+
         </div>
+
 
         <div
             class="product-description"
             id="product-description">
+
             Recharge Free Fire. Antre ID jwè a anvan kòmand lan.
+
         </div>
 
 
@@ -523,16 +600,21 @@ header {
         <div
             class="selected-price"
             id="display-price">
+
             G 150
+
         </div>
 
 
         <div class="verification-badge">
+
             Vérification requise
+
         </div>
 
 
-        <!-- ID / USERNAME -->
+        <!-- CUSTOMER INFO -->
+
         <div class="input-group">
 
             <label id="input-label">
@@ -547,14 +629,18 @@ header {
 
         </div>
 
+
         <div
             class="input-hint"
             id="input-hint">
+
             Vérification ID requise pou sèvis sa a.
+
         </div>
 
 
-        <!-- NUMERO TRANSFERT -->
+        <!-- TRANSFER NUMBER -->
+
         <div class="input-group">
 
             <label>
@@ -564,19 +650,26 @@ header {
             <input
                 type="text"
                 id="transfer-number"
-                placeholder="Antre nimewo transfè a"
+                placeholder="Antre nimewo transfè ou a"
             >
 
         </div>
 
+
         <div class="input-hint">
-            Antre nimewo tranzaksyon/transfè ou fè a.
+
+            Antre nimewo tranzaksyon oswa transfè ou fè a.
+
         </div>
 
 
         <br>
 
+
+        <!-- BUY BUTTON -->
+
         <button
+            type="button"
             class="btn-acheter"
             onclick="paseKomandWhatsApp()">
 
@@ -587,7 +680,10 @@ header {
     </div>
 
 
-    <!-- PAYMENT -->
+    <!-- =========================
+         PAYMENT
+    ========================= -->
+
     <div class="payment-info">
 
         <h4>
@@ -595,12 +691,18 @@ header {
         </h4>
 
         <p>
-            📲 <strong>Pase kòmand ou sou WhatsApp:</strong>
+            📲
+            <strong>
+                Pase kòmand ou sou WhatsApp:
+            </strong>
             +509 32 26 5636
         </p>
 
         <p>
-            💸 <strong>Nimewo pou fè transfè lajan:</strong>
+            💸
+            <strong>
+                Nimewo pou fè transfè lajan:
+            </strong>
             +509 48828406
         </p>
 
@@ -609,7 +711,10 @@ header {
 </div>
 
 
-<!-- BOTTOM NAV -->
+<!-- =========================
+     BOTTOM NAV
+========================= -->
+
 <div class="bottom-nav">
 
     <div
@@ -668,7 +773,10 @@ header {
 
 const services = {
 
-    /* FREE FIRE */
+    /* =====================
+       FREE FIRE
+    ===================== */
+
     freefire: {
 
         title: "Free Fire",
@@ -685,17 +793,29 @@ const services = {
         packages: [
 
             ["110 Diamonds", 150],
+
             ["220 Diamonds", 300],
+
             ["341 Diamonds", 450],
+
             ["572 Diamonds", 750],
+
             ["682 Diamonds", 900],
+
             ["792 Diamonds", 1050],
+
             ["913 Diamonds", 1350],
+
             ["1166 Diamonds", 1500],
+
             ["2398 Diamonds", 3000],
+
             ["3564 Diamonds", 9300],
+
             ["Booyah Pass", 500],
+
             ["Abonnement semaine", 375],
+
             ["Abonnement mois", 1650]
 
         ]
@@ -703,7 +823,10 @@ const services = {
     },
 
 
-    /* PUBG */
+    /* =====================
+       PUBG MOBILE
+    ===================== */
+
     pubg: {
 
         title: "PUBG Mobile",
@@ -720,11 +843,17 @@ const services = {
         packages: [
 
             ["60 UC", 180],
+
             ["325 UC", 875],
+
             ["660 UC", 1600],
+
             ["1800 UC", 3500],
+
             ["3850 UC", 8000],
+
             ["8100 UC", 16900],
+
             ["16200 UC", 33000]
 
         ]
@@ -732,7 +861,10 @@ const services = {
     },
 
 
-    /* MOBILE LEGENDS */
+    /* =====================
+       MOBILE LEGENDS
+    ===================== */
+
     mobilelegends: {
 
         title: "Mobile Legends",
@@ -749,12 +881,19 @@ const services = {
         packages: [
 
             ["86 Diamonds", null],
+
             ["172 Diamonds", null],
+
             ["257 Diamonds", null],
+
             ["344 Diamonds", null],
+
             ["429 Diamonds", null],
+
             ["514 Diamonds", null],
+
             ["706 Diamonds", null],
+
             ["1412 Diamonds", null]
 
         ]
@@ -762,7 +901,10 @@ const services = {
     },
 
 
-    /* CALL OF DUTY */
+    /* =====================
+       CALL OF DUTY
+    ===================== */
+
     cod: {
 
         title: "Call of Duty Mobile",
@@ -779,10 +921,15 @@ const services = {
         packages: [
 
             ["80 CP", null],
+
             ["420 CP", null],
+
             ["880 CP", null],
+
             ["2400 CP", null],
+
             ["5000 CP", null],
+
             ["10800 CP", null]
 
         ]
@@ -790,7 +937,10 @@ const services = {
     },
 
 
-    /* EFOOTBALL */
+    /* =====================
+       EFOOTBALL
+    ===================== */
+
     efootball: {
 
         title: "eFootball",
@@ -807,6 +957,265 @@ const services = {
         packages: [
 
             ["130 Coins", null],
+
             ["550 Coins", null],
+
             ["1040 Coins", null],
+
             ["2130 Coins", null],
+
+            ["3250 Coins", null]
+
+        ]
+
+    },
+
+
+    /* =====================
+       ROBLOX
+    ===================== */
+
+    roblox: {
+
+        title: "Roblox",
+
+        description:
+        "Roblox Gift Card disponib. Chwazi valè ou vle achte.",
+
+        input:
+        "Username Roblox",
+
+        placeholder:
+        "Antre Username Roblox ou",
+
+        packages: [
+
+            ["$10", 1807],
+
+            ["$20", 3614],
+
+            ["$30", 5421],
+
+            ["$40", 7228],
+
+            ["$50", 9035],
+
+            ["$60", 10842],
+
+            ["$70", 12649],
+
+            ["$80", 14456],
+
+            ["$90", 16263],
+
+            ["$100", 18070],
+
+            ["$150", 27105],
+
+            ["$200", 36140]
+
+        ]
+
+    },
+
+
+    /* =====================
+       PLAYSTATION
+    ===================== */
+
+    playstation: {
+
+        title: "PlayStation Gift Card",
+
+        description:
+        "PlayStation Gift Card. Pri ap vini.",
+
+        input:
+        "Email / Compte",
+
+        placeholder:
+        "Antre enfòmasyon nesesè",
+
+        packages: [
+
+            ["$10", null],
+
+            ["$20", null],
+
+            ["$50", null],
+
+            ["$100", null]
+
+        ]
+
+    },
+
+
+    /* =====================
+       GOOGLE PLAY
+    ===================== */
+
+    googleplay: {
+
+        title: "Google Play Gift Card",
+
+        description:
+        "Google Play Gift Card. Pri ap vini.",
+
+        input:
+        "Email / Compte",
+
+        placeholder:
+        "Antre enfòmasyon nesesè",
+
+        packages: [
+
+            ["$10", null],
+
+            ["$20", null],
+
+            ["$50", null],
+
+            ["$100", null]
+
+        ]
+
+    }
+
+};
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let currentService = "freefire";
+
+let selectedPackage =
+    services.freefire.packages[0];
+
+
+/* =========================
+   RENDER PACKAGES
+========================= */
+
+function renderPackages() {
+
+    const service =
+        services[currentService];
+
+
+    document.getElementById(
+        "product-title"
+    ).innerText = service.title;
+
+
+    document.getElementById(
+        "product-description"
+    ).innerText = service.description;
+
+
+    document.getElementById(
+        "input-label"
+    ).innerText = "📌 " + service.input;
+
+
+    document.getElementById(
+        "customer-info"
+    ).placeholder = service.placeholder;
+
+
+    const container =
+        document.getElementById(
+            "packages-container"
+        );
+
+
+    container.innerHTML = "";
+
+
+    service.packages.forEach(
+        (pkg, index) => {
+
+            const btn =
+                document.createElement("button");
+
+
+            btn.type = "button";
+
+
+            btn.className =
+                "pkg-btn";
+
+
+            if (index === 0) {
+
+                btn.classList.add("active");
+
+            }
+
+
+            if (pkg[1] === null) {
+
+                btn.innerHTML =
+                    pkg[0] +
+                    '<span class="pkg-price coming-price">' +
+                    'Pri ap vini' +
+                    '</span>';
+
+            } else {
+
+                btn.innerHTML =
+                    pkg[0] +
+                    '<span class="pkg-price">' +
+                    'G ' +
+                    pkg[1].toLocaleString() +
+                    '</span>';
+
+            }
+
+
+            btn.onclick = function() {
+
+                selectedPackage = pkg;
+
+
+                document
+                    .querySelectorAll(".pkg-btn")
+                    .forEach(
+                        b =>
+                        b.classList.remove("active")
+                    );
+
+
+                btn.classList.add("active");
+
+
+                updatePrice();
+
+            };
+
+
+            container.appendChild(btn);
+
+        }
+    );
+
+
+    selectedPackage =
+        service.packages[0];
+
+
+    updatePrice();
+
+}
+
+
+/* =========================
+   UPDATE PRICE
+========================= */
+
+function updatePrice() {
+
+    const display =
+        document.getElementBy
