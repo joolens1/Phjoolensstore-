@@ -1,12 +1,12 @@
 
 
 
-<!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHJoolens Store - Jeux & Services</title>
+<title>PHJoolens Store</title>
 
 <style>
 :root {
@@ -29,15 +29,13 @@ body {
     padding-bottom: 90px;
 }
 
-/* ================= LOGIN ================= */
-
+/* LOGIN */
 #login-modal {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0,0,0,0.88);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,45 +54,43 @@ body {
 
 .login-box h2 {
     color: var(--secondary-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 8px;
 }
 
 .login-box p {
     color: #666;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
 }
 
 .login-box input {
     width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
+    padding: 13px;
+    margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    box-sizing: border-box;
-    font-size: 1rem;
+    font-size: 16px;
 }
 
 .login-box button {
     background-color: #c59b27;
     color: white;
     border: none;
-    padding: 0.75rem;
+    padding: 13px;
     width: 100%;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
 }
 
-/* ================= HEADER ================= */
-
+/* HEADER */
 header {
     background: white;
-    padding: 1rem;
+    padding: 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -104,139 +100,145 @@ header {
     font-weight: bold;
     font-size: 1.2rem;
     color: var(--secondary-color);
+}
+
+.header-right {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
 }
 
 .wallet-info {
     background: #fff3cd;
-    padding: 0.4rem 0.8rem;
+    padding: 7px 10px;
     border-radius: 20px;
     font-weight: bold;
     color: #856404;
+    font-size: 13px;
 }
 
 .logout-btn {
     background: #ff4757;
     color: white;
     border: none;
-    padding: 0.3rem 0.6rem;
-    border-radius: 5px;
+    padding: 7px 9px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 12px;
 }
 
-/* ================= CONTAINER ================= */
-
+/* MAIN */
 .container {
     max-width: 700px;
-    margin: 1.5rem auto;
-    padding: 0 1rem;
+    margin: 20px auto;
+    padding: 0 15px;
 }
 
-/* ================= GAME MENU ================= */
-
-.game-menu {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    margin-bottom: 1.5rem;
-    padding-bottom: 5px;
-}
-
-.game-btn {
-    background: white;
-    border: 1px solid #ccc;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-.game-btn.active {
-    background: var(--secondary-color);
-    color: white;
-    border-color: var(--secondary-color);
-}
-
-/* ================= PRODUCT ================= */
-
-h2.section-heading {
+.section-heading {
     font-size: 1.8rem;
     color: var(--secondary-color);
-    margin-bottom: 0.2rem;
+    margin-bottom: 5px;
 }
 
-.price-range {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #222;
-    margin-bottom: 0.5rem;
-}
-
-.availability {
-    font-size: 0.85rem;
+.subtitle {
     color: #666;
-    margin-bottom: 1.2rem;
-    line-height: 1.6;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
-/* ================= PACKAGES ================= */
+/* SERVICES */
+.services-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
+    margin-bottom: 20px;
+}
+
+.service-btn {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 13px 8px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.service-btn.active {
+    border: 2px solid #c59b27;
+    background: #fff8e8;
+}
+
+/* PRODUCT */
+.form-card {
+    background: white;
+    border: 1px solid #e1e1e1;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    margin-bottom: 18px;
+}
+
+.product-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.product-description {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
 
 .packages-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
-    margin-bottom: 1rem;
 }
 
 .pkg-btn {
     background: white;
     border: 1px solid #ccc;
-    padding: 9px 13px;
-    border-radius: 6px;
+    padding: 12px 8px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
     color: #333;
-    transition: all 0.2s;
 }
 
 .pkg-btn.active {
-    border-color: #222;
-    background-color: #f1f2f6;
+    border: 2px solid #c59b27;
+    background: #fff8e8;
+}
+
+.pkg-price {
+    display: block;
+    margin-top: 5px;
+    color: #a16d2f;
     font-weight: bold;
 }
 
-.clear-btn {
-    background: none;
-    border: none;
-    color: #666;
-    font-size: 0.8rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    display: block;
+.coming-price {
+    color: #777;
+    font-size: 12px;
 }
 
 .selected-price {
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: bold;
     color: #222;
-    margin-bottom: 1rem;
-}
-
-/* ================= FORM ================= */
-
-.form-card {
-    background: white;
-    border: 1px solid #e1e1e1;
-    border-radius: 12px;
-    padding: 1.2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-    margin-bottom: 1.5rem;
+    margin: 18px 0;
+    background: #f4f4f4;
+    padding: 12px;
+    border-radius: 8px;
 }
 
 .verification-badge {
@@ -245,86 +247,77 @@ h2.section-heading {
     color: #8a6d3b;
     padding: 6px 12px;
     border-radius: 6px;
-    font-size: 0.85rem;
+    font-size: 13px;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 12px;
     display: inline-block;
 }
 
 .input-group {
-    position: relative;
-    margin-bottom: 0.8rem;
+    margin-bottom: 12px;
 }
 
 .input-group label {
     display: block;
-    font-size: 0.9rem;
     font-weight: bold;
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 }
 
 .input-group input {
     width: 100%;
-    padding: 12px;
+    padding: 13px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    box-sizing: border-box;
-    font-size: 1rem;
+    font-size: 16px;
     outline: none;
 }
 
 .input-group input:focus {
-    border-color: #222;
+    border-color: #c59b27;
 }
 
 .input-hint {
-    font-size: 0.8rem;
+    font-size: 12px;
     color: #666;
-    margin-bottom: 1rem;
+    margin-bottom: 12px;
 }
 
-/* ================= BUY ================= */
-
-.btn-acheter-maintenant {
+.btn-acheter {
     background-color: #dfc293;
-    color: #fff;
+    color: white;
     border: none;
     width: 100%;
-    padding: 1rem;
+    padding: 15px;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    text-align: center;
-    transition: background 0.2s;
 }
 
-.btn-acheter-maintenant:hover {
+.btn-acheter:hover {
     background-color: #d1b17d;
 }
 
-/* ================= PAYMENT ================= */
-
+/* PAYMENT */
 .payment-info {
     background: #e8f4fd;
     border-left: 5px solid #2196F3;
-    padding: 1rem;
-    margin-top: 2rem;
+    padding: 15px;
+    margin-top: 20px;
     border-radius: 8px;
 }
 
 .payment-info h4 {
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 8px 0;
     color: #0d47a1;
 }
 
 .payment-info p {
-    margin: 0.3rem 0;
-    font-size: 0.95rem;
+    margin: 6px 0;
+    font-size: 14px;
 }
 
-/* ================= BOTTOM NAV ================= */
-
+/* BOTTOM NAV */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -333,8 +326,8 @@ h2.section-heading {
     background: white;
     display: flex;
     justify-content: space-around;
-    padding: 0.5rem 0;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    padding: 8px 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.08);
     z-index: 99;
 }
 
@@ -342,8 +335,13 @@ h2.section-heading {
     text-align: center;
     text-decoration: none;
     color: #666;
-    font-size: 0.75rem;
+    font-size: 11px;
     cursor: pointer;
+}
+
+.nav-item div {
+    font-size: 20px;
+    margin-bottom: 2px;
 }
 
 .nav-item.active {
@@ -351,22 +349,32 @@ h2.section-heading {
     font-weight: bold;
 }
 
-.nav-item div {
-    font-size: 1.2rem;
-    margin-bottom: 2px;
+/* MOBILE */
+@media (max-width: 450px) {
+
+    .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .logo-area {
+        font-size: 16px;
+    }
+
+    .wallet-info {
+        font-size: 11px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= LOGIN ================= -->
-
+<!-- LOGIN -->
 <div id="login-modal">
 
     <div class="login-box">
 
-        <h2>PHJoolens Store</h2>
+        <h2>⚡ PHJoolens Store</h2>
 
         <p>
             Antre adrès Gmail ou pou w ka konekte.
@@ -376,6 +384,7 @@ h2.section-heading {
             type="email"
             id="gmail-input"
             placeholder="egzanp@gmail.com"
+            autocomplete="email"
         >
 
         <button onclick="konekte()">
@@ -387,253 +396,417 @@ h2.section-heading {
 </div>
 
 
-<!-- ================= HEADER ================= -->
-
+<!-- HEADER -->
 <header>
 
     <div class="logo-area">
-        ⚡ PHJoolens
+        ⚡ PHJoolens Store
     </div>
 
-    <div class="wallet-info">
-        G 0.00
-    </div>
+    <div class="header-right">
 
-    <button
-        class="logout-btn"
-        onclick="soti()">
-        Dekonekte
-    </button>
+        <div class="wallet-info">
+            G 0.00
+        </div>
+
+        <button
+            class="logout-btn"
+            onclick="soti()">
+            Dekonekte
+        </button>
+
+    </div>
 
 </header>
 
 
+<!-- CONTENT -->
 <div class="container">
 
-<!-- ================= GAME MENU ================= -->
+    <h2 class="section-heading">
+        Bienvenue sou PHJoolens Store
+    </h2>
 
-<div class="game-menu">
-
-    <button
-        class="game-btn active"
-        id="btn-freefire"
-        onclick="changeGame('freefire')">
-        🎮 Free Fire
-    </button>
-
-    <button
-        class="game-btn"
-        id="btn-latam"
-        onclick="changeGame('latam')">
-        🔥 Free Fire LATAM
-    </button>
-
-    <button
-        class="game-btn"
-        id="btn-pubg"
-        onclick="changeGame('pubg')">
-        🎯 PUBG
-    </button>
-
-    <button
-        class="game-btn"
-        id="btn-roblox"
-        onclick="changeGame('roblox')">
-        🎮 Roblox
-    </button>
-
-</div>
-
-
-<!-- ================= PRODUCT ================= -->
-
-<h2
-    class="section-heading"
-    id="product-title">
-    Freefire Indonesia
-</h2>
-
-<div
-    class="price-range"
-    id="price-range">
-    G 50.00 – G 5,130.00
-</div>
-
-<div
-    class="availability"
-    id="product-description">
-
-    Instant Freefire Indonesia top-up.
-    Enter the player’s User ID before ordering.
-
-</div>
-
-
-<!-- ================= PACKAGES ================= -->
-
-<div
-    class="packages-grid"
-    id="packages-container">
-</div>
-
-<button
-    class="clear-btn"
-    onclick="effaseSeleksyon()">
-
-    Effacer
-
-</button>
-
-
-<div
-    class="selected-price"
-    id="display-price">
-
-    G 210.00
-
-</div>
-
-
-<!-- ================= ORDER FORM ================= -->
-
-<div class="form-card">
-
-    <div class="verification-badge">
-        Vérification requise
-    </div>
-
-
-    <!-- ID / USERNAME -->
-
-    <div
-        class="input-group"
-        id="player-id-group">
-
-        <label id="player-label">
-            🆔 ID Jwè
-        </label>
-
-        <input
-            type="text"
-            id="player-id"
-            placeholder="ID Jwè"
-        >
-
-    </div>
-
-    <div
-        class="input-hint"
-        id="player-hint">
-
-        Vérification ID requise pour
-        Freefire Indonesia.
-
-    </div>
-
-
-    <!-- TRANSFER NUMBER -->
-
-    <div class="input-group">
-
-        <label>
-            📱 Nimewo ou te fè transfè a
-        </label>
-
-        <input
-            type="tel"
-            id="transfer-number"
-            placeholder="Egzanp: 48828406"
-        >
-
-    </div>
-
-    <div class="input-hint">
-
-        Antre nimewo telefòn ou te itilize
-        pou fè transfè a.
-
-    </div>
-
-</div>
-
-
-<!-- ================= BUY ================= -->
-
-<button
-    class="btn-acheter-maintenant"
-    onclick="paseKomandWhatsApp()">
-
-    ACHETER MAINTENANT
-
-</button>
-
-
-<!-- ================= PAYMENT INFO ================= -->
-
-<div class="payment-info">
-
-    <h4>
-        Enfòmasyon sou Peman ak Kòmand
-    </h4>
-
-    <p>
-        📲 <strong>Pase kòmand ou sou WhatsApp:</strong>
-        +509 32 26 5636
+    <p class="subtitle">
+        Chwazi jwèt oswa sèvis ou vle achte.
     </p>
 
-    <p>
-        💸 <strong>Nimewo pou fè transfè lajan:</strong>
-        +509 48828406
-    </p>
+
+    <!-- SERVICES -->
+    <h3 class="services-title">
+        🛒 Services
+    </h3>
+
+    <div class="services-grid">
+
+        <button
+            class="service-btn active"
+            onclick="changeService('freefire', this)">
+            🎮<br>
+            Free Fire
+        </button>
+
+        <button
+            class="service-btn"
+            onclick="changeService('pubg', this)">
+            🎯<br>
+            PUBG Mobile
+        </button>
+
+        <button
+            class="service-btn"
+            onclick="changeService('mobilelegends', this)">
+            ⚔️<br>
+            Mobile Legends
+        </button>
+
+        <button
+            class="service-btn"
+            onclick="changeService('cod', this)">
+            🎯<br>
+            Call of Duty
+        </button>
+
+        <button
+            class="service-btn"
+            onclick="changeService('efootball', this)">
+            ⚽<br>
+            eFootball
+        </button>
+
+        <button
+            class="service-btn"
+            onclick="changeService('roblox', this)">
+            🎮<br>
+            Roblox
+        </button>
+
+        <button
+            class="service-btn"
+            onclick="changeService('playstation', this)">
+            🎁<br>
+            PlayStation
+        </button>
+
+        <button
+            class="service-btn"
+            onclick="changeService('googleplay', this)">
+            🎁<br>
+            Google Play
+        </button>
+
+    </div>
+
+
+    <!-- PRODUCT CARD -->
+    <div class="form-card">
+
+        <div
+            class="product-title"
+            id="product-title">
+            Free Fire
+        </div>
+
+        <div
+            class="product-description"
+            id="product-description">
+            Recharge Free Fire. Antre ID jwè a anvan kòmand lan.
+        </div>
+
+
+        <div
+            class="packages-grid"
+            id="packages-container">
+        </div>
+
+
+        <div
+            class="selected-price"
+            id="display-price">
+            G 150
+        </div>
+
+
+        <div class="verification-badge">
+            Vérification requise
+        </div>
+
+
+        <!-- ID / USERNAME -->
+        <div class="input-group">
+
+            <label id="input-label">
+                🆔 ID Jwè
+            </label>
+
+            <input
+                type="text"
+                id="customer-info"
+                placeholder="Antre ID Free Fire ou"
+            >
+
+        </div>
+
+        <div
+            class="input-hint"
+            id="input-hint">
+            Vérification ID requise pou sèvis sa a.
+        </div>
+
+
+        <!-- NUMERO TRANSFERT -->
+        <div class="input-group">
+
+            <label>
+                💳 Nimewo transfè
+            </label>
+
+            <input
+                type="text"
+                id="transfer-number"
+                placeholder="Antre nimewo transfè a"
+            >
+
+        </div>
+
+        <div class="input-hint">
+            Antre nimewo tranzaksyon/transfè ou fè a.
+        </div>
+
+
+        <br>
+
+        <button
+            class="btn-acheter"
+            onclick="paseKomandWhatsApp()">
+
+            ACHETER MAINTENANT
+
+        </button>
+
+    </div>
+
+
+    <!-- PAYMENT -->
+    <div class="payment-info">
+
+        <h4>
+            Enfòmasyon sou Peman ak Kòmand
+        </h4>
+
+        <p>
+            📲 <strong>Pase kòmand ou sou WhatsApp:</strong>
+            +509 32 26 5636
+        </p>
+
+        <p>
+            💸 <strong>Nimewo pou fè transfè lajan:</strong>
+            +509 48828406
+        </p>
+
+    </div>
 
 </div>
 
-</div>
 
-
-<!-- ================= BOTTOM NAV ================= -->
-
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
 
-    <a
-        href="#"
-        class="nav-item active">
+    <div
+        class="nav-item active"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})">
 
         <div>🏠</div>
         Accueil
 
-    </a>
+    </div>
 
-    <a
-        href="#"
-        class="nav-item">
+
+    <div
+        class="nav-item"
+        onclick="document.querySelector('.services-title').scrollIntoView({behavior:'smooth'})">
 
         <div>🛒</div>
         Services
 
-    </a>
+    </div>
 
-    <a
-        href="#"
-        class="nav-item">
+
+    <div class="nav-item">
 
         <div>💳</div>
         Portefeuille
 
-    </a>
+    </div>
 
-    <a
-        href="#"
-        class="nav-item">
+
+    <div class="nav-item">
 
         <div>📋</div>
         Commandes
 
-    </a>
+    </div>
 
-    <a
-        href="https://wa.me/50932265636"
-        target="_blank"
-        class="nav-item">
 
-        <
+    <div
+        class="nav-item"
+        onclick="window.open('https://wa.me/50932265636','_blank')">
+
+        <div>💬</div>
+        Support
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   SERVICES + PRICES
+========================= */
+
+const services = {
+
+    /* FREE FIRE */
+    freefire: {
+
+        title: "Free Fire",
+
+        description:
+        "Recharge Free Fire. Antre ID jwè a anvan kòmand lan.",
+
+        input:
+        "ID Jwè",
+
+        placeholder:
+        "Antre ID Free Fire ou",
+
+        packages: [
+
+            ["110 Diamonds", 150],
+            ["220 Diamonds", 300],
+            ["341 Diamonds", 450],
+            ["572 Diamonds", 750],
+            ["682 Diamonds", 900],
+            ["792 Diamonds", 1050],
+            ["913 Diamonds", 1350],
+            ["1166 Diamonds", 1500],
+            ["2398 Diamonds", 3000],
+            ["3564 Diamonds", 9300],
+            ["Booyah Pass", 500],
+            ["Abonnement semaine", 375],
+            ["Abonnement mois", 1650]
+
+        ]
+
+    },
+
+
+    /* PUBG */
+    pubg: {
+
+        title: "PUBG Mobile",
+
+        description:
+        "Recharge PUBG Mobile UC. Antre ID jwè a anvan kòmand lan.",
+
+        input:
+        "ID Jwè",
+
+        placeholder:
+        "Antre ID PUBG ou",
+
+        packages: [
+
+            ["60 UC", 180],
+            ["325 UC", 875],
+            ["660 UC", 1600],
+            ["1800 UC", 3500],
+            ["3850 UC", 8000],
+            ["8100 UC", 16900],
+            ["16200 UC", 33000]
+
+        ]
+
+    },
+
+
+    /* MOBILE LEGENDS */
+    mobilelegends: {
+
+        title: "Mobile Legends",
+
+        description:
+        "Mobile Legends Diamonds. Pri ap vini.",
+
+        input:
+        "ID Jwè",
+
+        placeholder:
+        "Antre ID Mobile Legends ou",
+
+        packages: [
+
+            ["86 Diamonds", null],
+            ["172 Diamonds", null],
+            ["257 Diamonds", null],
+            ["344 Diamonds", null],
+            ["429 Diamonds", null],
+            ["514 Diamonds", null],
+            ["706 Diamonds", null],
+            ["1412 Diamonds", null]
+
+        ]
+
+    },
+
+
+    /* CALL OF DUTY */
+    cod: {
+
+        title: "Call of Duty Mobile",
+
+        description:
+        "Call of Duty Mobile CP. Pri ap vini.",
+
+        input:
+        "ID Jwè",
+
+        placeholder:
+        "Antre ID Call of Duty ou",
+
+        packages: [
+
+            ["80 CP", null],
+            ["420 CP", null],
+            ["880 CP", null],
+            ["2400 CP", null],
+            ["5000 CP", null],
+            ["10800 CP", null]
+
+        ]
+
+    },
+
+
+    /* EFOOTBALL */
+    efootball: {
+
+        title: "eFootball",
+
+        description:
+        "eFootball Coins. Pri ap vini.",
+
+        input:
+        "ID Jwè",
+
+        placeholder:
+        "Antre ID eFootball ou",
+
+        packages: [
+
+            ["130 Coins", null],
+            ["550 Coins", null],
+            ["1040 Coins", null],
+            ["2130 Coins", null],
