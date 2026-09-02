@@ -1,22 +1,18 @@
 
-
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>PHJoolens Store</title>
 
 <style>
-
 :root {
     --gold: #d99a16;
-    --gold-light: #fff3d6;
+    --gold-light: #fff4d6;
     --dark: #14213d;
     --gray: #687080;
     --white: #ffffff;
-    --border: #eeeeee;
 }
 
 * {
@@ -35,24 +31,19 @@ body {
 
     background:
         radial-gradient(
-            circle at 90% 8%,
-            rgba(245, 190, 70, 0.20),
+            circle at 88% 12%,
+            rgba(240, 181, 43, 0.18),
             transparent 18%
         ),
         radial-gradient(
-            circle at 15% 35%,
-            rgba(245, 190, 70, 0.12),
+            circle at 12% 35%,
+            rgba(240, 181, 43, 0.10),
             transparent 20%
-        ),
-        radial-gradient(
-            circle at 65% 25%,
-            rgba(245, 190, 70, 0.10),
-            transparent 17%
         ),
         linear-gradient(
             180deg,
             #ffffff 0%,
-            #fffdf9 50%,
+            #fffdf8 50%,
             #ffffff 100%
         );
 
@@ -65,7 +56,6 @@ body {
 #login-modal {
     position: fixed;
     inset: 0;
-
     width: 100%;
     height: 100%;
 
@@ -94,39 +84,36 @@ body {
 
     text-align: center;
 
-    box-shadow:
-        0 15px 50px rgba(0,0,0,0.35);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.35);
+}
+
+.login-logo {
+    font-size: 30px;
+    margin-bottom: 8px;
 }
 
 .login-box h2 {
     color: var(--dark);
-
     margin: 0 0 12px;
-
-    font-size: 26px;
+    font-size: 27px;
 }
 
 .login-box p {
     color: var(--gray);
-
     margin-bottom: 20px;
-
     font-size: 16px;
 }
 
 .login-box input {
     width: 100%;
-
     padding: 15px;
 
     margin-bottom: 15px;
 
     border: 1px solid #d7d7d7;
-
     border-radius: 12px;
 
     font-size: 16px;
-
     outline: none;
 }
 
@@ -136,19 +123,15 @@ body {
 
 .login-box button {
     width: 100%;
-
     padding: 15px;
 
     border: none;
-
     border-radius: 12px;
 
     background: var(--gold);
-
     color: white;
 
     font-size: 17px;
-
     font-weight: bold;
 
     cursor: pointer;
@@ -171,40 +154,43 @@ header {
 
     background: rgba(255,255,255,0.98);
 
-    box-shadow:
-        0 2px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 
     border-bottom: 1px solid #eeeeee;
 }
 
 .logo-area {
-    font-size: 23px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
 
+    font-size: 22px;
     font-weight: 800;
 
     color: var(--dark);
 }
 
+.logo-game {
+    font-size: 27px;
+}
+
 .header-right {
     display: flex;
-
     align-items: center;
-
-    gap: 10px;
+    gap: 9px;
 }
 
 .wallet-info {
-    background: #fff4d9;
+    background: var(--gold-light);
 
     color: #a66d00;
 
-    padding: 10px 17px;
+    padding: 9px 15px;
 
     border-radius: 25px;
 
     font-weight: bold;
-
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .logout-btn {
@@ -214,13 +200,12 @@ header {
 
     border: none;
 
-    border-radius: 12px;
+    border-radius: 11px;
 
-    padding: 11px 17px;
+    padding: 10px 14px;
 
     font-weight: bold;
-
-    font-size: 15px;
+    font-size: 14px;
 
     cursor: pointer;
 }
@@ -236,9 +221,12 @@ header {
     padding: 30px 20px;
 }
 
+.hero {
+    position: relative;
+}
+
 .section-heading {
     font-size: 45px;
-
     line-height: 1.08;
 
     max-width: 650px;
@@ -255,26 +243,47 @@ header {
 
     color: var(--gray);
 
-    margin: 0 0 45px;
+    margin: 0 0 40px;
 }
 
 
-/* ================= DECORATION ================= */
+/* ================= GAME CONTROLLER ================= */
 
-.decor {
+.game-controller {
     position: absolute;
 
-    right: 5%;
+    right: 25px;
+    top: 10px;
 
-    top: 150px;
+    font-size: 95px;
 
-    font-size: 38px;
+    filter: drop-shadow(
+        0 8px 8px rgba(190,130,20,0.18)
+    );
+
+    transform: rotate(-5deg);
+}
+
+.game-spark {
+    position: absolute;
+
+    right: 135px;
+    top: 5px;
 
     color: #e5a522;
 
-    opacity: .55;
+    font-size: 30px;
+}
 
-    pointer-events: none;
+.game-spark2 {
+    position: absolute;
+
+    right: 5px;
+    top: 100px;
+
+    color: #e5a522;
+
+    font-size: 24px;
 }
 
 
@@ -291,8 +300,7 @@ header {
 .services-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 14px;
 
@@ -302,15 +310,13 @@ header {
 .service-btn {
     min-height: 92px;
 
-    background:
-        rgba(255,255,255,0.97);
+    background: rgba(255,255,255,0.98);
 
     border: 1px solid #eeeeee;
 
     border-radius: 18px;
 
-    box-shadow:
-        0 4px 13px rgba(0,0,0,0.07);
+    box-shadow: 0 4px 13px rgba(0,0,0,0.07);
 
     color: var(--dark);
 
@@ -320,7 +326,7 @@ header {
 
     cursor: pointer;
 
-    transition: .2s;
+    transition: 0.2s;
 }
 
 .service-btn:hover {
@@ -332,17 +338,14 @@ header {
 
     background: #fff8e8;
 
-    box-shadow:
-        0 4px 14px
-        rgba(222,160,35,0.16);
+    box-shadow: 0 4px 14px rgba(222,160,35,0.16);
 }
 
 
 /* ================= PRODUCT ================= */
 
 .form-card {
-    background:
-        rgba(255,255,255,0.98);
+    background: rgba(255,255,255,0.99);
 
     border: 1px solid #eeeeee;
 
@@ -350,9 +353,7 @@ header {
 
     padding: 28px;
 
-    box-shadow:
-        0 5px 20px
-        rgba(0,0,0,0.07);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
 
     margin-top: 20px;
 }
@@ -381,8 +382,7 @@ header {
 .packages-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 10px;
 }
@@ -406,15 +406,7 @@ header {
 
     cursor: pointer;
 
-    box-shadow:
-        0 3px 9px
-        rgba(0,0,0,0.05);
-
-    transition: .2s;
-}
-
-.pkg-btn:hover {
-    transform: translateY(-2px);
+    box-shadow: 0 3px 9px rgba(0,0,0,0.05);
 }
 
 .pkg-btn.active {
@@ -532,12 +524,11 @@ header {
 
     border-radius: 13px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #d99a16,
-            #efbd4b
-        );
+    background: linear-gradient(
+        135deg,
+        #d99a16,
+        #efbd4b
+    );
 
     color: white;
 
@@ -546,10 +537,6 @@ header {
     font-weight: 800;
 
     cursor: pointer;
-
-    box-shadow:
-        0 5px 12px
-        rgba(210,150,20,0.20);
 }
 
 
@@ -558,17 +545,15 @@ header {
 .payment-info {
     margin-top: 20px;
 
-    background: #f2faff;
+    background: #f4fbff;
 
-    border: 1px solid #72b5ff;
+    border: 1px solid #8ac5ff;
 
     border-radius: 15px;
 
     padding: 18px;
 
-    box-shadow:
-        0 3px 10px
-        rgba(0,0,0,0.04);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
 }
 
 .payment-info h4 {
@@ -600,19 +585,15 @@ header {
 
     height: 78px;
 
-    background:
-        rgba(255,255,255,0.98);
+    background: rgba(255,255,255,0.98);
 
     display: flex;
 
-    justify-content:
-        space-around;
+    justify-content: space-around;
 
     align-items: center;
 
-    box-shadow:
-        0 -3px 15px
-        rgba(0,0,0,0.08);
+    box-shadow: 0 -3px 15px rgba(0,0,0,0.08);
 
     z-index: 999;
 }
@@ -645,23 +626,25 @@ header {
 @media (max-width: 600px) {
 
     header {
-        padding: 11px 12px;
+        padding: 11px 10px;
     }
 
     .logo-area {
-        font-size: 18px;
+        font-size: 17px;
+    }
+
+    .logo-game {
+        font-size: 22px;
     }
 
     .wallet-info {
-        font-size: 12px;
-
-        padding: 8px 11px;
+        font-size: 11px;
+        padding: 8px 10px;
     }
 
     .logout-btn {
-        font-size: 12px;
-
-        padding: 9px 11px;
+        font-size: 11px;
+        padding: 9px 10px;
     }
 
     .container {
@@ -674,8 +657,26 @@ header {
 
     .subtitle {
         font-size: 18px;
-
         margin-bottom: 38px;
+    }
+
+    .game-controller {
+        position: absolute;
+
+        right: -5px;
+        top: 95px;
+
+        font-size: 58px;
+
+        opacity: 0.8;
+    }
+
+    .game-spark {
+        display: none;
+    }
+
+    .game-spark2 {
+        display: none;
     }
 
     .services-title {
@@ -684,13 +685,11 @@ header {
 
     .service-btn {
         min-height: 82px;
-
         font-size: 15px;
     }
 
     .form-card {
         padding: 18px;
-
         border-radius: 18px;
     }
 
@@ -717,12 +716,10 @@ header {
     .nav-item div {
         font-size: 22px;
     }
-
 }
 
 </style>
 </head>
-
 
 <body>
 
@@ -733,7 +730,13 @@ header {
 
     <div class="login-box">
 
-        <h2>⚡ PHJoolens Store</h2>
+        <div class="login-logo">
+            ⚡ 🎮
+        </div>
+
+        <h2>
+            PHJoolens Store
+        </h2>
 
         <p>
             Antre adrès Gmail ou pou w ka konekte.
@@ -759,19 +762,18 @@ header {
 </div>
 
 
-<!-- DECORATION -->
-
-<div class="decor">
-    ✦ ✧ ✦
-</div>
-
-
 <!-- ================= HEADER ================= -->
 
 <header>
 
     <div class="logo-area">
+
+        <span class="logo-game">
+            🎮
+        </span>
+
         ⚡ PHJoolens Store
+
     </div>
 
     <div class="header-right">
@@ -798,21 +800,36 @@ header {
 
 <div class="container">
 
-    <h2 class="section-heading">
-        Bienvenue sou PHJoolens Store
-    </h2>
+    <div class="hero">
 
-    <p class="subtitle">
-        Chwazi jwèt oswa sèvis ou vle achte.
-    </p>
+        <h2 class="section-heading">
+            Bienvenue sou PHJoolens Store
+        </h2>
+
+        <p class="subtitle">
+            Chwazi jwèt oswa sèvis ou vle achte.
+        </p>
+
+        <div class="game-controller">
+            🎮
+        </div>
+
+        <div class="game-spark">
+            ✦
+        </div>
+
+        <div class="game-spark2">
+            ✧
+        </div>
+
+    </div>
 
 
-    <!-- SERVICES -->
+    <!-- ================= SERVICES ================= -->
 
     <h3 class="services-title">
         🛒 Services
     </h3>
-
 
     <div class="services-grid">
 
@@ -951,8 +968,6 @@ header {
         </div>
 
 
-        <!-- ID / USERNAME -->
-
         <div class="input-group">
 
             <label id="input-label">
@@ -977,8 +992,6 @@ header {
         </div>
 
 
-        <!-- TRANSFER -->
-
         <div class="input-group">
 
             <label>
@@ -1001,8 +1014,6 @@ header {
         </div>
 
 
-        <!-- ORDER -->
-
         <button
             type="button"
             class="btn-acheter"
@@ -1023,23 +1034,19 @@ header {
             ℹ️ Enfòmasyon sou Peman ak Kòmand
         </h4>
 
-
         <p>
             📲
             <strong>
                 Pase kòmand ou sou WhatsApp:
             </strong>
-
             +509 32 26 5636
         </p>
-
 
         <p>
             💰
             <strong>
                 Nimewo pou fè transfè lajan:
             </strong>
-
             <strong>
                 +509 56079663
             </strong>
@@ -1054,7 +1061,6 @@ header {
 
 <div class="bottom-nav">
 
-
     <div
         class="nav-item active"
         onclick="window.scrollTo({
@@ -1063,7 +1069,6 @@ header {
         })">
 
         <div>🏠</div>
-
         Accueil
 
     </div>
@@ -1078,7 +1083,6 @@ header {
         })">
 
         <div>🛒</div>
-
         Services
 
     </div>
@@ -1091,7 +1095,6 @@ header {
         )">
 
         <div>💳</div>
-
         Portefeuille
 
     </div>
@@ -1104,7 +1107,6 @@ header {
         )">
 
         <div>📋</div>
-
         Commandes
 
     </div>
@@ -1118,7 +1120,6 @@ header {
         )">
 
         <div>💬</div>
-
         Support
 
     </div>
@@ -1130,11 +1131,7 @@ header {
 
 <script>
 
-
-/* ================= SERVICES ================= */
-
 const services = {
-
 
     freefire: {
 
@@ -1149,7 +1146,6 @@ const services = {
         "Antre ID Free Fire ou",
 
         packages: [
-
             ["110 Diamonds", 150],
             ["220 Diamonds", 300],
             ["341 Diamonds", 450],
@@ -1163,9 +1159,7 @@ const services = {
             ["Booyah Pass", 500],
             ["Abonnement semaine", 375],
             ["Abonnement mois", 1650]
-
         ]
-
     },
 
 
@@ -1182,7 +1176,6 @@ const services = {
         "Antre ID PUBG ou",
 
         packages: [
-
             ["60 UC", 180],
             ["325 UC", 875],
             ["660 UC", 1600],
@@ -1190,9 +1183,7 @@ const services = {
             ["3850 UC", 8000],
             ["8100 UC", 16900],
             ["16200 UC", 33000]
-
         ]
-
     },
 
 
@@ -1209,7 +1200,6 @@ const services = {
         "Antre ID Mobile Legends ou",
 
         packages: [
-
             ["86 Diamonds", null],
             ["172 Diamonds", null],
             ["257 Diamonds", null],
@@ -1218,9 +1208,7 @@ const services = {
             ["514 Diamonds", null],
             ["706 Diamonds", null],
             ["1412 Diamonds", null]
-
         ]
-
     },
 
 
@@ -1237,16 +1225,13 @@ const services = {
         "Antre ID Call of Duty ou",
 
         packages: [
-
             ["80 CP", null],
             ["420 CP", null],
             ["880 CP", null],
             ["2400 CP", null],
             ["5000 CP", null],
             ["10800 CP", null]
-
         ]
-
     },
 
 
@@ -1263,15 +1248,12 @@ const services = {
         "Antre ID eFootball ou",
 
         packages: [
-
             ["130 Coins", null],
             ["550 Coins", null],
             ["1040 Coins", null],
             ["2130 Coins", null],
             ["3250 Coins", null]
-
         ]
-
     },
 
 
@@ -1288,7 +1270,6 @@ const services = {
         "Antre Username Roblox ou",
 
         packages: [
-
             ["$10", 1807],
             ["$20", 3614],
             ["$30", 5421],
@@ -1301,9 +1282,7 @@ const services = {
             ["$100", 18070],
             ["$150", 27105],
             ["$200", 36140]
-
         ]
-
     },
 
 
@@ -1320,14 +1299,11 @@ const services = {
         "Antre enfòmasyon nesesè",
 
         packages: [
-
             ["$10", null],
             ["$20", null],
             ["$50", null],
             ["$100", null]
-
         ]
-
     },
 
 
@@ -1344,20 +1320,15 @@ const services = {
         "Antre enfòmasyon nesesè",
 
         packages: [
-
             ["$10", null],
             ["$20", null],
             ["$50", null],
             ["$100", null]
-
         ]
-
     }
 
 };
 
-
-/* ================= VARIABLES ================= */
 
 let currentService = "freefire";
 
@@ -1365,46 +1336,39 @@ let selectedPackage =
     services.freefire.packages[0];
 
 
-/* ================= RENDER PACKAGES ================= */
+/* ================= RENDER ================= */
 
 function renderPackages() {
 
     const service =
         services[currentService];
 
-
     document.getElementById(
         "product-title"
     ).innerText =
         service.title;
-
 
     document.getElementById(
         "product-description"
     ).innerText =
         service.description;
 
-
     document.getElementById(
         "input-label"
     ).innerText =
         "📌 " + service.input;
-
 
     document.getElementById(
         "customer-info"
     ).placeholder =
         service.placeholder;
 
-
     const container =
         document.getElementById(
             "packages-container"
         );
 
-
     container.innerHTML = "";
-
 
     service.packages.forEach(
         (pkg, index) => {
@@ -1414,20 +1378,13 @@ function renderPackages() {
                     "button"
                 );
 
-
             btn.type = "button";
 
             btn.className = "pkg-btn";
 
-
             if (index === 0) {
-
-                btn.classList.add(
-                    "active"
-                );
-
+                btn.classList.add("active");
             }
-
 
             if (pkg[1] === null) {
 
@@ -1437,9 +1394,7 @@ function renderPackages() {
                     'Pri ap vini' +
                     '</span>';
 
-            }
-
-            else {
+            } else {
 
                 btn.innerHTML =
                     pkg[0] +
@@ -1447,15 +1402,12 @@ function renderPackages() {
                     'G ' +
                     pkg[1].toLocaleString() +
                     '</span>';
-
             }
-
 
             btn.onclick =
                 function() {
 
                     selectedPackage = pkg;
-
 
                     document
                         .querySelectorAll(
@@ -1468,31 +1420,22 @@ function renderPackages() {
                             )
                         );
 
-
                     btn.classList.add(
                         "active"
                     );
 
-
                     updatePrice();
-
                 };
 
-
-            container.appendChild(
-                btn
-            );
+            container.appendChild(btn);
 
         }
     );
 
-
     selectedPackage =
         service.packages[0];
 
-
     updatePrice();
-
 }
 
 
@@ -1505,7 +1448,6 @@ function updatePrice() {
             "display-price"
         );
 
-
     if (
         selectedPackage[1] === null
     ) {
@@ -1513,17 +1455,13 @@ function updatePrice() {
         display.innerText =
             "Pri: Ap vini";
 
-    }
-
-    else {
+    } else {
 
         display.innerText =
             "G " +
             selectedPackage[1]
                 .toLocaleString();
-
     }
-
 }
 
 
@@ -1537,7 +1475,6 @@ function changeService(
     currentService =
         serviceName;
 
-
     document
         .querySelectorAll(
             ".service-btn"
@@ -1549,14 +1486,11 @@ function changeService(
             )
         );
 
-
     button.classList.add(
         "active"
     );
 
-
     renderPackages();
-
 
     document
         .querySelector(
@@ -1566,7 +1500,6 @@ function changeService(
             behavior: "smooth",
             block: "start"
         });
-
 }
 
 
@@ -1579,16 +1512,13 @@ function konekte() {
             "gmail-input"
         );
 
-
     const loginModal =
         document.getElementById(
             "login-modal"
         );
 
-
     const gmail =
         gmailInput.value.trim();
-
 
     if (gmail === "") {
 
@@ -1599,9 +1529,7 @@ function konekte() {
         gmailInput.focus();
 
         return;
-
     }
-
 
     if (
         !gmail
@@ -1616,21 +1544,13 @@ function konekte() {
         gmailInput.focus();
 
         return;
-
     }
 
-
-    /*
-       PA SOVE GMAIL LA.
-       Chak fwa paj la rechaje,
-       moun nan ap bezwen antre Gmail ankò.
-    */
-
+    /* Gmail pa sove */
 
     loginModal.classList.add(
         "hidden"
     );
-
 }
 
 
@@ -1639,12 +1559,12 @@ function konekte() {
 function soti() {
 
     /*
-       Reload sèlman.
-       Login ap parèt ankò.
+       Lè moun nan dekonekte,
+       paj la rechaje epi Gmail
+       ap mande ankò.
     */
 
     location.reload();
-
 }
 
 
@@ -1660,7 +1580,6 @@ function paseKomandWhatsApp() {
             .value
             .trim();
 
-
     const transferNumber =
         document
             .getElementById(
@@ -1669,7 +1588,6 @@ function paseKomandWhatsApp() {
             .value
             .trim();
 
-
     const gmail =
         document
             .getElementById(
@@ -1677,7 +1595,6 @@ function paseKomandWhatsApp() {
             )
             .value
             .trim();
-
 
     if (!info) {
 
@@ -1694,9 +1611,7 @@ function paseKomandWhatsApp() {
             .focus();
 
         return;
-
     }
-
 
     if (!transferNumber) {
 
@@ -1711,9 +1626,7 @@ function paseKomandWhatsApp() {
             .focus();
 
         return;
-
     }
-
 
     if (
         selectedPackage[1] === null
@@ -1724,13 +1637,10 @@ function paseKomandWhatsApp() {
         );
 
         return;
-
     }
-
 
     const service =
         services[currentService];
-
 
     const message =
 `Salut PHJoolens Store! 👋
@@ -1751,19 +1661,14 @@ Mwen ta renmen fè yon kòmand.
 
 Tanpri verifye transfè a epi konfime kòmand mwen an.`;
 
-
     const whatsappURL =
         "https://wa.me/50932265636?text=" +
-        encodeURIComponent(
-            message
-        );
-
+        encodeURIComponent(message);
 
     window.open(
         whatsappURL,
         "_blank"
     );
-
 }
 
 
@@ -1778,18 +1683,15 @@ document.addEventListener(
                 "login-button"
             );
 
-
         const gmailInput =
             document.getElementById(
                 "gmail-input"
             );
 
-
         loginButton.addEventListener(
             "click",
             konekte
         );
-
 
         gmailInput.addEventListener(
             "keydown",
@@ -1805,7 +1707,6 @@ document.addEventListener(
 
             }
         );
-
 
         renderPackages();
 
