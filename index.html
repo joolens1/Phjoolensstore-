@@ -1,18 +1,20 @@
 
 
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ht">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>PHJoolens Store</title>
 
 <style>
+
 :root {
-    --primary-color: #d4a373;
-    --secondary-color: #2f3542;
-    --bg-color: #f8f9fa;
-    --text-color: #333333;
+    --primary: #d4a373;
+    --gold: #c59b27;
+    --dark: #151515;
+    --text: #333;
 }
 
 * {
@@ -21,10 +23,17 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--bg-color);
-    color: var(--text-color);
     margin: 0;
     padding-bottom: 90px;
+    color: var(--text);
+
+    /* Background gaming */
+    background:
+        radial-gradient(circle at top left, rgba(197,155,39,0.30), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(0,90,180,0.25), transparent 35%),
+        linear-gradient(135deg, #111827, #202b3d, #111827);
+
+    min-height: 100vh;
 }
 
 /* ================= LOGIN ================= */
@@ -34,7 +43,7 @@ body {
     inset: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.88);
+    background: rgba(0,0,0,0.90);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,11 +61,11 @@ body {
     text-align: center;
     width: 90%;
     max-width: 400px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.35);
+    box-shadow: 0 5px 30px rgba(0,0,0,0.5);
 }
 
 .login-box h2 {
-    color: var(--secondary-color);
+    color: #222;
     margin-bottom: 10px;
 }
 
@@ -76,11 +85,11 @@ body {
 }
 
 .login-box input:focus {
-    border-color: #c59b27;
+    border-color: var(--gold);
 }
 
 .login-box button {
-    background: #c59b27;
+    background: var(--gold);
     color: white;
     border: none;
     padding: 14px;
@@ -94,12 +103,12 @@ body {
 /* ================= HEADER ================= */
 
 header {
-    background: white;
+    background: rgba(255,255,255,0.97);
     padding: 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -108,7 +117,7 @@ header {
 .logo-area {
     font-weight: bold;
     font-size: 1.2rem;
-    color: var(--secondary-color);
+    color: #202733;
 }
 
 .header-right {
@@ -146,12 +155,13 @@ header {
 
 .section-heading {
     font-size: 1.8rem;
-    color: var(--secondary-color);
+    color: white;
     margin-bottom: 5px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .subtitle {
-    color: #666;
+    color: #e5e5e5;
     margin-top: 0;
     margin-bottom: 20px;
 }
@@ -160,6 +170,7 @@ header {
 
 .services-title {
     font-size: 20px;
+    color: white;
     margin-bottom: 10px;
 }
 
@@ -171,35 +182,40 @@ header {
 }
 
 .service-btn {
-    background: white;
+    background: rgba(255,255,255,0.97);
     border: 1px solid #ccc;
     padding: 13px 8px;
     border-radius: 9px;
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
+    transition: 0.2s;
+}
+
+.service-btn:hover {
+    transform: translateY(-2px);
 }
 
 .service-btn.active {
-    border: 2px solid #c59b27;
+    border: 2px solid var(--gold);
     background: #fff8e8;
 }
 
 /* ================= PRODUCT ================= */
 
 .form-card {
-    background: white;
+    background: rgba(255,255,255,0.98);
     border: 1px solid #e1e1e1;
-    border-radius: 12px;
+    border-radius: 15px;
     padding: 18px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
     margin-bottom: 18px;
 }
 
 .product-title {
     font-size: 25px;
     font-weight: bold;
-    color: var(--secondary-color);
+    color: #2f3542;
 }
 
 .product-description {
@@ -223,10 +239,15 @@ header {
     font-size: 14px;
     font-weight: 600;
     color: #333;
+    transition: 0.2s;
+}
+
+.pkg-btn:hover {
+    transform: translateY(-2px);
 }
 
 .pkg-btn.active {
-    border: 2px solid #c59b27;
+    border: 2px solid var(--gold);
     background: #fff8e8;
 }
 
@@ -284,7 +305,7 @@ header {
 }
 
 .input-group input:focus {
-    border-color: #c59b27;
+    border-color: var(--gold);
 }
 
 .input-hint {
@@ -294,7 +315,7 @@ header {
 }
 
 .btn-acheter {
-    background-color: #dfc293;
+    background: linear-gradient(135deg, #c59b27, #dfc293);
     color: white;
     border: none;
     width: 100%;
@@ -303,6 +324,11 @@ header {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-acheter:hover {
+    transform: scale(1.01);
 }
 
 /* ================= PAYMENT ================= */
@@ -313,6 +339,7 @@ header {
     padding: 15px;
     margin-top: 20px;
     border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
 .payment-info h4 {
@@ -336,7 +363,7 @@ header {
     display: flex;
     justify-content: space-around;
     padding: 8px 0;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.08);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.25);
     z-index: 99;
 }
 
@@ -352,7 +379,7 @@ header {
 }
 
 .nav-item.active {
-    color: #c59b27;
+    color: var(--gold);
     font-weight: bold;
 }
 
@@ -371,7 +398,13 @@ header {
     .packages-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .section-heading {
+        font-size: 1.5rem;
+    }
+
 }
+
 </style>
 </head>
 
@@ -399,9 +432,7 @@ header {
         <button
             type="button"
             id="login-button">
-
             Konekte
-
         </button>
 
     </div>
@@ -427,9 +458,7 @@ header {
             class="logout-btn"
             type="button"
             onclick="soti()">
-
             Dekonekte
-
         </button>
 
     </div>
@@ -437,7 +466,7 @@ header {
 </header>
 
 
-<!-- ================= CONTENT ================= -->
+<!-- ================= MAIN ================= -->
 
 <div class="container">
 
@@ -450,10 +479,11 @@ header {
     </p>
 
 
+    <!-- SERVICES -->
+
     <h3 class="services-title">
         🛒 Services
     </h3>
-
 
     <div class="services-grid">
 
@@ -461,62 +491,70 @@ header {
             type="button"
             class="service-btn active"
             onclick="changeService('freefire', this)">
-            🎮<br>Free Fire
+            🎮<br>
+            Free Fire
         </button>
 
         <button
             type="button"
             class="service-btn"
             onclick="changeService('pubg', this)">
-            🎯<br>PUBG Mobile
+            🎯<br>
+            PUBG Mobile
         </button>
 
         <button
             type="button"
             class="service-btn"
             onclick="changeService('mobilelegends', this)">
-            ⚔️<br>Mobile Legends
+            ⚔️<br>
+            Mobile Legends
         </button>
 
         <button
             type="button"
             class="service-btn"
             onclick="changeService('cod', this)">
-            🎯<br>Call of Duty
+            🎯<br>
+            Call of Duty
         </button>
 
         <button
             type="button"
             class="service-btn"
             onclick="changeService('efootball', this)">
-            ⚽<br>eFootball
+            ⚽<br>
+            eFootball
         </button>
 
         <button
             type="button"
             class="service-btn"
             onclick="changeService('roblox', this)">
-            🎮<br>Roblox
+            🎮<br>
+            Roblox
         </button>
 
         <button
             type="button"
             class="service-btn"
             onclick="changeService('playstation', this)">
-            🎁<br>PlayStation
+            🎁<br>
+            PlayStation
         </button>
 
         <button
             type="button"
             class="service-btn"
             onclick="changeService('googleplay', this)">
-            🎁<br>Google Play
+            🎁<br>
+            Google Play
         </button>
 
     </div>
 
 
-    <!-- ================= PRODUCT ================= -->
+    <!-- PRODUCT CARD -->
 
     <div class="form-card">
 
@@ -533,11 +571,15 @@ header {
         </div>
 
 
+        <!-- PACKAGES -->
+
         <div
             class="packages-grid"
             id="packages-container">
         </div>
 
+
+        <!-- SELECTED PRICE -->
 
         <div
             class="selected-price"
@@ -546,12 +588,14 @@ header {
         </div>
 
 
+        <!-- VERIFICATION -->
+
         <div class="verification-badge">
             Vérification requise
         </div>
 
 
-        <!-- ID / USERNAME -->
+        <!-- CUSTOMER INFO -->
 
         <div class="input-group">
 
@@ -567,17 +611,14 @@ header {
 
         </div>
 
-
         <div
             class="input-hint"
             id="input-hint">
-
             Vérification ID requise pou sèvis sa a.
-
         </div>
 
 
-        <!-- TRANSFER -->
+        <!-- TRANSFER NUMBER -->
 
         <div class="input-group">
 
@@ -593,13 +634,12 @@ header {
 
         </div>
 
-
         <div class="input-hint">
-
             Antre nimewo tranzaksyon oswa transfè ou fè a.
-
         </div>
 
+
+        <!-- ORDER BUTTON -->
 
         <button
             type="button"
@@ -613,7 +653,7 @@ header {
     </div>
 
 
-    <!-- ================= PAYMENT ================= -->
+    <!-- PAYMENT INFORMATION -->
 
     <div class="payment-info">
 
@@ -628,7 +668,7 @@ header {
 
         <p>
             💸 <strong>Nimewo pou fè transfè lajan:</strong>
-            +509 48828406
+            <strong>+509 56079663</strong>
         </p>
 
     </div>
@@ -660,7 +700,9 @@ header {
     </div>
 
 
-    <div class="nav-item">
+    <div
+        class="nav-item"
+        onclick="alert('Portefeuille ap vini byento.')">
 
         <div>💳</div>
         Portefeuille
@@ -668,7 +710,9 @@ header {
     </div>
 
 
-    <div class="nav-item">
+    <div
+        class="nav-item"
+        onclick="alert('Commandes ap vini byento.')">
 
         <div>📋</div>
         Commandes
@@ -688,11 +732,11 @@ header {
 </div>
 
 
+<!-- ================= JAVASCRIPT ================= -->
+
 <script>
 
-/* =========================
-   SERVICES
-========================= */
+/* ================= SERVICES ================= */
 
 const services = {
 
@@ -705,9 +749,11 @@ const services = {
 
         input: "ID Jwè",
 
-        placeholder: "Antre ID Free Fire ou",
+        placeholder:
+        "Antre ID Free Fire ou",
 
         packages: [
+
             ["110 Diamonds", 150],
             ["220 Diamonds", 300],
             ["341 Diamonds", 450],
@@ -721,6 +767,7 @@ const services = {
             ["Booyah Pass", 500],
             ["Abonnement semaine", 375],
             ["Abonnement mois", 1650]
+
         ]
 
     },
@@ -735,9 +782,11 @@ const services = {
 
         input: "ID Jwè",
 
-        placeholder: "Antre ID PUBG ou",
+        placeholder:
+        "Antre ID PUBG ou",
 
         packages: [
+
             ["60 UC", 180],
             ["325 UC", 875],
             ["660 UC", 1600],
@@ -745,6 +794,7 @@ const services = {
             ["3850 UC", 8000],
             ["8100 UC", 16900],
             ["16200 UC", 33000]
+
         ]
 
     },
@@ -759,9 +809,11 @@ const services = {
 
         input: "ID Jwè",
 
-        placeholder: "Antre ID Mobile Legends ou",
+        placeholder:
+        "Antre ID Mobile Legends ou",
 
         packages: [
+
             ["86 Diamonds", null],
             ["172 Diamonds", null],
             ["257 Diamonds", null],
@@ -770,6 +822,7 @@ const services = {
             ["514 Diamonds", null],
             ["706 Diamonds", null],
             ["1412 Diamonds", null]
+
         ]
 
     },
@@ -784,15 +837,18 @@ const services = {
 
         input: "ID Jwè",
 
-        placeholder: "Antre ID Call of Duty ou",
+        placeholder:
+        "Antre ID Call of Duty ou",
 
         packages: [
+
             ["80 CP", null],
             ["420 CP", null],
             ["880 CP", null],
             ["2400 CP", null],
             ["5000 CP", null],
             ["10800 CP", null]
+
         ]
 
     },
@@ -807,14 +863,17 @@ const services = {
 
         input: "ID Jwè",
 
-        placeholder: "Antre ID eFootball ou",
+        placeholder:
+        "Antre ID eFootball ou",
 
         packages: [
+
             ["130 Coins", null],
             ["550 Coins", null],
             ["1040 Coins", null],
             ["2130 Coins", null],
             ["3250 Coins", null]
+
         ]
 
     },
@@ -831,9 +890,11 @@ const services = {
 
         input: "Username Roblox",
 
-        placeholder: "Antre Username Roblox ou",
+        placeholder:
+        "Antre Username Roblox ou",
 
         packages: [
+
             ["$10", 1807],
             ["$20", 3614],
             ["$30", 5421],
@@ -846,6 +907,7 @@ const services = {
             ["$100", 18070],
             ["$150", 27105],
             ["$200", 36140]
+
         ]
 
     },
@@ -860,13 +922,16 @@ const services = {
 
         input: "Email / Compte",
 
-        placeholder: "Antre enfòmasyon nesesè",
+        placeholder:
+        "Antre enfòmasyon nesesè",
 
         packages: [
+
             ["$10", null],
             ["$20", null],
             ["$50", null],
             ["$100", null]
+
         ]
 
     },
@@ -881,13 +946,16 @@ const services = {
 
         input: "Email / Compte",
 
-        placeholder: "Antre enfòmasyon nesesè",
+        placeholder:
+        "Antre enfòmasyon nesesè",
 
         packages: [
+
             ["$10", null],
             ["$20", null],
             ["$50", null],
             ["$100", null]
+
         ]
 
     }
@@ -895,9 +963,7 @@ const services = {
 };
 
 
-/* =========================
-   VARIABLES
-========================= */
+/* ================= VARIABLES ================= */
 
 let currentService = "freefire";
 
@@ -905,51 +971,63 @@ let selectedPackage =
     services.freefire.packages[0];
 
 
-/* =========================
-   RENDER PACKAGES
-========================= */
+/* ================= RENDER PACKAGES ================= */
 
 function renderPackages() {
 
     const service =
         services[currentService];
 
+
     document.getElementById(
         "product-title"
     ).innerText = service.title;
+
 
     document.getElementById(
         "product-description"
     ).innerText = service.description;
 
+
     document.getElementById(
         "input-label"
     ).innerText = "📌 " + service.input;
 
+
     document.getElementById(
         "customer-info"
     ).placeholder = service.placeholder;
+
 
     const container =
         document.getElementById(
             "packages-container"
         );
 
+
     container.innerHTML = "";
+
 
     service.packages.forEach(
         (pkg, index) => {
 
             const btn =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
+
 
             btn.type = "button";
 
             btn.className = "pkg-btn";
 
+
             if (index === 0) {
+
                 btn.classList.add("active");
+
             }
+
 
             if (pkg[1] === null) {
 
@@ -967,37 +1045,54 @@ function renderPackages() {
                     'G ' +
                     pkg[1].toLocaleString() +
                     '</span>';
+
             }
 
-            btn.onclick = function() {
 
-                selectedPackage = pkg;
+            btn.onclick =
+                function() {
 
-                document
-                    .querySelectorAll(".pkg-btn")
-                    .forEach(
-                        b => b.classList.remove("active")
+                    selectedPackage = pkg;
+
+
+                    document
+                        .querySelectorAll(
+                            ".pkg-btn"
+                        )
+                        .forEach(
+                            b =>
+                            b.classList.remove(
+                                "active"
+                            )
+                        );
+
+
+                    btn.classList.add(
+                        "active"
                     );
 
-                btn.classList.add("active");
 
-                updatePrice();
-            };
+                    updatePrice();
+
+                };
+
 
             container.appendChild(btn);
+
         }
     );
+
 
     selectedPackage =
         service.packages[0];
 
+
     updatePrice();
+
 }
 
 
-/* =========================
-   UPDATE PRICE
-========================= */
+/* ================= UPDATE PRICE ================= */
 
 function updatePrice() {
 
@@ -1006,7 +1101,10 @@ function updatePrice() {
             "display-price"
         );
 
-    if (selectedPackage[1] === null) {
+
+    if (
+        selectedPackage[1] === null
+    ) {
 
         display.innerText =
             "Pri: Ap vini";
@@ -1015,15 +1113,15 @@ function updatePrice() {
 
         display.innerText =
             "G " +
-            selectedPackage[1].toLocaleString();
+            selectedPackage[1]
+                .toLocaleString();
 
     }
+
 }
 
 
-/* =========================
-   CHANGE SERVICE
-========================= */
+/* ================= CHANGE SERVICE ================= */
 
 function changeService(
     serviceName,
@@ -1033,34 +1131,48 @@ function changeService(
     currentService =
         serviceName;
 
+
     document
-        .querySelectorAll(".service-btn")
+        .querySelectorAll(
+            ".service-btn"
+        )
         .forEach(
-            btn => btn.classList.remove("active")
+            btn =>
+            btn.classList.remove(
+                "active"
+            )
         );
 
-    button.classList.add("active");
+
+    button.classList.add(
+        "active"
+    );
+
 
     renderPackages();
+
 }
 
 
-/* =========================
-   LOGIN
-========================= */
+/* ================= LOGIN ================= */
 
 function konekte() {
 
     const gmailInput =
-        document.getElementById("gmail-input");
+        document.getElementById(
+            "gmail-input"
+        );
+
 
     const loginModal =
-        document.getElementById("login-modal");
+        document.getElementById(
+            "login-modal"
+        );
+
 
     const gmail =
         gmailInput.value.trim();
 
-    /* Gmail vid */
 
     if (gmail === "") {
 
@@ -1071,9 +1183,9 @@ function konekte() {
         gmailInput.focus();
 
         return;
+
     }
 
-    /* Verifye Gmail */
 
     if (
         !gmail
@@ -1088,18 +1200,18 @@ function konekte() {
         gmailInput.focus();
 
         return;
+
     }
 
-    /* LOGIN REYISI */
 
-    loginModal.classList.add("hidden");
+    loginModal.classList.add(
+        "hidden"
+    );
 
 }
 
 
-/* =========================
-   DEKONEKTE
-========================= */
+/* ================= LOGOUT ================= */
 
 function soti() {
 
@@ -1108,32 +1220,36 @@ function soti() {
 }
 
 
-/* =========================
-   WHATSAPP ORDER
-========================= */
+/* ================= WHATSAPP ORDER ================= */
 
 function paseKomandWhatsApp() {
 
     const info =
         document
-            .getElementById("customer-info")
+            .getElementById(
+                "customer-info"
+            )
             .value
             .trim();
+
 
     const transferNumber =
         document
-            .getElementById("transfer-number")
+            .getElementById(
+                "transfer-number"
+            )
             .value
             .trim();
+
 
     const gmail =
         document
-            .getElementById("gmail-input")
+            .getElementById(
+                "gmail-input"
+            )
             .value
             .trim();
 
-
-    /* VERIFY INFO */
 
     if (!info) {
 
@@ -1143,15 +1259,18 @@ function paseKomandWhatsApp() {
             "."
         );
 
+
         document
-            .getElementById("customer-info")
+            .getElementById(
+                "customer-info"
+            )
             .focus();
 
+
         return;
+
     }
 
-
-    /* VERIFY TRANSFER */
 
     if (!transferNumber) {
 
@@ -1159,31 +1278,35 @@ function paseKomandWhatsApp() {
             "Tanpri antre nimewo transfè ou a."
         );
 
+
         document
-            .getElementById("transfer-number")
+            .getElementById(
+                "transfer-number"
+            )
             .focus();
 
+
         return;
+
     }
 
 
-    /* VERIFY PRICE */
-
-    if (selectedPackage[1] === null) {
+    if (
+        selectedPackage[1] === null
+    ) {
 
         alert(
             "Pri pou pakè sa a poko disponib."
         );
 
         return;
+
     }
 
 
     const service =
         services[currentService];
 
-
-    /* MESSAGE WHATSAPP */
 
     const message =
 `Salut PHJoolens Store! 👋
@@ -1214,18 +1337,11 @@ Tanpri verifye transfè a epi konfime kòmand mwen an.`;
         whatsappURL,
         "_blank"
     );
+
 }
 
 
-/* =========================
-   LOGIN BUTTON
-========================= */
-
-/*
-   Nou itilize addEventListener
-   olye de onclick pou evite pwoblèm
-   si navigatè a pa t pran onclick lan.
-*/
+/* ================= START ================= */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -1236,23 +1352,26 @@ document.addEventListener(
                 "login-button"
             );
 
+
         const gmailInput =
             document.getElementById(
                 "gmail-input"
             );
+
 
         loginButton.addEventListener(
             "click",
             konekte
         );
 
-        /* Enter sou klavye */
 
         gmailInput.addEventListener(
             "keydown",
             function(event) {
 
-                if (event.key === "Enter") {
+                if (
+                    event.key === "Enter"
+                ) {
 
                     konekte();
 
@@ -1260,6 +1379,7 @@ document.addEventListener(
 
             }
         );
+
 
         renderPackages();
 
@@ -1269,4 +1389,4 @@ document.addEventListener(
 </script>
 
 </body>
-</html>
+  </html>
