@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="ht">
 <head>
@@ -582,7 +581,7 @@ header {
     <div class="modal-box login-box">
         <div class="login-logo">⚡ 🎮</div>
         <h2>PHJoolens Store</h2>
-        <p>Tanpri antre adrès Gmail ou pou w ka konekte epi pase kòmand ou yo.</p>
+        <p>Tanpri antre adrès Gmail ou pou w ka konekte epi wè sit la.</p>
         <input type="email" id="gmail-input" placeholder="egzanp@gmail.com" autocomplete="email">
         <button type="button" id="login-button">Konekte</button>
     </div>
@@ -640,12 +639,22 @@ header {
         </div>
         <div class="packages-grid" id="packages-container"></div>
         <div class="selected-price" id="display-price">G 150</div>
+        
         <div class="verification-badge">Vérification requise</div>
+        
+        <!-- ID Jwè -->
         <div class="input-group">
             <label id="input-label">🆔 ID Jwè</label>
             <input type="text" id="customer-info" placeholder="Antre ID Free Fire ou">
         </div>
-        <div class="input-hint" id="input-hint">Vérification ID requise pou sèvis sa a.</div>
+
+        <!-- Nimewo Transfè MonCash / Natcash -->
+        <div class="input-group">
+            <label>📲 Nimewo Telefòn ou fè transfè a (MonCash / Natcash)</label>
+            <input type="text" id="transfer-phone" placeholder="Egzanp: 509XXXXXXXX">
+        </div>
+
+        <div class="input-hint" id="input-hint">Asire w ou voye kòb la anvan w klike sou achte.</div>
         
         <button type="button" class="btn-acheter" onclick="paseKomand()">ACHETE AK VOYE SOU WHATSAPP</button>
     </div>
@@ -653,7 +662,7 @@ header {
     <!-- ================= PAYMENT ================= -->
     <div class="payment-info">
         <h4>ℹ️ Enfòmasyon sou Peman ak Kòmand</h4>
-        <p>📲 <strong>MonCash / Natcash:</strong> +509 5607-9663</p>
+        <p>📲 <strong>MonCash / Natcash pou voye kòb la:</strong> +509 5607-9663</p>
         <p>💬 <strong>WhatsApp Sipò:</strong> +509 3226-5636</p>
     </div>
 </div>
@@ -879,6 +888,7 @@ function renderCommandsList() {
             <strong>${cmd.service}</strong> - ${cmd.pkg}<br>
             Pri: <strong>G ${cmd.price.toLocaleString()}</strong><br>
             ID: ${cmd.info}<br>
+            Nimewo Transfè: ${cmd.transferPhone}<br>
             <span style="color: #888; font-size: 11px;">📅 ${cmd.date}</span>
         `;
         container.appendChild(item);
@@ -890,10 +900,16 @@ function paseKomand() {
 
     const gmail = getActiveGmail();
     const info = document.getElementById("customer-info").value.trim();
+    const transferPhone = document.getElementById("transfer-phone").value.trim();
 
     if (!info) {
         alert("Tanpri antre " + services[currentService].input + ".");
         document.getElementById("customer-info").focus();
+        return;
+    }
+    if (!transferPhone) {
+        alert("Tanpri antre nimewo telefòn ou fè transfè a.");
+        document.getElementById("transfer-phone").focus();
         return;
     }
     if (selectedPackage[1] === null) {
@@ -911,6 +927,7 @@ function paseKomand() {
         pkg: selectedPackage[0],
         price: packagePrice,
         info: info,
+        transferPhone: transferPhone,
         date: new Date().toLocaleString()
     });
     localStorage.setItem(commandsKey, JSON.stringify(commands));
@@ -930,7 +947,9 @@ Mwen ta renmen pase kòmand sa a:
 
 📌 ${service.input}: ${info}
 
-Mwen voye kòb la sou MonCash / Natcash (+509 5607-9663), tanpri verifye l pou mwen!`;
+📲 Nimewo Transfè m nan: ${transferPhone}
+
+Mwen voye kòb la sou MonCash / Natcash, tanpri verifye l pou mwen!`;
 
     window.open("https://wa.me/50932265636?text=" + encodeURIComponent(message), "_blank");
 }
@@ -958,6 +977,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
