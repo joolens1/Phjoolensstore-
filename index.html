@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="ht">
 <head>
@@ -290,16 +289,26 @@ header {
 }
 
 .service-btn {
-    min-height: 92px;
+    min-height: 100px;
     background: rgba(255,255,255,0.98);
     border: 1px solid #eeeeee;
     border-radius: 18px;
     box-shadow: 0 4px 13px rgba(0,0,0,0.07);
     color: var(--dark);
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 700;
     cursor: pointer;
     transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+}
+
+.service-icon {
+    font-size: 28px;
 }
 
 .service-btn:hover {
@@ -545,8 +554,8 @@ header {
         font-size: 25px;
     }
     .service-btn {
-        min-height: 82px;
-        font-size: 15px;
+        min-height: 90px;
+        font-size: 14px;
     }
     .form-card {
         padding: 18px;
@@ -621,14 +630,30 @@ header {
     <!-- ================= SERVICES ================= -->
     <h3 class="services-title">🛒 Services</h3>
     <div class="services-grid">
-        <button type="button" class="service-btn active" onclick="changeService('freefire', this)">🎮<br>Free Fire</button>
-        <button type="button" class="service-btn" onclick="changeService('pubg', this)">🎯<br>PUBG Mobile</button>
-        <button type="button" class="service-btn" onclick="changeService('mobilelegends', this)">⚔️<br>Mobile Legends</button>
-        <button type="button" class="service-btn" onclick="changeService('cod', this)">🎯<br>Call of Duty</button>
-        <button type="button" class="service-btn" onclick="changeService('efootball', this)">⚽<br>eFootball</button>
-        <button type="button" class="service-btn" onclick="changeService('roblox', this)">🎮<br>Roblox</button>
-        <button type="button" class="service-btn" onclick="changeService('playstation', this)">🎁<br>PlayStation</button>
-        <button type="button" class="service-btn" onclick="changeService('googleplay', this)">🎁<br>Google Play</button>
+        <button type="button" class="service-btn active" onclick="changeService('freefire', this)">
+            <span class="service-icon">🔥</span> Free Fire
+        </button>
+        <button type="button" class="service-btn" onclick="changeService('pubg', this)">
+            <span class="service-icon">🎯</span> PUBG Mobile
+        </button>
+        <button type="button" class="service-btn" onclick="changeService('mobilelegends', this)">
+            <span class="service-icon">⚔️</span> Mobile Legends
+        </button>
+        <button type="button" class="service-btn" onclick="changeService('cod', this)">
+            <span class="service-icon">🎖️</span> Call of Duty
+        </button>
+        <button type="button" class="service-btn" onclick="changeService('efootball', this)">
+            <span class="service-icon">⚽</span> eFootball
+        </button>
+        <button type="button" class="service-btn" onclick="changeService('roblox', this)">
+            <span class="service-icon">👾</span> Roblox
+        </button>
+        <button type="button" class="service-btn" onclick="changeService('playstation', this)">
+            <span class="service-icon">🎮</span> PlayStation
+        </button>
+        <button type="button" class="service-btn" onclick="changeService('googleplay', this)">
+            <span class="service-icon">🎁</span> Google Play
+        </button>
     </div>
 
     <!-- ================= PRODUCT ================= -->
@@ -977,9 +1002,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
-
-
-
-
-
-       
