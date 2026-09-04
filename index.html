@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="ht">
 <head>
@@ -141,48 +140,9 @@ body {
     cursor: pointer;
 }
 
-/* ================= PORTFEUILLE & ADMIN CONTENT ================= */
+/* ================= COMMANDES & ADMIN CONTENT ================= */
 
-.wallet-card-balance {
-    background: var(--gold-light);
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.wallet-card-balance span {
-    display: block;
-    color: var(--gray);
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-
-.wallet-card-balance h3 {
-    color: #a66d00;
-    font-size: 30px;
-    margin: 0;
-}
-
-.wallet-actions {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.wallet-action-btn {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 11px;
-    background: var(--gold);
-    color: white;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.command-item, .admin-user-item {
+.command-item {
     background: #f8f9fa;
     border: 1px solid #e9ecef;
     border-radius: 12px;
@@ -191,7 +151,7 @@ body {
     font-size: 14px;
 }
 
-.command-item strong, .admin-user-item strong {
+.command-item strong {
     color: var(--dark);
 }
 
@@ -199,31 +159,6 @@ body {
     text-align: center;
     color: var(--gray);
     padding: 20px;
-}
-
-.admin-input-row {
-    display: flex;
-    gap: 8px;
-    margin-top: 8px;
-}
-
-.admin-input-row input {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-.admin-input-row button {
-    padding: 8px 12px;
-    background: var(--dark);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 13px;
 }
 
 /* ================= HEADER ================= */
@@ -260,25 +195,17 @@ header {
     gap: 9px;
 }
 
-.wallet-info {
+.user-badge {
     background: var(--gold-light);
     color: #a66d00;
     padding: 9px 15px;
     border-radius: 25px;
     font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.admin-btn-header {
-    background: var(--dark);
-    color: white;
-    border: none;
-    border-radius: 11px;
-    padding: 9px 12px;
-    font-weight: bold;
     font-size: 13px;
-    cursor: pointer;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .logout-btn {
@@ -516,11 +443,7 @@ header {
     margin-bottom: 10px;
 }
 
-.btn-wallet-buy {
-    background: linear-gradient(135deg, #14213d, #273e6d);
-}
-
-/* ================= PAYMENT ================= */
+/* ================= PAYMENT INFO ================= */
 
 .payment-info {
     margin-top: 20px;
@@ -588,13 +511,10 @@ header {
     .logo-game {
         font-size: 22px;
     }
-    .wallet-info {
+    .user-badge {
         font-size: 11px;
         padding: 8px 10px;
-    }
-    .admin-btn-header {
-        font-size: 11px;
-        padding: 8px 8px;
+        max-width: 100px;
     }
     .logout-btn {
         font-size: 11px;
@@ -660,54 +580,9 @@ header {
     <div class="modal-box login-box">
         <div class="login-logo">⚡ 🎮</div>
         <h2>PHJoolens Store</h2>
-        <p>Antre adrès Gmail ou pou w ka konekte sou kont sekirize ou.</p>
+        <p>Tanpri antre adrès Gmail ou pou w ka konekte epi pase kòmand ou yo.</p>
         <input type="email" id="gmail-input" placeholder="egzanp@gmail.com" autocomplete="email">
         <button type="button" id="login-button">Konekte</button>
-    </div>
-</div>
-
-<!-- ================= ADMIN LOGIN MODAL ================= -->
-<div id="admin-login-modal" class="modal-overlay hidden">
-    <div class="modal-box login-box">
-        <div class="login-logo">🔒 ⚙️</div>
-        <h2>Panel Admin (Bòs la)</h2>
-        <p>Antre modpas administratè a pou jere pòtèf yo.</p>
-        <input type="password" id="admin-pass-input" placeholder="Modpas Admin">
-        <button type="button" id="admin-login-btn">Louvri Panel la</button>
-        <button type="button" class="close-modal-btn" style="background:#e9232e; margin-top:8px;" onclick="closeModal('admin-login-modal')">Fèmen</button>
-    </div>
-</div>
-
-<!-- ================= ADMIN PANEL MODAL ================= -->
-<div id="admin-panel-modal" class="modal-overlay hidden">
-    <div class="modal-box" style="max-width: 600px;">
-        <h2>⚙️ Jesyon Pòtèf Kliyan yo</h2>
-        <p style="text-align: center; color: var(--gray); font-size: 13px; margin-bottom: 15px;">
-            La a ou ka wè tout kliyan ki konekte epi ajoute oubyen retire kòb nan kont yo.
-        </p>
-        <div id="admin-users-list">
-            <!-- Lis kliyan yo ap afiche la a -->
-        </div>
-        <button type="button" class="close-modal-btn" onclick="closeModal('admin-panel-modal')">Fèmen Panel la</button>
-    </div>
-</div>
-
-<!-- ================= WALLET MODAL ================= -->
-<div id="wallet-modal" class="modal-overlay hidden">
-    <div class="modal-box">
-        <h2>💳 Pòtèf Mwen (Secured)</h2>
-        <div class="wallet-card-balance">
-            <span id="wallet-gmail-owner">Kont: -</span>
-            <span>Balans Aktyèl</span>
-            <h3 id="wallet-balance-text">G 0.00</h3>
-        </div>
-        <div class="wallet-actions">
-            <button type="button" class="wallet-action-btn" onclick="demandeRechajWallet()">➕ Rechaje Kont</button>
-        </div>
-        <p style="text-align: center; color: var(--gray); font-size: 13px;">
-            Lajan sa a lye sèlman ak Gmail ou a. Pèsonn lòt pa ka itilize l sou aparèy sa a san ou pa konekte ak Gmail ou.
-        </p>
-        <button type="button" class="close-modal-btn" onclick="closeModal('wallet-modal')">Fèmen</button>
     </div>
 </div>
 
@@ -715,9 +590,7 @@ header {
 <div id="commands-modal" class="modal-overlay hidden">
     <div class="modal-box">
         <h2>📋 Kòmand Mwen Yo</h2>
-        <div id="commands-list-container">
-            <!-- Kòmand yo ap afiche la a -->
-        </div>
+        <div id="commands-list-container"></div>
         <button type="button" class="close-modal-btn" onclick="closeModal('commands-modal')">Fèmen</button>
     </div>
 </div>
@@ -729,10 +602,7 @@ header {
         ⚡ PHJoolens Store
     </div>
     <div class="header-right">
-        <div class="wallet-info" id="header-wallet-display" onclick="openWalletModal()">
-            G 0.00
-        </div>
-        <button class="admin-btn-header" type="button" onclick="openAdminLogin()">⚙️ Admin</button>
+        <div class="user-badge" id="header-user-display">Kont: -</div>
         <button class="logout-btn" type="button" onclick="soti()">Dekonekte</button>
     </div>
 </header>
@@ -774,21 +644,15 @@ header {
             <input type="text" id="customer-info" placeholder="Antre ID Free Fire ou">
         </div>
         <div class="input-hint" id="input-hint">Vérification ID requise pou sèvis sa a.</div>
-        <div class="input-group">
-            <label>💳 Nimewo transfè</label>
-            <input type="text" id="transfer-number" placeholder="Antre nimewo transfè ou a (Si ou pa sèvi ak Pòtèf)">
-        </div>
-        <div class="input-hint">Ou ka mete nimewo transfè oubyen kite l vid si w ap peye ak balans pòtèf ou.</div>
         
-        <button type="button" class="btn-acheter" onclick="paseKomandWhatsApp()">ACHETER AK TRANZAKSYON</button>
-        <button type="button" class="btn-acheter btn-wallet-buy" onclick="peyeAkPortefeuille()">ACHETER AK PÒTÈF MWEN</button>
+        <button type="button" class="btn-acheter" onclick="paseKomand()">ACHETE AK VOYE SOU WHATSAPP</button>
     </div>
 
     <!-- ================= PAYMENT ================= -->
     <div class="payment-info">
         <h4>ℹ️ Enfòmasyon sou Peman ak Kòmand</h4>
-        <p>📲 <strong>Pase kòmand ou sou WhatsApp:</strong> +509 32 26 5636</p>
-        <p>💰 <strong>Nimewo pou fè transfè lajan:</strong> <strong>+509 56079663</strong></p>
+        <p>📲 <strong>MonCash / Natcash:</strong> +509 5607-9663</p>
+        <p>💬 <strong>WhatsApp Sipò:</strong> +509 3226-5636</p>
     </div>
 </div>
 
@@ -800,9 +664,6 @@ header {
     <div class="nav-item" onclick="document.querySelector('.services-title').scrollIntoView({behavior:'smooth'})">
         <div>🛒</div>Services
     </div>
-    <div class="nav-item" onclick="openWalletModal()">
-        <div>💳</div>Portefeuille
-    </div>
     <div class="nav-item" onclick="openCommandsModal()">
         <div>📋</div>Commandes
     </div>
@@ -813,9 +674,6 @@ header {
 
 <!-- ================= JAVASCRIPT ================= -->
 <script>
-// Modpas Admin ou a
-const ADMIN_PASSWORD = "Dley@#12";
-
 const services = {
     freefire: {
         title: "Free Fire",
@@ -953,163 +811,51 @@ function changeService(serviceName, button) {
     document.querySelector(".form-card").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-/* ================= SECURITY & LOGIN (GMAIL BOUND) ================= */
+/* ================= SECURITY & LOGIN ================= */
+
+function getActiveGmail() {
+    return localStorage.getItem("phj_current_gmail") || "";
+}
+
+function checkLoginBeforeAction() {
+    const gmail = getActiveGmail();
+    if (!gmail) {
+        document.getElementById("login-modal").classList.remove("hidden");
+        return false;
+    }
+    return true;
+}
 
 function konekte() {
     const gmailInput = document.getElementById("gmail-input");
     const loginModal = document.getElementById("login-modal");
     const gmail = gmailInput.value.trim().toLowerCase();
 
-    if (gmail === "") {
-        alert("Tanpri antre adrès Gmail ou.");
-        gmailInput.focus();
-        return;
-    }
-    if (!gmail.endsWith("@gmail.com")) {
+    if (gmail === "" || !gmail.endsWith("@gmail.com")) {
         alert("Tanpri antre yon adrès Gmail valab.");
         gmailInput.focus();
         return;
     }
 
     localStorage.setItem("phj_current_gmail", gmail);
-
-    let allUsers = JSON.parse(localStorage.getItem("phj_all_users")) || [];
-    if (!allUsers.includes(gmail)) {
-        allUsers.push(gmail);
-        localStorage.setItem("phj_all_users", JSON.stringify(allUsers));
-    }
-
-    if (localStorage.getItem("phj_wallet_" + gmail) === null) {
-        localStorage.setItem("phj_wallet_" + gmail, "0");
-    }
-    if (localStorage.getItem("phj_commands_" + gmail) === null) {
-        localStorage.setItem("phj_commands_" + gmail, JSON.stringify([]));
-    }
-
-    updateWalletDisplay();
+    document.getElementById("header-user-display").innerText = gmail;
     loginModal.classList.add("hidden");
 }
 
 function soti() {
     localStorage.removeItem("phj_current_gmail");
-    location.reload();
-}
-
-/* ================= ADMIN FUNCTIONS ================= */
-
-function openAdminLogin() {
-    document.getElementById("admin-login-modal").classList.remove("hidden");
-}
-
-document.getElementById("admin-login-btn").addEventListener("click", function() {
-    const pass = document.getElementById("admin-pass-input").value;
-    if (pass === ADMIN_PASSWORD) {
-        document.getElementById("admin-login-modal").classList.add("hidden");
-        document.getElementById("admin-pass-input").value = "";
-        renderAdminUsersList();
-        document.getElementById("admin-panel-modal").classList.remove("hidden");
-    } else {
-        alert("Modpas Admin la pa kòrèk!");
-    }
-});
-
-function renderAdminUsersList() {
-    const container = document.getElementById("admin-users-list");
-    let allUsers = JSON.parse(localStorage.getItem("phj_all_users")) || [];
-
-    if (allUsers.length === 0) {
-        container.innerHTML = '<div class="no-command">Poko gen okenn kliyan ki konekte sou sit la.</div>';
-        return;
-    }
-
-    container.innerHTML = "";
-    allUsers.forEach(gmail => {
-        let balance = parseFloat(localStorage.getItem("phj_wallet_" + gmail)) || 0;
-        const item = document.createElement("div");
-        item.className = "admin-user-item";
-        item.innerHTML = `
-            📧 <strong>${gmail}</strong><br>
-            Balans Portefeuille: <span style="color:#c98000; font-weight:bold;">G ${balance.toLocaleString()}</span>
-            <div class="admin-input-row">
-                <input type="number" id="admin-amt-${gmail.replace(/[@.]/g, '_')}" placeholder="Montan (G)">
-                <button type="button" onclick="adminModifyWallet('${gmail}', 'add')">Ajoute</button>
-                <button type="button" style="background:#e9232e;" onclick="adminModifyWallet('${gmail}', 'sub')">Retire</button>
-            </div>
-        `;
-        container.appendChild(item);
-    });
-}
-
-function adminModifyWallet(gmail, action) {
-    const inputId = "admin-amt-" + gmail.replace(/[@.]/g, '_');
-    const amountVal = parseFloat(document.getElementById(inputId).value);
-
-    if (isNaN(amountVal) || amountVal <= 0) {
-        alert("Tanpri antre yon montan valab.");
-        return;
-    }
-
-    let currentBal = parseFloat(localStorage.getItem("phj_wallet_" + gmail)) || 0;
-
-    if (action === 'add') {
-        currentBal += amountVal;
-    } else if (action === 'sub') {
-        currentBal -= amountVal;
-        if (currentBal < 0) currentBal = 0;
-    }
-
-    localStorage.setItem("phj_wallet_" + gmail, currentBal.toString());
-    alert("Balans kont " + gmail + " mete ajou avèk siksè! Nouvo balans: G " + currentBal.toLocaleString());
-    renderAdminUsersList();
-    updateWalletDisplay();
-}
-
-/* ================= WALLET & MODALS ================= */
-
-function getActiveGmail() {
-    return localStorage.getItem("phj_current_gmail") || "";
-}
-
-function updateWalletDisplay() {
-    const gmail = getActiveGmail();
-    if (!gmail) return;
-
-    let balance = parseFloat(localStorage.getItem("phj_wallet_" + gmail)) || 0;
-    const formatted = "G " + balance.toLocaleString();
-    
-    document.getElementById("wallet-balance-text").innerText = formatted;
-    document.getElementById("header-wallet-display").innerText = formatted;
-    document.getElementById("wallet-gmail-owner").innerText = "Kont: " + gmail;
-}
-
-function openWalletModal() {
-    const gmail = getActiveGmail();
-    if (!gmail) {
-        document.getElementById("login-modal").classList.remove("hidden");
-        return;
-    }
-    updateWalletDisplay();
-    document.getElementById("wallet-modal").classList.remove("hidden");
-}
-
-function openCommandsModal() {
-    const gmail = getActiveGmail();
-    if (!gmail) {
-        document.getElementById("login-modal").classList.remove("hidden");
-        return;
-    }
-    renderCommandsList();
-    document.getElementById("commands-modal").classList.remove("hidden");
+    document.getElementById("gmail-input").value = "";
+    document.getElementById("login-modal").classList.remove("hidden");
 }
 
 function closeModal(modalId) {
     document.getElementById(modalId).classList.add("hidden");
 }
 
-function demandeRechajWallet() {
-    const gmail = getActiveGmail();
-    const message = `Salut PHJoolens Store! 👋\n\nMwen ta renmen fè yon rechaj sou Pòtèf mwen an.\n\n📧 Gmail: ${gmail}\n\nTanpri verifye pou mete lajan an sou kont mwen an.`;
-    window.open("https://wa.me/50932265636?text=" + encodeURIComponent(message), "_blank");
+function openCommandsModal() {
+    if (!checkLoginBeforeAction()) return;
+    renderCommandsList();
+    document.getElementById("commands-modal").classList.remove("hidden");
 }
 
 function renderCommandsList() {
@@ -1129,32 +875,22 @@ function renderCommandsList() {
         item.innerHTML = `
             <strong>${cmd.service}</strong> - ${cmd.pkg}<br>
             Pri: <strong>G ${cmd.price.toLocaleString()}</strong><br>
-            ID: ${cmd.info} | Peman: ${cmd.paymentType}<br>
+            ID: ${cmd.info}<br>
             <span style="color: #888; font-size: 11px;">📅 ${cmd.date}</span>
         `;
         container.appendChild(item);
     });
 }
 
-function paseKomandWhatsApp() {
-    const gmail = getActiveGmail();
-    if (!gmail) {
-        alert("Tanpri konekte ak Gmail ou anvan.");
-        document.getElementById("login-modal").classList.remove("hidden");
-        return;
-    }
+function paseKomand() {
+    if (!checkLoginBeforeAction()) return;
 
+    const gmail = getActiveGmail();
     const info = document.getElementById("customer-info").value.trim();
-    const transferNumber = document.getElementById("transfer-number").value.trim();
 
     if (!info) {
         alert("Tanpri antre " + services[currentService].input + ".");
         document.getElementById("customer-info").focus();
-        return;
-    }
-    if (!transferNumber) {
-        alert("Tanpri antre nimewo transfè ou a.");
-        document.getElementById("transfer-number").focus();
         return;
     }
     if (selectedPackage[1] === null) {
@@ -1163,77 +899,8 @@ function paseKomandWhatsApp() {
     }
 
     const service = services[currentService];
-    
-    let commandsKey = "phj_commands_" + gmail;
-    let commands = JSON.parse(localStorage.getItem(commandsKey)) || [];
-    commands.push({
-        service: service.title,
-        pkg: selectedPackage[0],
-        price: selectedPackage[1],
-        info: info,
-        paymentType: "Transfè (" + transferNumber + ")",
-        date: new Date().toLocaleString()
-    });
-    localStorage.setItem(commandsKey, JSON.stringify(commands));
-
-    const message =
-`Salut PHJoolens Store! 👋
-
-Mwen ta renmen fè yon kòmand.
-
-📧 Gmail: ${gmail}
-
-🎮 Sèvis: ${service.title}
-
-📦 Pakè: ${selectedPackage[0]}
-
-💰 Pri: G ${selectedPackage[1].toLocaleString()}
-
-📌 ${service.input}: ${info}
-
-💳 Nimewo transfè: ${transferNumber}
-
-Tanpri verifye transfè a epi konfime kòmand mwen an.`;
-
-    window.open("https://wa.me/50932265636?text=" + encodeURIComponent(message), "_blank");
-}
-
-function peyeAkPortefeuille() {
-    const gmail = getActiveGmail();
-    if (!gmail) {
-        alert("Tanpri konekte ak Gmail ou anvan.");
-        document.getElementById("login-modal").classList.remove("hidden");
-        return;
-    }
-
-    const info = document.getElementById("customer-info").value.trim();
-
-    if (!info) {
-        alert("Tanpri antre " + services[currentService].input + ".");
-        document.getElementById("customer-info").focus();
-        return;
-    }
-    if (selectedPackage[1] === null) {
-        alert("Pri pou pakè sa a poko disponib.");
-        return;
-    }
-
-    let walletKey = "phj_wallet_" + gmail;
-    let walletBalance = parseFloat(localStorage.getItem(walletKey)) || 0;
     const packagePrice = selectedPackage[1];
 
-    if (walletBalance < packagePrice) {
-        alert("Balans pòtèf ou ensifizan! Ou gen G " + walletBalance.toLocaleString() + " sou kont Gmail sa a, men pakè a koute G " + packagePrice.toLocaleString() + ".");
-        openWalletModal();
-        return;
-    }
-
-    walletBalance -= packagePrice;
-    localStorage.setItem(walletKey, walletBalance.toString());
-    updateWalletDisplay();
-
-    const service = services[currentService];
-    
     let commandsKey = "phj_commands_" + gmail;
     let commands = JSON.parse(localStorage.getItem(commandsKey)) || [];
     commands.push({
@@ -1241,7 +908,6 @@ function peyeAkPortefeuille() {
         pkg: selectedPackage[0],
         price: packagePrice,
         info: info,
-        paymentType: "Pòtèf (Balans)",
         date: new Date().toLocaleString()
     });
     localStorage.setItem(commandsKey, JSON.stringify(commands));
@@ -1249,7 +915,7 @@ function peyeAkPortefeuille() {
     const message =
 `Salut PHJoolens Store! 👋
 
-Mwen pase yon kòmand lè m peye avèk Pòtèf mwen an.
+Mwen ta renmen pase kòmand sa a:
 
 📧 Gmail: ${gmail}
 
@@ -1261,7 +927,7 @@ Mwen pase yon kòmand lè m peye avèk Pòtèf mwen an.
 
 📌 ${service.input}: ${info}
 
-💳 Peman: Peye dirèkteman ak Balans Pòtèf mwen!`;
+Mwen voye kòb la sou MonCash / Natcash, tanpri verifye l pou mwen!`;
 
     window.open("https://wa.me/50932265636?text=" + encodeURIComponent(message), "_blank");
 }
@@ -1273,8 +939,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (savedGmail) {
         document.getElementById("login-modal").classList.add("hidden");
-        gmailInput.value = savedGmail;
-        updateWalletDisplay();
+        document.getElementById("header-user-display").innerText = savedGmail;
     } else {
         document.getElementById("login-modal").classList.remove("hidden");
     }
@@ -1290,6 +955,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
        
