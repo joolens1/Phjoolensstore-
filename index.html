@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="ht">
 <head>
@@ -140,7 +142,7 @@ body {
     cursor: pointer;
 }
 
-/* ================= COMMANDES & ADMIN CONTENT ================= */
+/* ================= COMMANDES ================= */
 
 .command-item {
     background: #f8f9fa;
@@ -845,6 +847,7 @@ function konekte() {
 function soti() {
     localStorage.removeItem("phj_current_gmail");
     document.getElementById("gmail-input").value = "";
+    document.getElementById("header-user-display").innerText = "Kont: -";
     document.getElementById("login-modal").classList.remove("hidden");
 }
 
@@ -927,7 +930,7 @@ Mwen ta renmen pase kòmand sa a:
 
 📌 ${service.input}: ${info}
 
-Mwen voye kòb la sou MonCash / Natcash, tanpri verifye l pou mwen!`;
+Mwen voye kòb la sou MonCash / Natcash (+509 5607-9663), tanpri verifye l pou mwen!`;
 
     window.open("https://wa.me/50932265636?text=" + encodeURIComponent(message), "_blank");
 }
@@ -955,6 +958,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
 
 
