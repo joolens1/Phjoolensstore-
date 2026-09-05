@@ -15,6 +15,7 @@
     --gray: #687080;
     --white: #ffffff;
     --moncash-red: #e31b23;
+    --natcash-orange: #ff6600;
 }
 
 * {
@@ -470,12 +471,24 @@ header {
     margin: 0 0 12px;
     font-size: 19px;
     color: var(--dark);
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
-.payment-badge {
+.payment-methods-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.payment-card {
+    background: white;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.payment-badge-moncash {
     display: inline-block;
     background: var(--moncash-red);
     color: white;
@@ -484,24 +497,33 @@ header {
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
+    margin-bottom: 8px;
 }
 
-.payment-info p {
-    margin: 10px 0;
-    font-size: 16px;
-    color: #39465c;
+.payment-badge-natcash {
+    display: inline-block;
+    background: var(--natcash-orange);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 8px;
 }
 
 .payment-number {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    color: var(--moncash-red);
-    background: white;
-    padding: 8px 12px;
-    border-radius: 8px;
-    display: inline-block;
-    border: 1px dashed #e31b23;
-    margin-top: 5px;
+    color: var(--dark);
+    margin-top: 4px;
+}
+
+.support-line {
+    margin-top: 15px;
+    font-size: 15px;
+    color: #39465c;
+    text-align: center;
 }
 
 /* ================= BOTTOM NAV ================= */
@@ -601,6 +623,9 @@ header {
     .pkg-price {
         font-size: 16px;
     }
+    .payment-methods-grid {
+        grid-template-columns: 1fr;
+    }
     .bottom-nav {
         height: 72px;
     }
@@ -613,6 +638,7 @@ header {
 
 <body>
 
+<!-- ================= LOGIN MODAL ================= -->
 <div id="login-modal" class="modal-overlay">
     <div class="modal-box login-box">
         <div class="login-logo">⚡ 🎮</div>
@@ -623,6 +649,7 @@ header {
     </div>
 </div>
 
+<!-- ================= COMMANDES MODAL ================= -->
 <div id="commands-modal" class="modal-overlay hidden">
     <div class="modal-box">
         <h2>📋 Kòmand Mwen Yo</h2>
@@ -631,6 +658,7 @@ header {
     </div>
 </div>
 
+<!-- ================= HEADER ================= -->
 <header>
     <div class="logo-area">
         <span class="logo-game">🎮</span>
@@ -642,6 +670,7 @@ header {
     </div>
 </header>
 
+<!-- ================= MAIN ================= -->
 <div class="container">
     <div class="hero">
         <h2 class="section-heading">Bienvenue sou PHJoolens Store</h2>
@@ -651,6 +680,7 @@ header {
         <div class="game-spark2">✧</div>
     </div>
 
+    <!-- ================= SERVICES ================= -->
     <h3 class="services-title">🛒 Services</h3>
     <div class="services-grid">
         <button type="button" class="service-btn active" onclick="changeService('freefire', this)">
@@ -679,6 +709,7 @@ header {
         </button>
     </div>
 
+    <!-- ================= PRODUCT ================= -->
     <div class="form-card">
         <div class="product-title" id="product-title">Free Fire</div>
         <div class="product-description" id="product-description">
@@ -689,11 +720,13 @@ header {
         
         <div class="verification-badge">Vérification requise</div>
         
+        <!-- ID Jwè -->
         <div class="input-group">
             <label id="input-label">🆔 ID Jwè</label>
             <input type="text" id="customer-info" placeholder="Antre ID Free Fire ou">
         </div>
 
+        <!-- Nimewo Transfè MonCash / Natcash -->
         <div class="input-group">
             <label>📲 Nimewo Telefòn ou fè transfè a (MonCash / Natcash)</label>
             <input type="text" id="transfer-phone" placeholder="Egzanp: 509XXXXXXXX">
@@ -704,14 +737,24 @@ header {
         <button type="button" class="btn-acheter" onclick="paseKomand()">ACHETE AK VOYE SOU WHATSAPP</button>
     </div>
 
+    <!-- ================= PAYMENT INFO ================= -->
     <div class="payment-info">
-        <h4><span class="payment-badge">MonCash</span> Enfòmasyon sou Peman</h4>
-        <p>📱 <strong>Fè transfè MonCash oswa Natcash ou sou nimewo sa a:</strong></p>
-        <div class="payment-number">+509 4882-8406</div>
-        <p>💬 <strong>WhatsApp Sipò pou keksyon:</strong> +509 3226-5636</p>
+        <h4>ℹ️ Enfòmasyon sou Peman</h4>
+        <div class="payment-methods-grid">
+            <div class="payment-card">
+                <span class="payment-badge-moncash">MonCash</span>
+                <div class="payment-number">+509 4882-8406</div>
+            </div>
+            <div class="payment-card">
+                <span class="payment-badge-natcash">Natcash</span>
+                <div class="payment-number">+509 5607-9663</div>
+            </div>
+        </div>
+        <div class="support-line">💬 <strong>WhatsApp Sipò:</strong> +509 3226-5636</div>
     </div>
 </div>
 
+<!-- ================= BOTTOM NAV ================= -->
 <div class="bottom-nav">
     <div class="nav-item active" onclick="window.scrollTo({top:0, behavior:'smooth'})">
         <div>🏠</div>Accueil
@@ -727,6 +770,7 @@ header {
     </div>
 </div>
 
+<!-- ================= JAVASCRIPT ================= -->
 <script>
 const services = {
     freefire: {
@@ -992,7 +1036,7 @@ Mwen ta renmen pase kòmand sa a:
 
 📲 Nimewo Transfè m nan: ${transferPhone}
 
-Mwen voye kòb la sou MonCash, tanpri verifye l pou mwen!`;
+Mwen voye kòb la sou MonCash / Natcash, tanpri verifye l pou mwen!`;
 
     window.open("https://wa.me/50932265636?text=" + encodeURIComponent(message), "_blank");
 }
@@ -1020,4 +1064,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </body>
 </html>
+
 
