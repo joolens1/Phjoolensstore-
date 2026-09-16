@@ -32,22 +32,9 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: var(--dark);
     background:
-        radial-gradient(
-            circle at 88% 12%,
-            rgba(240, 181, 43, 0.18),
-            transparent 18%
-        ),
-        radial-gradient(
-            circle at 12% 35%,
-            rgba(240, 181, 43, 0.10),
-            transparent 20%
-        ),
-        linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #fffdf8 50%,
-            #ffffff 100%
-        );
+        radial-gradient(circle at 88% 12%, rgba(240, 181, 43, 0.18), transparent 18%),
+        radial-gradient(circle at 12% 35%, rgba(240, 181, 43, 0.10), transparent 20%),
+        linear-gradient(180deg, #ffffff 0%, #fffdf8 50%, #ffffff 100%);
     min-height: 100vh;
 }
 
@@ -565,31 +552,39 @@ header {
     header {
         padding: 11px 10px;
     }
+
     .logo-area {
         font-size: 17px;
     }
+
     .logo-game {
         font-size: 22px;
     }
+
     .user-badge {
         font-size: 11px;
         padding: 8px 10px;
         max-width: 100px;
     }
+
     .logout-btn {
         font-size: 11px;
         padding: 9px 10px;
     }
+
     .container {
         padding: 28px 14px;
     }
+
     .section-heading {
         font-size: 36px;
     }
+
     .subtitle {
         font-size: 18px;
         margin-bottom: 38px;
     }
+
     .game-controller {
         position: absolute;
         right: -5px;
@@ -597,38 +592,49 @@ header {
         font-size: 58px;
         opacity: 0.8;
     }
+
     .game-spark, .game-spark2 {
         display: none;
     }
+
     .services-title {
         font-size: 25px;
     }
+
     .service-btn {
         min-height: 90px;
         font-size: 14px;
     }
+
     .form-card {
         padding: 18px;
         border-radius: 18px;
     }
+
     .product-title {
         font-size: 28px;
     }
+
     .product-description {
         font-size: 15px;
     }
+
     .pkg-btn {
         font-size: 14px;
     }
+
     .pkg-price {
         font-size: 16px;
     }
+
     .payment-methods-grid {
         grid-template-columns: 1fr;
     }
+
     .bottom-nav {
         height: 72px;
     }
+
     .nav-item div {
         font-size: 22px;
     }
@@ -664,6 +670,7 @@ header {
         <span class="logo-game">🎮</span>
         ⚡ PHJoolens Store
     </div>
+
     <div class="header-right">
         <div class="user-badge" id="header-user-display">Kont: -</div>
         <button class="logout-btn" type="button" onclick="soti()">Dekonekte</button>
@@ -672,9 +679,11 @@ header {
 
 <!-- ================= MAIN ================= -->
 <div class="container">
+
     <div class="hero">
         <h2 class="section-heading">Bienvenue sou PHJoolens Store</h2>
         <p class="subtitle">Chwazi jwèt oswa sèvis ou vle achte.</p>
+
         <div class="game-controller">🎮</div>
         <div class="game-spark">✦</div>
         <div class="game-spark2">✧</div>
@@ -682,342 +691,571 @@ header {
 
     <!-- ================= SERVICES ================= -->
     <h3 class="services-title">🛒 Services</h3>
+
     <div class="services-grid">
+
         <button type="button" class="service-btn active" onclick="changeService('freefire', this)">
             <span class="service-icon">🔥</span> Free Fire
         </button>
+
         <button type="button" class="service-btn" onclick="changeService('pubg', this)">
             <span class="service-icon">🎯</span> PUBG Mobile
         </button>
+
         <button type="button" class="service-btn" onclick="changeService('mobilelegends', this)">
             <span class="service-icon">⚔️</span> Mobile Legends
         </button>
+
         <button type="button" class="service-btn" onclick="changeService('cod', this)">
             <span class="service-icon">🎖️</span> Call of Duty
         </button>
+
         <button type="button" class="service-btn" onclick="changeService('efootball', this)">
             <span class="service-icon">⚽</span> eFootball
         </button>
+
         <button type="button" class="service-btn" onclick="changeService('roblox', this)">
             <span class="service-icon">👾</span> Roblox
         </button>
+
         <button type="button" class="service-btn" onclick="changeService('playstation', this)">
             <span class="service-icon">🎮</span> PlayStation
         </button>
+
         <button type="button" class="service-btn" onclick="changeService('googleplay', this)">
             <span class="service-icon">🎁</span> Google Play
         </button>
+
     </div>
 
     <!-- ================= PRODUCT ================= -->
     <div class="form-card">
+
         <div class="product-title" id="product-title">Free Fire</div>
+
         <div class="product-description" id="product-description">
             Recharge Free Fire. Antre ID jwè a anvan kòmand lan.
         </div>
+
         <div class="packages-grid" id="packages-container"></div>
+
         <div class="selected-price" id="display-price">G 150</div>
-        
-        <div class="verification-badge">Vérification requise</div>
-        
+
+        <div class="verification-badge">
+            Vérification requise
+        </div>
+
         <!-- ID Jwè -->
         <div class="input-group">
             <label id="input-label">🆔 ID Jwè</label>
             <input type="text" id="customer-info" placeholder="Antre ID Free Fire ou">
         </div>
 
-        <!-- Nimewo Transfè MonCash / Natcash -->
+        <!-- Nimewo Transfè -->
         <div class="input-group">
             <label>📲 Nimewo Telefòn ou fè transfè a (MonCash / Natcash)</label>
             <input type="text" id="transfer-phone" placeholder="Egzanp: 509XXXXXXXX">
         </div>
 
-        <div class="input-hint" id="input-hint">Asire w ou voye kòb la anvan w klike sou achte.</div>
-        
-        <button type="button" class="btn-acheter" onclick="paseKomand()">ACHETE AK VOYE SOU WHATSAPP</button>
+        <div class="input-hint" id="input-hint">
+            Asire w ou voye kòb la anvan w klike sou achte.
+        </div>
+
+        <button type="button" class="btn-acheter" onclick="paseKomand()">
+            ACHETE AK VOYE SOU WHATSAPP
+        </button>
+
     </div>
 
     <!-- ================= PAYMENT INFO ================= -->
     <div class="payment-info">
+
         <h4>ℹ️ Enfòmasyon sou Peman</h4>
+
         <div class="payment-methods-grid">
+
             <div class="payment-card">
                 <span class="payment-badge-moncash">MonCash</span>
                 <div class="payment-number">+509 4882-8406</div>
             </div>
+
             <div class="payment-card">
                 <span class="payment-badge-natcash">Natcash</span>
                 <div class="payment-number">+509 5607-9663</div>
             </div>
+
         </div>
-        <div class="support-line">💬 <strong>WhatsApp Sipò:</strong> +509 3226-5636</div>
+
+        <div class="support-line">
+            💬 <strong>WhatsApp Sipò:</strong> +509 3226-5636
+        </div>
+
     </div>
+
 </div>
 
 <!-- ================= BOTTOM NAV ================= -->
 <div class="bottom-nav">
+
     <div class="nav-item active" onclick="window.scrollTo({top:0, behavior:'smooth'})">
         <div>🏠</div>Accueil
     </div>
+
     <div class="nav-item" onclick="document.querySelector('.services-title').scrollIntoView({behavior:'smooth'})">
         <div>🛒</div>Services
     </div>
+
     <div class="nav-item" onclick="openCommandsModal()">
         <div>📋</div>Commandes
     </div>
+
     <div class="nav-item" onclick="window.open('https://wa.me/50932265636', '_blank')">
         <div>💬</div>Support
     </div>
+
 </div>
 
 <!-- ================= JAVASCRIPT ================= -->
 <script>
+
 const services = {
+
     freefire: {
         title: "Free Fire",
         description: "Recharge Free Fire. Antre ID jwè a anvan kòmand lan.",
         input: "ID Jwè",
         placeholder: "Antre ID Free Fire ou",
         packages: [
-            ["110 Diamonds", 150], ["220 Diamonds", 300], ["341 Diamonds", 450],
-            ["572 Diamonds", 750], ["682 Diamonds", 900], ["792 Diamonds", 1050],
-            ["913 Diamonds", 1350], ["1166 Diamonds", 1500], ["2398 Diamonds", 3000],
-            ["3564 Diamonds", 9300], ["Booyah Pass", 500], ["Abonnement semaine", 375],
+            ["110 Diamonds", 150],
+            ["220 Diamonds", 300],
+            ["341 Diamonds", 450],
+            ["572 Diamonds", 750],
+            ["682 Diamonds", 900],
+            ["792 Diamonds", 1050],
+            ["913 Diamonds", 1350],
+            ["1166 Diamonds", 1500],
+            ["2398 Diamonds", 3000],
+            ["3564 Diamonds", 9300],
+            ["Booyah Pass", 500],
+            ["Abonnement semaine", 375],
             ["Abonnement mois", 1650]
         ]
     },
+
     pubg: {
         title: "PUBG Mobile",
         description: "Recharge PUBG Mobile UC. Antre ID jwè a anvan kòmand lan.",
         input: "ID Jwè",
         placeholder: "Antre ID PUBG ou",
         packages: [
-            ["60 UC", 180], ["325 UC", 875], ["660 UC", 1600],
-            ["1800 UC", 3500], ["3850 UC", 8000], ["8100 UC", 16900], ["16200 UC", 33000]
+            ["60 UC", 180],
+            ["325 UC", 875],
+            ["660 UC", 1600],
+            ["1800 UC", 3500],
+            ["3850 UC", 8000],
+            ["8100 UC", 16900],
+            ["16200 UC", 33000]
         ]
     },
+
     mobilelegends: {
         title: "Mobile Legends",
         description: "Mobile Legends Diamonds. Pri ap vini.",
         input: "ID Jwè",
         placeholder: "Antre ID Mobile Legends ou",
         packages: [
-            ["86 Diamonds", null], ["172 Diamonds", null], ["257 Diamonds", null],
-            ["344 Diamonds", null], ["429 Diamonds", null], ["514 Diamonds", null],
-            ["706 Diamonds", null], ["1412 Diamonds", null]
+            ["86 Diamonds", null],
+            ["172 Diamonds", null],
+            ["257 Diamonds", null],
+            ["344 Diamonds", null],
+            ["429 Diamonds", null],
+            ["514 Diamonds", null],
+            ["706 Diamonds", null],
+            ["1412 Diamonds", null]
         ]
     },
+
     cod: {
         title: "Call of Duty Mobile",
         description: "Call of Duty Mobile CP. Pri ap vini.",
         input: "ID Jwè",
         placeholder: "Antre ID Call of Duty ou",
         packages: [
-            ["80 CP", null], ["420 CP", null], ["880 CP", null],
-            ["2400 CP", null], ["5000 CP", null], ["10800 CP", null]
+            ["80 CP", null],
+            ["420 CP", null],
+            ["880 CP", null],
+            ["2400 CP", null],
+            ["5000 CP", null],
+            ["10800 CP", null]
         ]
     },
+
+    /* ================= eFOOTBALL - NOUVO PRI ================= */
+
     efootball: {
         title: "eFootball",
-        description: "eFootball Coins. Pri ap vini.",
+        description: "eFootball Coins. Chwazi kantite Coins ou vle achte.",
         input: "ID Jwè",
         placeholder: "Antre ID eFootball ou",
         packages: [
-            ["130 Coins", null], ["550 Coins", null], ["1040 Coins", null],
-            ["2130 Coins", null], ["3250 Coins", null]
+            ["1050 Coins", 1950],
+            ["2150 Coins", 4000],
+            ["3300 Coins", 5900],
+            ["5800 Coins", 9850],
+            ["12000 Coins", 19700]
         ]
     },
+
     roblox: {
         title: "Roblox",
         description: "Roblox Gift Card disponib. Chwazi valè ou vle achte.",
         input: "Username Roblox",
         placeholder: "Antre Username Roblox ou",
         packages: [
-            ["$10", 1807], ["$20", 3614], ["$30", 5421], ["$40", 7228],
-            ["$50", 9035], ["$60", 10842], ["$70", 12649], ["$80", 14456],
-            ["$90", 16263], ["$100", 18070], ["$150", 27105], ["$200", 36140]
+            ["$10", 1807],
+            ["$20", 3614],
+            ["$30", 5421],
+            ["$40", 7228],
+            ["$50", 9035],
+            ["$60", 10842],
+            ["$70", 12649],
+            ["$80", 14456],
+            ["$90", 16263],
+            ["$100", 18070],
+            ["$150", 27105],
+            ["$200", 36140]
         ]
     },
+
     playstation: {
         title: "PlayStation Gift Card",
         description: "PlayStation Gift Card. Pri ap vini.",
         input: "Email / Compte",
         placeholder: "Antre enfòmasyon nesesè",
-        packages: [["$10", null], ["$20", null], ["$50", null], ["$100", null]]
+        packages: [
+            ["$10", null],
+            ["$20", null],
+            ["$50", null],
+            ["$100", null]
+        ]
     },
+
     googleplay: {
         title: "Google Play Gift Card",
         description: "Google Play Gift Card. Pri ap vini.",
         input: "Email / Compte",
         placeholder: "Antre enfòmasyon nesesè",
-        packages: [["$10", null], ["$20", null], ["$50", null], ["$100", null]]
+        packages: [
+            ["$10", null],
+            ["$20", null],
+            ["$50", null],
+            ["$100", null]
+        ]
     }
+
 };
 
 let currentService = "freefire";
 let selectedPackage = services.freefire.packages[0];
 
 function renderPackages() {
-    const service = services[currentService];
-    document.getElementById("product-title").innerText = service.title;
-    document.getElementById("product-description").innerText = service.description;
-    document.getElementById("input-label").innerText = "📌 " + service.input;
-    document.getElementById("customer-info").placeholder = service.placeholder;
 
-    const container = document.getElementById("packages-container");
+    const service = services[currentService];
+
+    document.getElementById("product-title").innerText = service.title;
+
+    document.getElementById("product-description").innerText =
+        service.description;
+
+    document.getElementById("input-label").innerText =
+        "📌 " + service.input;
+
+    document.getElementById("customer-info").placeholder =
+        service.placeholder;
+
+    const container =
+        document.getElementById("packages-container");
+
     container.innerHTML = "";
 
     service.packages.forEach((pkg, index) => {
+
         const btn = document.createElement("button");
+
         btn.type = "button";
         btn.className = "pkg-btn";
-        if (index === 0) btn.classList.add("active");
+
+        if (index === 0) {
+            btn.classList.add("active");
+        }
 
         if (pkg[1] === null) {
-            btn.innerHTML = pkg[0] + '<span class="pkg-price coming-price">Pri ap vini</span>';
+
+            btn.innerHTML =
+                pkg[0] +
+                '<span class="pkg-price coming-price">Pri ap vini</span>';
+
         } else {
-            btn.innerHTML = pkg[0] + '<span class="pkg-price">G ' + pkg[1].toLocaleString() + '</span>';
+
+            btn.innerHTML =
+                pkg[0] +
+                '<span class="pkg-price">G ' +
+                pkg[1].toLocaleString() +
+                '</span>';
         }
 
         btn.onclick = function() {
+
             selectedPackage = pkg;
-            document.querySelectorAll(".pkg-btn").forEach(b => b.classList.remove("active"));
+
+            document.querySelectorAll(".pkg-btn")
+                .forEach(b => b.classList.remove("active"));
+
             btn.classList.add("active");
+
             updatePrice();
         };
+
         container.appendChild(btn);
     });
 
     selectedPackage = service.packages[0];
+
     updatePrice();
 }
 
 function updatePrice() {
-    const display = document.getElementById("display-price");
+
+    const display =
+        document.getElementById("display-price");
+
     if (selectedPackage[1] === null) {
+
         display.innerText = "Pri: Ap vini";
+
     } else {
-        display.innerText = "G " + selectedPackage[1].toLocaleString();
+
+        display.innerText =
+            "G " + selectedPackage[1].toLocaleString();
     }
 }
 
 function changeService(serviceName, button) {
+
     currentService = serviceName;
-    document.querySelectorAll(".service-btn").forEach(btn => btn.classList.remove("active"));
+
+    document.querySelectorAll(".service-btn")
+        .forEach(btn => btn.classList.remove("active"));
+
     button.classList.add("active");
+
     renderPackages();
-    document.querySelector(".form-card").scrollIntoView({ behavior: "smooth", block: "start" });
+
+    document.querySelector(".form-card")
+        .scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 }
 
 /* ================= SECURITY & LOGIN ================= */
 
 function getActiveGmail() {
+
     return localStorage.getItem("phj_current_gmail") || "";
 }
 
 function checkLoginBeforeAction() {
+
     const gmail = getActiveGmail();
+
     if (!gmail) {
-        document.getElementById("login-modal").classList.remove("hidden");
+
+        document.getElementById("login-modal")
+            .classList.remove("hidden");
+
         return false;
     }
+
     return true;
 }
 
 function konekte() {
-    const gmailInput = document.getElementById("gmail-input");
-    const loginModal = document.getElementById("login-modal");
-    const gmail = gmailInput.value.trim().toLowerCase();
+
+    const gmailInput =
+        document.getElementById("gmail-input");
+
+    const loginModal =
+        document.getElementById("login-modal");
+
+    const gmail =
+        gmailInput.value.trim().toLowerCase();
 
     if (gmail === "" || !gmail.endsWith("@gmail.com")) {
+
         alert("Tanpri antre yon adrès Gmail valab.");
+
         gmailInput.focus();
+
         return;
     }
 
     localStorage.setItem("phj_current_gmail", gmail);
-    document.getElementById("header-user-display").innerText = gmail;
+
+    document.getElementById("header-user-display")
+        .innerText = gmail;
+
     loginModal.classList.add("hidden");
 }
 
 function soti() {
+
     localStorage.removeItem("phj_current_gmail");
+
     document.getElementById("gmail-input").value = "";
-    document.getElementById("header-user-display").innerText = "Kont: -";
-    document.getElementById("login-modal").classList.remove("hidden");
+
+    document.getElementById("header-user-display")
+        .innerText = "Kont: -";
+
+    document.getElementById("login-modal")
+        .classList.remove("hidden");
 }
 
 function closeModal(modalId) {
-    document.getElementById(modalId).classList.add("hidden");
+
+    document.getElementById(modalId)
+        .classList.add("hidden");
 }
 
 function openCommandsModal() {
+
     if (!checkLoginBeforeAction()) return;
+
     renderCommandsList();
-    document.getElementById("commands-modal").classList.remove("hidden");
+
+    document.getElementById("commands-modal")
+        .classList.remove("hidden");
 }
 
 function renderCommandsList() {
+
     const gmail = getActiveGmail();
-    const container = document.getElementById("commands-list-container");
-    let commands = JSON.parse(localStorage.getItem("phj_commands_" + gmail)) || [];
+
+    const container =
+        document.getElementById("commands-list-container");
+
+    let commands =
+        JSON.parse(
+            localStorage.getItem("phj_commands_" + gmail)
+        ) || [];
 
     if (commands.length === 0) {
-        container.innerHTML = '<div class="no-command">Ou poko gen okenn kòmand anrejistre pou kont sa a.</div>';
+
+        container.innerHTML =
+            '<div class="no-command">Ou poko gen okenn kòmand anrejistre pou kont sa a.</div>';
+
         return;
     }
 
     container.innerHTML = "";
+
     commands.reverse().forEach(cmd => {
+
         const item = document.createElement("div");
+
         item.className = "command-item";
+
         item.innerHTML = `
             <strong>${cmd.service}</strong> - ${cmd.pkg}<br>
             Pri: <strong>G ${cmd.price.toLocaleString()}</strong><br>
             ID: ${cmd.info}<br>
             Nimewo Transfè: ${cmd.transferPhone}<br>
-            <span style="color: #888; font-size: 11px;">📅 ${cmd.date}</span>
+            <span style="color: #888; font-size: 11px;">
+                📅 ${cmd.date}
+            </span>
         `;
+
         container.appendChild(item);
     });
 }
 
 function paseKomand() {
+
     if (!checkLoginBeforeAction()) return;
 
     const gmail = getActiveGmail();
-    const info = document.getElementById("customer-info").value.trim();
-    const transferPhone = document.getElementById("transfer-phone").value.trim();
+
+    const info =
+        document.getElementById("customer-info")
+        .value.trim();
+
+    const transferPhone =
+        document.getElementById("transfer-phone")
+        .value.trim();
 
     if (!info) {
-        alert("Tanpri antre " + services[currentService].input + ".");
+
+        alert(
+            "Tanpri antre " +
+            services[currentService].input +
+            "."
+        );
+
         document.getElementById("customer-info").focus();
+
         return;
     }
+
     if (!transferPhone) {
-        alert("Tanpri antre nimewo telefòn ou fè transfè a.");
+
+        alert(
+            "Tanpri antre nimewo telefòn ou fè transfè a."
+        );
+
         document.getElementById("transfer-phone").focus();
+
         return;
     }
+
     if (selectedPackage[1] === null) {
+
         alert("Pri pou pakè sa a poko disponib.");
+
         return;
     }
 
     const service = services[currentService];
+
     const packagePrice = selectedPackage[1];
 
-    let commandsKey = "phj_commands_" + gmail;
-    let commands = JSON.parse(localStorage.getItem(commandsKey)) || [];
+    let commandsKey =
+        "phj_commands_" + gmail;
+
+    let commands =
+        JSON.parse(
+            localStorage.getItem(commandsKey)
+        ) || [];
+
     commands.push({
+
         service: service.title,
+
         pkg: selectedPackage[0],
+
         price: packagePrice,
+
         info: info,
+
         transferPhone: transferPhone,
+
         date: new Date().toLocaleString()
+
     });
-    localStorage.setItem(commandsKey, JSON.stringify(commands));
+
+    localStorage.setItem(
+        commandsKey,
+        JSON.stringify(commands)
+    );
 
     const message =
 `Salut PHJoolens Store! 👋
@@ -1038,28 +1276,52 @@ Mwen ta renmen pase kòmand sa a:
 
 Mwen voye kòb la sou MonCash / Natcash, tanpri verifye l pou mwen!`;
 
-    window.open("https://wa.me/50932265636?text=" + encodeURIComponent(message), "_blank");
+    window.open(
+        "https://wa.me/50932265636?text=" +
+        encodeURIComponent(message),
+        "_blank"
+    );
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    const loginButton = document.getElementById("login-button");
-    const gmailInput = document.getElementById("gmail-input");
-    const savedGmail = localStorage.getItem("phj_current_gmail");
+
+    const loginButton =
+        document.getElementById("login-button");
+
+    const gmailInput =
+        document.getElementById("gmail-input");
+
+    const savedGmail =
+        localStorage.getItem("phj_current_gmail");
 
     if (savedGmail) {
-        document.getElementById("login-modal").classList.add("hidden");
-        document.getElementById("header-user-display").innerText = savedGmail;
+
+        document.getElementById("login-modal")
+            .classList.add("hidden");
+
+        document.getElementById("header-user-display")
+            .innerText = savedGmail;
+
     } else {
-        document.getElementById("login-modal").classList.remove("hidden");
+
+        document.getElementById("login-modal")
+            .classList.remove("hidden");
     }
 
     loginButton.addEventListener("click", konekte);
+
     gmailInput.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") konekte();
+
+        if (event.key === "Enter") {
+            konekte();
+        }
+
     });
 
     renderPackages();
+
 });
+
 </script>
 
 </body>
