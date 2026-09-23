@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PHJoolens Store</title>
+
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function() {
+      emailjs.init("Nj2JePUEKh48rRHjT");
+   })();
+</script>
+
+<!-- Firebase SDK (Compat Version) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+<style>
+:root{
+    --gold:#d99a16;
+    --gold2:#efbd4b;
+    --dark:#14213d;
+    --gray:#687080;
+    --white:#ffffff;
+    --bg:#f7f8fa;
+    --green:#25d366;
+    --red:#e74c3c;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+    margin:0;
+    padding-bottom:90px;
+    font-family:Segoe UI,Tahoma,Arial,sans-serif;
+    background:var(--bg);
+    color:#222;
+}
+#login-modal{
+    position:fixed; inset:0; background:rgba(0,0,0,.75);
+    display:flex; align-items:center; justify-content:center; z-index:9999; padding:20px;
+}
+.login-box{
+    background:white; width:100%; max-width:410px; padding:30px 24px;
+    border-radius:20px; text-align:center; box-shadow:0 15px 50px rgba(0,0,0,.25);
+}
+.login-logo{font-size:42px; margin-bottom:5px;}
+.login-box h2{margin:5px 0 10px; color:var(--dark);}
+.login-box p{color:var(--gray); line-height:1.5;}
+.login-box input{
+    width:100%; padding:14px; margin:10px 0; border:1px solid #ddd; border-radius:10px; font-size:16px; outline:none;
+}
+.login-box input:focus{border-color:var(--gold);}
+.login-box button{
+    width:100%; padding:14px; border:0; border-radius:10px;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:white; font-weight:800; font-size:16px; cursor:pointer;
+}
+header{
+    position:sticky; top:0; z-index:1000; background:white; padding:13px 15px;
+    display:flex; align-items:center; justify-content:space-between; gap:10px; box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+.logo{font-size:18px; font-weight:900; color:var(--dark);}
+.wallet{background:#fff4d6; color:#9a6b00; padding:8px 12px; border-radius:20px; font-weight:800; white-space:nowrap;}
+.logout{background:var(--red); color:white; border:0; padding:8px 11px; border-radius:8px; font-weight:700; cursor:pointer;}
+.container{width:100%; max-width:900px; margin:0 auto; padding:22px 15px;}
+.main-title{text-align:center; margin:5px 0; color:var(--dark); font-size:30px;}
+.subtitle{text-align:center; color:var(--gray); margin-bottom:20px;}
+.service-title{font-size:18px; font-weight:900; color:var(--dark); margin-bottom:10px;}
+.tabs{display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin-bottom:18px;}
+.tab{
+    border:1px solid #ddd; background:white; border-radius:12px; padding:10px 7px;
+    cursor:pointer; font-weight:800; min-height:82px; transition:.2s; text-align:center;
+}
+.tab:hover{transform:translateY(-2px);}
+.tab.active{border:2px solid var(--gold); background:#fffaf0;}
+.tab span{display:block; font-size:12px;}
+.head{background:white; border:1px solid #e5e5e5; border-radius:16px; padding:18px; margin-bottom:14px;}
+.product-top{display:flex; align-items:center; gap:15px;}
+.product-icon{font-size:45px; flex-shrink:0;}
+.head h2{margin:0 0 7px; color:var(--dark);}
+.range{font-size:18px; font-weight:900; color:var(--gold);}
+.desc{color:#666; line-height:1.5; margin-top:10px;}
+.grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+.pkg{
+    background:white; border:1px solid #d8d8d8; border-radius:11px; padding:13px 11px;
+    text-align:left; font-weight:800; cursor:pointer; min-height:65px; transition:.2s;
+}
+.pkg:hover{border-color:var(--gold);}
+.pkg.active{border:2px solid var(--gold); background:#fff9eb;}
+.pkg small{display:block; color:#b27b00; margin-top:6px; font-size:14px;}
+.selected{
+    background:white; border:1px solid #e5e5e5; border-radius:13px; padding:15px;
+    margin:15px 0; font-size:21px; font-weight:900; color:var(--dark); text-align:center;
+}
+.form{background:white; border:1px solid #e3e3e3; border-radius:15px; padding:17px;}
+.badge{
+    display:inline-block; background:#fff8df; border:1px solid #f0d88a; color:#8a6800;
+    padding:7px 10px; border-radius:7px; font-size:13px; font-weight:800; margin-bottom:10px;
+}
+.form label{display:block; font-weight:800; margin:10px 0 6px;}
+.form input{width:100%; padding:13px; border:1px solid #ccc; border-radius:9px; font-size:16px; outline:none;}
+.form input:focus{border-color:var(--gold);}
+.buy{
+    width:100%; margin-top:14px; padding:15px; border:0; border-radius:11px;
+    background:linear-gradient(135deg,var(--gold),var(--gold2)); color:white;
+    font-weight:900; font-size:17px; cursor:pointer; box-shadow:0 5px 15px rgba(217,154,22,.25);
+}
+.payment{background:#edf7ff; border-left:5px solid #2196f3; padding:17px; margin-top:20px; border-radius:10px;}
+.payment h3{margin-top:0; color:#145a85;}
+.payment p{margin:8px 0; font-size:14px;}
+.payment-number{font-size:16px; font-weight:900;}
+
+#chat-modal, #orders-modal, #admin-modal{
+    display:none; position:fixed; inset:0; z-index:5000; background:rgba(0,0,0,.7); padding:20px; overflow-y:auto;
+}
+.chat-box, .orders-box, .admin-box{
+    background:white; max-width:600px; margin:30px auto; border-radius:18px; padding:20px; display:flex; flex-direction:column;
+}
+.chat-box{height:80vh;}
+.chat-header, .orders-header{display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding-bottom:10px;}
+.close-btn{border:0; background:#eee; width:38px; height:38px; border-radius:50%; font-size:20px; cursor:pointer;}
+.chat-messages{flex:1; overflow-y:auto; padding:10px 0; display:flex; flex-direction:column; gap:10px;}
+.msg{padding:10px 14px; border-radius:12px; max-width:80%; font-size:14px; line-height:1.4;}
+.msg-time{display:block; font-size:10px; margin-top:4px; opacity:0.7; text-align:right;}
+.msg.user{background:#fff9eb; border:1px solid #f0d88a; align-self:flex-end; color:#333;}
+.msg.admin{background:#e6f4ea; border:1px solid #ceead6; align-self:flex-start; color:#137333;}
+.msg.system{background:#edf7ff; border:1px solid #b3d7ff; align-self:flex-start; color:#145a85;}
+.chat-input-area{display:flex; gap:10px; border-top:1px solid #eee; padding-top:12px;}
+.chat-input-area input{flex:1; padding:12px; border:1px solid #ccc; border-radius:10px; outline:none;}
+.chat-input-area button{padding:0 20px; border:0; background:var(--green); color:white; font-weight:bold; border-radius:10px; cursor:pointer;}
+.order-item{border:1px solid #ddd; border-radius:12px; padding:14px; margin-top:10px; background:#fafafa;}
+.no-orders{text-align:center; color:#777; padding:25px;}
+.client-card{background:#f9f9f9; border:1px solid #ddd; border-radius:10px; padding:12px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;}
+.admin-chat-view{border:1px solid #ccc; border-radius:10px; height:250px; overflow-y:auto; padding:10px; background:#fff; margin-bottom:10px;}
+.admin-link-container{text-align:center; margin:25px 0 10px;}
+.admin-link-container a{color:var(--gray); font-size:13px; text-decoration:none; cursor:pointer;}
+.admin-link-container a:hover{color:var(--dark); text-decoration:underline;}
+.nav{
+    position:fixed; bottom:0; left:0; width:100%; z-index:2000; background:white;
+    display:flex; justify-content:space-around; padding:8px 2px; box-shadow:0 -3px 12px rgba(0,0,0,.10);
+}
+.nav a{text-decoration:none; color:#666; text-align:center; font-size:11px; min-width:60px; cursor:pointer;}
+.nav b{display:block; font-size:20px; margin-bottom:2px;}
+.nav a:hover{color:var(--gold);}
+</style>
+</head>
+
+<body>
+
+<div id="login-modal">
+    <div class="login-box">
+        <div class="login-logo">⚡</div>
+        <h2>PHJoolens Store</h2>
+        <p>Antre non ou pou w ka antre sou sit la.</p>
+        <input type="text" id="name-input" placeholder="Non ou oswa ti non ou">
+        <button onclick="konekte()">Antre</button>
+    </div>
+</div>
+
+<header>
+    <div class="logo">⚡ PHJoolens Store</div>
+    <div class="wallet">G 0.00</div>
+    <button class="logout" onclick="soti()">Dekonekte</button>
+</header>
+
+<div class="container">
+    <h1 class="main-title">PHJoolens Store</h1>
+    <div class="subtitle">Gaming • Diamonds • UC • Coins • Gift Cards</div>
+
+    <div class="service-title">🎮 Chwazi sèvis ou</div>
+    <div class="tabs" id="tabs"></div>
+
+    <div id="product"></div>
+
+    <div class="payment">
+        <h3>💳 Enfòmasyon sou Peman</h3>
+        <p>💸 <b>MonCash / Nimewo transfè:</b> <span class="payment-number">+509 4882-8406</span></p>
+        <p>💰 <b>NatCash:</b> <span class="payment-number">+509 5607-9663</span></p>
+        <p>⚠️ Antre nimewo ou te itilize pou fè transfè a anvan ou voye kòmand lan.</p>
+    </div>
+
+    <div class="admin-link-container">
+        <a onclick="openAdminModal()">🔐 Panèl Admin (Admin Sèlman)</a>
+    </div>
+</div>
+
+<div id="chat-modal">
+    <div class="chat-box">
+        <div class="chat-header">
+            <h2>💬 Chat ak Sipò</h2>
+            <button class="close-btn" onclick="closeChat()">×</button>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ekri mesaj ou a..." onkeypress="handleChatKeyPress(event)">
+            <button onclick="sendChatMessage()">Voye</button>
+        </div>
+    </div>
+</div>
+
+<div id="orders-modal">
+    <div class="orders-box">
+        <div class="orders-header">
+            <h2>📋 Mes kòmand</h2>
+            <button class="close-btn" onclick="closeOrders()">×</button>
+        </div>
+        <div id="orders-list"></div>
+    </div>
+</div>
+
+<div id="admin-modal">
+    <div class="admin-box" style="max-width:650px;">
+        <div class="orders-header">
+            <h2>🔐 Panèl Prive Admin</h2>
+            <button class="close-btn" onclick="closeAdminModal()">×</button>
+        </div>
+        <div id="admin-content" style="margin-top:15px;"></div>
+    </div>
+</div>
+
+<div class="nav">
+    <a href="#" onclick="goHome()"><b>🏠</b>Accueil</a>
+    <a href="#services" onclick="scrollServices()"><b>🛒</b>Services</a>
+    <a href="#" onclick="openChatModal()"><b>💬</b>Support</a>
+    <a href="#" onclick="openOrdersModal()"><b>📋</b>Commandes</a>
+</div>
+
+<script>
+const firebaseConfig = {
+    apiKey: "AIzaSyD-EXEMPLE-KEY-xxxxxxx",
+    authDomain: "phjoolens-store.firebaseapp.com",
+    projectId: "phjoolens-store",
+    storageBucket: "phjoolens-store.appspot.com",
+    messagingSenderId: "1234567890",
+    appId: "1:1234567890:web:abcdef"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const ADMIN_SECRET_CODE = "2009"; 
+
+const services = {
+    freefire: {
+        title:"Free Fire", icon:"🔥", description:"Recharge Free Fire.",
+        input:"ID Jwè", placeholder:"Antre ID Free Fire ou", type:"player",
+        packages:[["110 Diamonds",150],["220 Diamonds",300],["341 Diamonds",450],["572 Diamonds",750],["682 Diamonds",900],["792 Diamonds",1050],["913 Diamonds",1350],["1166 Diamonds",1500],["2398 Diamonds",3000],["3564 Diamonds",9300],["Booyah Pass",500],["Abonnement semaine",375],["Abonnement mois",1650]]
+    },
+    pubg: {
+        title:"PUBG Mobile", icon:"🎯", description:"Recharge PUBG Mobile UC.",
+        input:"ID Jwè", placeholder:"Antre ID PUBG Mobile ou", type:"player",
+        packages:[["60 UC",180],["325 UC",875],["660 UC",1600],["1800 UC",3500],["3850 UC",8000],["8100 UC",16900],["16200 UC",33000]]
+    },
+    mobilelegends: {
+        title:"Mobile Legends", icon:"⚔️", description:"Recharge Mobile Legends.",
+        input:"ID Jwè", placeholder:"Antre ID Mobile Legends ou", type:"player",
+        packages:[["275 Dyaman", 875],["565 Dyaman", 1750],["1,160 Dyaman", 3467],["1,770 Dyaman", 5054],["2,975 Dyaman", 7967],["6,000 Dyaman", 15016]]
+    },
+    cod: {
+        title:"Call of Duty Mobile", icon:"🎖️", description:"Recharge COD Mobile CP.",
+        input:"ID Jwè", placeholder:"Antre ID COD Mobile ou", type:"player",
+        packages:[["80 CP", 854],["420 CP", 1654],["880 CP", 3307],["2400 CP", 6615],["5000 CP", 12449],["10800 CP", 15567]]
+    },
+    efootball: {
+        title:"eFootball", icon:"⚽", description:"Recharge eFootball Coins.",
+        input:"ID Jwè", placeholder:"Antre ID eFootball ou", type:"player",
+        packages:[["1050 Coins",1950],["2150 Coins",4000],["3300 Coins",5900],["5800 Coins",9850],["12000 Coins",19700]]
+    },
+    popolive: {
+        title:"Popolive", icon:"🎥", description:"Popolive Coins.",
+        input:"ID / Username", placeholder:"Antre ID oswa Username Popolive", type:"player",
+        packages:[["9,900 Coins",350],["19,800 Coins",650],["29,700 Coins",1000],["39,600 Coins",1350]]
+    },
+    roblox: {
+        title:"Roblox", icon:"🤖", description:"Roblox Gift Card.",
+        input:"Username Roblox", placeholder:"Antre Username Roblox ou", type:"gift",
+        packages:[["$10 USD",1807],["$20 USD",3614],["$50 USD",9035],["$100 USD",18070]]
+    },
+    playstation: {
+        title:"PlayStation Gift Card", icon:"🎮", description:"PlayStation Gift Card.",
+        input:"Email / Compte", placeholder:"Antre enfòmasyon nesesè", type:"gift",
+        packages:[["$10 USD",null],["$20 USD",null],["$50 USD",null]]
+    },
+    googleplay: {
+        title:"Google Play Gift Card", icon:"📱", description:"Google Play Gift Card.",
+        input:"Email / Compte", placeholder:"Antre enfòmasyon nesesè", type:"gift",
+        packages:[["$10 USD",null],["$20 USD",null],["$50 USD",null]]
+    }
+};
+
+let currentService = "freefire";
+let selectedPackage = 0;
+
+function getCurrentClientName(){ return localStorage.getItem("phj_current_client_name"); }
+
+function konekte(){
+    const input = document.getElementById("name-input");
+    const clientName = input.value.trim();
+    if(clientName.length > 0){
+        localStorage.setItem("phj_current_client_name", clientName);
+        document.getElementById("login-modal").style.display = "none";
+        renderPackages();
+    }else{
+        alert("Tanpri antre non ou.");
+    }
+}
+
+function soti(){
+    localStorage.removeItem("phj_current_client_name");
+    location.reload();
+}
+
+function checkLogin(){
+    if(!getCurrentClientName()){
+        document.getElementById("login-modal").style.display = "flex";
+        return false;
+    }
+    return true;
+}
+
+function renderTabs(){
+    const tabs = document.getElementById("tabs");
+    tabs.innerHTML = "";
+    Object.keys(services).forEach(key => {
+        const service = services[key];
+        const button = document.createElement("button");
+        button.className = "tab " + (key === currentService ? "active" : "");
+        button.innerHTML = `<span style="font-size:24px; display:block; margin-bottom:4px;">${service.icon}</span><span>${service.title}</span>`;
+        button.onclick = function(){
+            currentService = key;
+            selectedPackage = 0;
+            renderTabs();
+            renderPackages();
+        };
+        tabs.appendChild(button);
+    });
+}
+
+function renderPackages(){
+    const service = services[currentService];
+    const product = document.getElementById("product");
+    const prices = service.packages.map(item => item[1]).filter(price => typeof price === "number");
+    let min = prices.length ? Math.min(...prices) : 0;
+    let max = prices.length ? Math.max(...prices) : 0;
+    const selected = service.packages[selectedPackage];
+
+    let html = `
+        <div class="head">
+            <div class="product-top">
+                <div class="product-icon">${service.icon}</div>
+                <div>
+                    <h2>${service.title}</h2>
+                    ${prices.length ? `<div class="range">G ${min.toLocaleString()} – G${max.toLocaleString()}</div>` : `<div class="range">Pri ap vini</div>`}
+                </div>
+            </div>
+            <div class="desc">${service.description}</div>
+        </div>
+        <div class="grid">
+    `;
+
+    service.packages.forEach((item, index) => {
+        html += `
+            <button class="pkg ${index === selectedPackage ? "active" : ""}" onclick="pickPackage(${index})">
+                ${item[0]}
+                <small>${item[1] === null ? "Pri ap vini" : "G " + item[1].toLocaleString() + ".00"}</small>
+            </button>
+        `;
+    });
+
+    html += `
+        </div>
+        <div class="selected">
+            ${selected[1] === null ? "Pri chwazi: Pri ap vini" : "Pri chwazi: G " + selected[1].toLocaleString() + ".00"}
+        </div>
+        <div class="form">
+            <span class="badge">⚠️ Vérification requise</span>
+            <label>${service.type === "player" ? "🆔 " + service.input : "📧 " + service.input}</label>
+            <input id="service-info" type="text" placeholder="${service.placeholder}">
+            <label>📱 Nimewo ou te fè transfè a</label>
+            <input id="transfer" type="tel" placeholder="+509xxxxxxxx">
+        </div>
+        <button class="buy" onclick="paseKomand()">🛒 ACHETER MAINTENANT</button>
+    `;
+    product.innerHTML = html;
+}
+
+function pickPackage(index){
+    selectedPackage = index;
+    renderPackages();
+}
+
+function saveOrder(order){
+    db.collection("orders").add({
+        ...order,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => console.error(err));
+}
+
+function saveChatMessage(clientName, msgObj){
+    db.collection("chats").add({
+        client: clientName,
+        sender: msgObj.sender,
+        text: msgObj.text,
+        date: msgObj.date,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => console.error(err));
+}
+
+function openChatModal(){
+    if(!checkLogin()) return;
+    renderChatMessages();
+    document.getElementById("chat-modal").style.display = "block";
+}
+
+function closeChat(){ document.getElementById("chat-modal").style.display = "none"; }
+
+function renderChatMessages(){
+    const clientName = getCurrentClientName();
+    const chatContainer = document.getElementById("chat-messages");
+
+    db.collection("chats")
+      .where("client", "==", clientName)
+      .onSnapshot(snapshot => {
+          let messages = [];
+          snapshot.forEach(doc => messages.push(doc.data()));
+          
+          messages.sort((a, b) => (a.timestamp?.toMillis() || 0) - (b.timestamp?.toMillis() || 0));
+
+          if(!messages.length){
+              chatContainer.innerHTML = `<div class="msg system">Byenveni sou PHJoolens Store! 👋 Ekri kesyon ou oswa kòmand ou la a.</div>`;
+              return;
+          }
+
+          chatContainer.innerHTML = "";
+          messages.forEach(m => {
+              const div = document.createElement("div");
+              div.className = "msg " + m.sender;
+              div.innerHTML = `<span>${m.text}</span><span class="msg-time">${m.date}</span>`;
+              chatContainer.appendChild(div);
+          });
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+      });
+}
+
+function sendChatMessage(){
+    const input = document.getElementById("chat-input");
+    const text = input.value.trim();
+    if(!text) return;
+
+    const clientName = getCurrentClientName();
+    const timeString = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    saveChatMessage(clientName, { sender: "user", text: text, date: timeString });
+    input.value = "";
+}
+
+function handleChatKeyPress(e){ if(e.key === "Enter") sendChatMessage(); }
+
+function paseKomand(){
+    if(!checkLogin()) return;
+    const service = services[currentService];
+    const packageData = service.packages[selectedPackage];
+    const packageName = packageData[0];
+    const price = packageData[1];
+
+    if(price === null){ alert("Pri pou sèvis sa a poko disponib."); return; }
+
+    const info = document.getElementById("service-info").value.trim();
+    const transfer = document.getElementById("transfer").value.trim();
+
+    if(!info || !transfer){ alert("Tanpri ranpli tout jaden yo!"); return; }
+
+    const clientName = getCurrentClientName();
+    const timeString = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const fullDate = new Date().toLocaleDateString("fr-FR") + " nan " + timeString;
+
+    const order = {
+        id: Date.now(), service: service.title, package: packageName,
+        price: price, info: info, transfer: transfer, clientName: clientName, date: fullDate
+    };
+
+    saveOrder(order);
+    saveChatMessage(clientName, { sender: "user", text: `[KÒMAND] 🛒 ${service.title} - ${packageName} (G ${price})`, date: timeString });
+
+    // Voye notifikasyon sou sèl Gmail admin lan atravè EmailJS
+    let templateParams = {
+        client_name: clientName,           
+        service_name: service.title,       
+        package_name: packageName,         
+        price: "G " + price.toLocaleString() + ".00", 
+        info: info,                        
+        transfer: transfer                 
+    };
+
+    emailjs.send("service_mhtvv...", "CHACHE_TEMPLATE_ID_LA_METE_L_ISIT", templateParams)
+        .then(function(response) {
+           console.log("Siksè!", response.status, response.text);
+        }, function(error) {
+           console.log("Echèk:", error);
+        });
+
+    alert("Kòmand ou a pase avèk siksè!");
+    openChatModal();
+}
+
+function openOrdersModal(){
+    if(!checkLogin()) return;
+    renderCommandsList();
+    document.getElementById("orders-modal").style.display = "block";
+}
+
+function closeOrders(){ document.getElementById("orders-modal").style.display = "none"; }
+
+function renderCommandsList(){
+    const clientName = getCurrentClientName();
+    const list = document.getElementById("orders-list");
+
+    db.collection("orders")
+      .where("clientName", "==", clientName)
+      .onSnapshot(snapshot => {
+          let orders = [];
+          snapshot.forEach(doc => orders.push(doc.data()));
+          
+          if(!orders.length){
+              list.innerHTML = `<div class="no-orders">📋<br><br>Ou poko gen okenn kòmand.</div>`;
+              return;
+          }
+
+          list.innerHTML = "";
+          orders.forEach(order => {
+              const div = document.createElement("div");
+              div.className = "order-item";
+              div.innerHTML = `
+                  <strong>🎮 ${order.service}</strong><br><br>
+                  📦 <b>Pakè:</b> ${order.package}<br>
+                  💰 <b>Pri:</b> G ${Number(order.price).toLocaleString()}.00<br>
+                  🆔 <b>Info:</b> ${order.info}<br>
+                  📱 <b>Transfè:</b> ${order.transfer}<br>
+                  🕐 <b>Dat & Lè:</b> ${order.date}
+              `;
+              list.appendChild(div);
+          });
+      });
+}
+
+function openAdminModal(){
+    document.getElementById("admin-modal").style.display = "block";
+    renderAdminLogin();
+}
+
+function closeAdminModal(){ document.getElementById("admin-modal").style.display = "none"; }
+
+function renderAdminLogin(){
+    document.getElementById("admin-content").innerHTML = `
+        <div style="text-align:center; padding:20px;">
+            <h3>Antre kòd sekrè admin lan</h3>
+            <input type="password" id="admin-pass-input" placeholder="Kòd sekrè" style="width:100%; max-width:300px; padding:12px; border:1px solid #ccc; border-radius:8px; margin:10px 0; font-size:16px;">
+            <br>
+            <button onclick="verifyAdminPass()" style="padding:10px 25px; background:var(--dark); color:white; border:0; border-radius:8px; font-weight:bold; cursor:pointer;">Antre</button>
+        </div>
+    `;
+}
+
+function verifyAdminPass(){
+    if(document.getElementById("admin-pass-input").value === ADMIN_SECRET_CODE){
+        renderAdminClientsList();
+    }else{
+        alert("Kòd sekrè a pa bon!");
+    }
+}
+
+function renderAdminClientsList(){
+    const container = document.getElementById("admin-content");
+
+    db.collection("chats").onSnapshot(snapshot => {
+        let clientMap = {};
+        
+        snapshot.forEach(doc => {
+            let data = doc.data();
+            let clientName = data.client;
+            if(clientName){
+                if(!clientMap[clientName]){
+                    clientMap[clientName] = { count: 0, lastMessage: data.text, lastTime: data.date };
+                }
+                if(data.sender === "user"){
+                    clientMap[clientName].count++;
+                }
+            }
+        });
+
+        let allClients = Object.keys(clientMap);
+
+        if(!allClients.length){
+            container.innerHTML = `<p style="text-align:center; color:#777; padding:20px;">Pa gen okenn mesaj ki anrejistre nan baz done a ankò.</p>`;
+            return;
+        }
+
+        let html = `<h3>👥 Lis Kliyan yo (${allClients.length})</h3><div style="max-height:350px; overflow-y:auto;">`;
+        
+        allClients.forEach(clientName => {
+            let info = clientMap[clientName];
+            html += `
+                <div class="client-card">
+                    <div>
+                        👤 <b>${clientName}</b> 
+                        <span style="background:var(--red); color:white; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:bold; margin-left:6px;">${info.count}</span>
+                        <div style="font-size:12px; color:#666; margin-top:4px; max-width:280px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">💬 ${info.lastMessage}</div>
+                    </div>
+                    <button onclick="openClientChat('${clientName}')" style="padding:8px 14px; background:var(--gold); color:white; border:0; border-radius:6px; cursor:pointer; font-weight:bold;">Louvri Chat</button>
+                </div>
+            `;
+        });
+        
+        html += `</div>`;
+        container.innerHTML = html;
+    });
+}
+
+function openClientChat(clientName){
+    const container = document.getElementById("admin-content");
+    container.innerHTML = `
+        <button onclick="renderAdminClientsList()" style="margin-bottom:10px; background:#eee; border:0; padding:6px 12px; border-radius:6px; cursor:pointer;">← Retounen</button>
+        <h4>💬 Chat ak: ${clientName}</h4>
+        <div class="admin-chat-view" id="admin-chat-view">Chaje mesaj yo...</div>
+        <div style="display:flex; gap:8px; margin-top:10px;">
+            <input type="text" id="admin-reply-input" placeholder="Ekri repons pou kliyan an..." style="flex:1; padding:10px; border:1px solid #ccc; border-radius:8px;" onkeypress="if(event.key==='Enter')sendAdminReply('${clientName}')">
+            <button onclick="sendAdminReply('${clientName}')" style="padding:0 18px; background:var(--green); color:white; border:0; border-radius:8px; font-weight:bold; cursor:pointer;">Voye</button>
+        </div>
+    `;
+
+    db.collection("chats")
+      .where("client", "==", clientName)
+      .onSnapshot(snapshot => {
+          let messages = [];
+          snapshot.forEach(doc => messages.push(doc.data()));
+          messages.sort((a, b) => (a.timestamp?.toMillis() || 0) - (b.timestamp?.toMillis() || 0));
+
+          const view = document.getElementById("admin-chat-view");
+          if(!view) return;
+
+          let messagesHtml = "";
+          if(!messages.length){
+              messagesHtml = `<p style="color:#777; text-align:center;">Pa gen mesaj.</p>`;
+          } else {
+              messages.forEach(m => {
+                  messagesHtml += `<div style="margin-bottom:8px; text-align:${m.sender === 'admin' ? 'right' : 'left'};">
+                      <span style="display:inline-block; padding:8px 12px; border-radius:8px; background:${m.sender === 'admin' ? '#e6f4ea' : '#f1f1f1'}; color:#333; font-size:13px; max-width:80%;">
+                          <b>${m.sender.toUpperCase()}:</b> ${m.text}
+                          <div style="font-size:9px; opacity:0.6; text-align:right; margin-top:2px;">${m.date}</div>
+                      </span>
+                  </div>`;
+              });
+          }
+          view.innerHTML = messagesHtml;
+          view.scrollTop = view.scrollHeight;
+      });
+}
+
+function sendAdminReply(clientName){
+    const input = document.getElementById("admin-reply-input");
+    const text = input.value.trim();
+    if(!text) return;
+
+    const timeString = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    db.collection("chats").add({
+        client: clientName, sender: "admin", text: text, date: timeString,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    input.value = "";
+}
+
+function goHome(){ window.scrollTo({top:0, behavior:"smooth"}); }
+function scrollServices(){ document.getElementById("tabs").scrollIntoView({behavior:"smooth"}); }
+
+window.onload = function(){
+    document.getElementById("login-modal").style.display = getCurrentClientName() ? "none" : "flex";
+    renderTabs();
+    renderPackages();
+};
+</script>
+</body>
+</html>
