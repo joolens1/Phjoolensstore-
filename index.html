@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PHJoolens Store</title>
+
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function() {
+      emailjs.init("Nj2JePUEKh48rRHjT");
+   })();
+</script>
+
+<!-- Firebase SDK (Compat Version) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+<style>
+:root{
+    --gold:#d99a16;
+    --gold2:#efbd4b;
+    --dark:#14213d;
+    --gray:#687080;
+    --white:#ffffff;
+    --bg:#f7f8fa;
+    --green:#25d366;
+    --red:#e74c3c;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+    margin:0;
+    padding-bottom:90px;
+    font-family:Segoe UI,Tahoma,Arial,sans-serif;
+    background:var(--bg);
+    color:#222;
+}
+#login-modal{
+    position:fixed; inset:0; background:rgba(0,0,0,.75);
+    display:flex; align-items:center; justify-content:center; z-index:9999; padding:20px;
+}
+.login-box{
+    background:white; width:100%; max-width:410px; padding:30px 24px;
+    border-radius:20px; text-align:center; box-shadow:0 15px 50px rgba(0,0,0,.25);
+}
+.login-logo{font-size:42px; margin-bottom:5px;}
+.login-box h2{margin:5px 0 10px; color:var(--dark);}
+.login-box p{color:var(--gray); line-height:1.5;}
+.login-box input{
+    width:100%; padding:14px; margin:10px 0; border:1px solid #ddd; border-radius:10px; font-size:16px; outline:none;
+}
+.login-box input:focus{border-color:var(--gold);}
+.login-box button{
+    width:100%; padding:14px; border:0; border-radius:10px;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:white; font-weight:800; font-size:16px; cursor:pointer;
+}
+header{
+    position:sticky; top:0; z-index:1000; background:white; padding:13px 15px;
+    display:flex; align-items:center; justify-content:space-between; gap:10px; box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+.logo{font-size:18px; font-weight:900; color:var(--dark);}
+.wallet{background:#fff4d6; color:#9a6b00; padding:8px 12px; border-radius:20px; font-weight:800; white-space:nowrap;}
+.logout{background:var(--red); color:white; border:0; padding:8px 11px; border-radius:8px; font-weight:700; cursor:pointer;}
+.container{width:100%; max-width:900px; margin:0 auto; padding:22px 15px;}
+.main-title{text-align:center; margin:5px 0; color:var(--dark); font-size:30px;}
+.subtitle{text-align:center; color:var(--gray); margin-bottom:20px;}
+.service-title{font-size:18px; font-weight:900; color:var(--dark); margin-bottom:10px;}
+.tabs{display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin-bottom:18px;}
+.tab{
+    border:1px solid #ddd; background:white; border-radius:12px; padding:10px 7px;
+    cursor:pointer; font-weight:800; min-height:82px; transition:.2s; text-align:center;
+}
+.tab:hover{transform:translateY(-2px);}
+.tab.active{border:2px solid var(--gold); background:#fffaf0;}
+.tab span{display:block; font-size:12px;}
+.head{background:white; border:1px solid #e5e5e5; border-radius:16px; padding:18px; margin-bottom:14px;}
+.product-top{display:flex; align-items:center; gap:15px;}
+.product-icon{font-size:45px; flex-shrink:0;}
+.head h2{margin:0 0 7px; color:var(--dark);}
+.range{font-size:18px; font-weight:900; color:var(--gold);}
+.desc{color:#666; line-height:1.5; margin-top:10px;}
+.grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+.pkg{
+    background:white; border:1px solid #d8d8d8; border-radius:11px; padding:13px 11px;
+    text-align:left; font-weight:800; cursor:pointer; min-height:65px; transition:.2s;
+}
+.pkg:hover{border-color:var(--gold);}
+.pkg.active{border:2px solid var(--gold); background:#fff9eb;}
+.pkg small{display:block; color:#b27b00; margin-top:6px; font-size:14px;}
+.selected{
+    background:white; border:1px solid #e5e5e5; border-radius:13px; padding:15px;
+    margin:15px 0; font-size:21px; font-weight:900; color:var(--dark); text-align:center;
+}
+.form{background:white; border:1px solid #e3e3e3; border-radius:15px; padding:17px;}
+.badge{
+    display:inline-block; background:#fff8df; border:1px solid #f0d88a; color:#8a6800;
+    padding:7px 10px; border-radius:7px; font-size:13px; font-weight:800; margin-bottom:10px;
+}
+.form label{display:block; font-weight:800; margin:10px 0 6px;}
+.form input{width:100%; padding:13px; border:1px solid #ccc; border-radius:9px; font-size:16px; outline:none;}
+.form input:focus{border-color:var(--gold);}
+.buy{
+    width:100%; margin-top:14px; padding:15px; border:0; border-radius:11px;
+    background:linear-gradient(135deg,var(--gold),var(--gold2)); color:white;
+    font-weight:900; font-size:17px; cursor:pointer; box-shadow:0 5px 15px rgba(217,154,22,.25);
+}
+.payment{background:#edf7ff; border-left:5px solid #2196f3; padding:17px; margin-top:20px; border-radius:10px;}
+.payment h3{margin-top:0; color:#145a85;}
+.payment p{margin:8px 0; font-size:14px;}
+.payment-number{font-size:16px; font-weight:900;}
+
+#global-modal, #my-orders-modal, #admin-modal{
+    display:none; position:fixed; inset:0; z-index:5000; background:rgba(0,0,0,.7); padding:20px; overflow-y:auto;
+}
+.global-box, .my-orders-box, .admin-box{
+    background:white; max-width:650px; margin:30px auto; border-radius:18px; padding:20px; display:flex; flex-direction:column; height:85vh;
+}
+.global-header, .my-orders-header, .orders-header{display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding-bottom:10px;}
+.close-btn{border:0; background:#eee; width:38px; height:38px; border-radius:50%; font-size:20px; cursor:pointer;}
+.global-content{flex:1; overflow-y:auto; padding:15px 0; display:flex; flex-direction:column; gap:15px;}
+.msg{padding:10px 14px; border-radius:12px; max-width:85%; font-size:14px; line-height:1.4;}
+.msg-time{display:block; font-size:10px; margin-top:4px; opacity:0.7; text-align:right;}
+.msg.user{background:#fff9eb; border:1px solid #f0d88a; align-self:flex-end; color:#333;}
+.global-input-area{display:flex; gap:10px; border-top:1px solid #eee; padding-top:12px;}
+.global-input-area input{flex:1; padding:12px; border:1px solid #ccc; border-radius:10px; outline:none;}
+.global-input-area button{padding:0 20px; border:0; background:var(--green); color:white; font-weight:bold; border-radius:10px; cursor:pointer;}
+.order-item{border:1px solid #ddd; border-radius:12px; padding:14px; background:#fafafa; margin-bottom:10px;}
+.no-orders{text-align:center; color:#777; padding:25px;}
+.admin-link-container{text-align:center; margin:25px 0 10px;}
+.admin-link-container a{color:var(--gray); font-size:13px; text-decoration:none; cursor:pointer;}
+.admin-link-container a:hover{color:var(--dark); text-decoration:underline;}
+.nav{
+    position:fixed; bottom:0; left:0; width:100%; z-index:2000; background:white;
+    display:flex; justify-content:space-around; padding:8px 2px; box-shadow:0 -3px 12px rgba(0,0,0,.10);
+}
+.nav a{text-decoration:none; color:#666; text-align:center; font-size:11px; min-width:60px; cursor:pointer;}
+.nav b{display:block; font-size:20px; margin-bottom:2px;}
+.nav a:hover{color:var(--gold);}
+</style>
+</head>
+
+<body>
+
+<div id="login-modal">
+    <div class="login-box">
+        <div class="login-logo">⚡</div>
+        <h2>PHJoolens Store</h2>
+        <p>Antre adrès Gmail ou pou w ka antre sou sit la.</p>
+        <input type="email" id="gmail-input" placeholder="imel ou@gmail.com">
+        <button onclick="konekte()">Antre</button>
+    </div>
+</div>
+
+<header>
+    <div class="logo">⚡ PHJoolens Store</div>
+    <div class="wallet">G 0.00</div>
+    <button class="logout" onclick="soti()">Dekonekte</button>
+</header>
+
+<div class="container">
+    <h1 class="main-title">PHJoolens Store</h1>
+    <div class="subtitle">Gaming • Diamonds • UC • Coins • Gift Cards</div>
+
+    <div class="service-title">🎮 Chwazi sèvis ou</div>
+    <div class="tabs" id="tabs"></div>
+
+    <div id="product"></div>
+
+    <div class="payment">
+        <h3>💳 Enfòmasyon sou Peman</h3>
+        <p>💸 <b>MonCash / Nimewo transfè:</b> <span class="payment-number">+509 4882-8406</span></p>
+        <p>💰 <b>NatCash:</b> <span class="payment-number">+509 5607-9663</span></p>
+        <p>⚠️ Antre nimewo ou te itilize pou fè transfè a anvan ou voye kòmand lan.</p>
+    </div>
+
+    <div class="admin-link-container">
+        <a onclick="openAdminModal()">🔐 Panèl Admin (Admin Sèlman)</a>
+    </div>
+</div>
+
+<!-- Modal Piblik: Kòmand Tout Moun & Chat (Mande Kòd Sekrè) -->
+<div id="global-modal">
+    <div class="global-box">
+        <div class="global-header">
+            <h2>🌍 Kòmand & Chat Tout Kliyan</h2>
+            <button class="close-btn" onclick="closeGlobalModal()">×</button>
+        </div>
+        
+        <div id="global-lock-section" style="text-align:center; padding:40px 20px;">
+            <h3>🔒 Zòn sa a pwoteje</h3>
+            <p style="color:#666;">Antre kòd sekrè a pou w ka wè tout kòmand yo epi patisipe nan chat la.</p>
+            <input type="password" id="global-secret-input" placeholder="Antre kòd sekrè a" style="padding:12px; width:100%; max-width:280px; border:1px solid #ccc; border-radius:8px; font-size:16px; margin-bottom:12px; outline:none;">
+            <br>
+            <button onclick="verifyGlobalSecret()" style="padding:12px 25px; background:var(--gold); color:white; border:0; border-radius:8px; font-weight:bold; cursor:pointer;">Debloke</button>
+        </div>
+
+        <div id="global-content-section" style="display:none; flex:1; display:flex; flex-direction:column; overflow:hidden;">
+            <div style="font-weight:bold; margin:10px 0 5px; color:var(--dark);">📋 Tout Kòmand Kliyan Yo:</div>
+            <div id="all-orders-list" style="max-height:180px; overflow-y:auto; border:1px solid #eee; padding:10px; border-radius:10px; background:#f9f9f9; margin-bottom:10px;"></div>
+
+            <div style="font-weight:bold; margin:5px 0; color:var(--dark);">💬 Chat Global (Tout Moun Ka Pale):</div>
+            <div class="global-content" id="global-chat-messages"></div>
+            <div class="global-input-area">
+                <input type="text" id="global-chat-input" placeholder="Ekri yon mesaj pou tout moun..." onkeypress="handleGlobalKeyPress(event)">
+                <button onclick="sendGlobalMessage()">Voye</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Pèsonèl: Kòmand Mwen Yo Sèlman -->
+<div id="my-orders-modal">
+    <div class="my-orders-box">
+        <div class="my-orders-header">
+            <h2>📦 Kòmand Mwen Yo</h2>
+            <button class="close-btn" onclick="closeMyOrdersModal()">×</button>
+        </div>
+        <div style="font-size:13px; color:var(--gray); margin:10px 0;">Men lis tout kòmand ou te pase ak adrès Gmail ou a:</div>
+        <div id="my-orders-list" style="flex:1; overflow-y:auto; padding:5px 0;"></div>
+    </div>
+</div>
+
+<div id="admin-modal">
+    <div class="admin-box">
+        <div class="orders-header">
+            <h2>🔐 Panèl Prive Admin</h2>
+            <button class="close-btn" onclick="closeAdminModal()">×</button>
+        </div>
+        <div id="admin-content" style="margin-top:15px; flex:1; overflow-y:auto;"></div>
+    </div>
+</div>
+
+<div class="nav">
+    <a href="#" onclick="goHome()"><b>🏠</b>Accueil</a>
+    <a href="#" onclick="openMyOrdersModal()"><b>📦</b>Kòmand Mwen</a>
+    <a href="#" onclick="openGlobalModal()"><b>🌍</b>Kòmand Jeneral</a>
+</div>
+
+<script>
+const firebaseConfig = {
+    apiKey: "AIzaSyD-EXEMPLE-KEY-xxxxxxx",
+    authDomain: "phjoolens-store.firebaseapp.com",
+    projectId: "phjoolens-store",
+    storageBucket: "phjoolens-store.appspot.com",
+    messagingSenderId: "1234567890",
+    appId: "1:1234567890:web:abcdef"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const ADMIN_SECRET_CODE = "2009"; 
+const CLIENT_SECRET_CODE = "1234"; 
+const WHATSAPP_NUMBER = "50932265636"; 
+
+const services = {
+    freefire: {
+        title:"Free Fire", icon:"🔥", description:"Recharge Free Fire.",
+        input:"ID Jwè", placeholder:"Antre ID Free Fire ou", type:"player",
+        packages:[["110 Diamonds",150],["220 Diamonds",300],["341 Diamonds",450],["572 Diamonds",750],["682 Diamonds",900],["792 Diamonds",1050],["913 Diamonds",1350],["1166 Diamonds",1500],["2398 Diamonds",3000],["3564 Diamonds",9300],["Booyah Pass",500],["Abonnement semaine",375],["Abonnement mois",1650]]
+    },
+    pubg: {
+        title:"PUBG Mobile", icon:"🎯", description:"Recharge PUBG Mobile UC.",
+        input:"ID Jwè", placeholder:"Antre ID PUBG Mobile ou", type:"player",
+        packages:[["60 UC",180],["325 UC",875],["660 UC",1600],["1800 UC",3500],["3850 UC",8000],["8100 UC",16900],["16200 UC",33000]]
+    },
+    mobilelegends: {
+        title:"Mobile Legends", icon:"⚔️", description:"Recharge Mobile Legends.",
+        input:"ID Jwè", placeholder:"Antre ID Mobile Legends ou", type:"player",
+        packages:[["275 Dyaman", 875],["565 Dyaman", 1750],["1,160 Dyaman", 3467],["1,770 Dyaman", 5054],["2,975 Dyaman", 7967],["6,000 Dyaman", 15016]]
+    },
+    cod: {
+        title:"Call of Duty Mobile", icon:"🎖️", description:"Recharge COD Mobile CP.",
+        input:"ID Jwè", placeholder:"Antre ID COD Mobile ou", type:"player",
+        packages:[["80 CP", 854],["420 CP", 1654],["880 CP", 3307],["2400 CP", 6615],["5000 CP", 12449],["10800 CP", 15567]]
+    },
+    efootball: {
+        title:"eFootball", icon:"⚽", description:"Recharge eFootball Coins.",
+        input:"ID Jwè", placeholder:"Antre ID eFootball ou", type:"player",
+        packages:[["1050 Coins",1950],["2150 Coins",4000],["3300 Coins",5900],["5800 Coins",9850],["12000 Coins",19700]]
+    },
+    popolive: {
+        title:"Popolive", icon:"🎥", description:"Popolive Coins.",
+        input:"ID / Username", placeholder:"Antre ID oswa Username Popolive", type:"player",
+        packages:[["9,900 Coins",350],["19,800 Coins",650],["29,700 Coins",1000],["39,600 Coins",1350]]
+    },
+    roblox: {
+        title:"Roblox", icon:"🤖", description:"Roblox Gift Card.",
+        input:"Username Roblox", placeholder:"Antre Username Roblox ou", type:"gift",
+        packages:[["$10 USD",1807],["$20 USD",3614],["$50 USD",9035],["$100 USD",18070]]
+    },
+    playstation: {
+        title:"PlayStation Gift Card", icon:"🎮", description:"PlayStation Gift Card.",
+        input:"Email / Compte", placeholder:"Antre enfòmasyon nesesè", type:"gift",
+        packages:[["$10 USD",null],["$20 USD",null],["$50 USD",null]]
+    },
+    googleplay: {
+        title:"Google Play Gift Card", icon:"📱", description:"Google Play Gift Card.",
+        input:"Email / Compte", placeholder:"Antre enfòmasyon nesesè", type:"gift",
+        packages:[["$10 USD",null],["$20 USD",null],["$50 USD",null]]
+    }
+};
+
+let currentService = "freefire";
+let selectedPackage = 0;
+
+function getCurrentGmail(){ return localStorage.getItem("phj_current_gmail"); }
+
+function konekte(){
+    const input = document.getElementById("gmail-input");
+    const gmail = input.value.trim();
+    if(gmail && gmail.includes("@")){
+        localStorage.setItem("phj_current_gmail", gmail);
+        document.getElementById("login-modal").style.display = "none";
+        renderPackages();
+    }else{
+        alert("Tanpri antre yon adrès Gmail valab.");
+    }
+}
+
+function soti(){
+    localStorage.removeItem("phj_current_gmail");
+    location.reload();
+}
+
+function checkLogin(){
+    if(!getCurrentGmail()){
+        document.getElementById("login-modal").style.display = "flex";
+        return false;
+    }
+    return true;
+}
+
+function renderTabs(){
+    const tabs = document.getElementById("tabs");
+    tabs.innerHTML = "";
+    Object.keys(services).forEach(key => {
+        const service = services[key];
+        const button = document.createElement("button");
+        button.className = "tab " + (key === currentService ? "active" : "");
+        button.innerHTML = `<span style="font-size:24px; display:block; margin-bottom:4px;">${service.icon}</span><span>${service.title}</span>`;
+        button.onclick = function(){
+            currentService = key;
+            selectedPackage = 0;
+            renderTabs();
+            renderPackages();
+        };
+        tabs.appendChild(button);
+    });
+}
+
+function renderPackages(){
+    const service = services[currentService];
+    const product = document.getElementById("product");
+    const prices = service.packages.map(item => item[1]).filter(price => typeof price === "number");
+    let min = prices.length ? Math.min(...prices) : 0;
+    let max = prices.length ? Math.max(...prices) : 0;
+    const selected = service.packages[selectedPackage];
+
+    let html = `
+        <div class="head">
+            <div class="product-top">
+                <div class="product-icon">${service.icon}</div>
+                <div>
+                    <h2>${service.title}</h2>
+                    ${prices.length ? `<div class="range">G ${min.toLocaleString()} – G${max.toLocaleString()}</div>` : `<div class="range">Pri ap vini</div>`}
+                </div>
+            </div>
+            <div class="desc">${service.description}</div>
+        </div>
+        <div class="grid">
+    `;
+
+    service.packages.forEach((item, index) => {
+        html += `
+            <button class="pkg ${index === selectedPackage ? "active" : ""}" onclick="pickPackage(${index})">
+                ${item[0]}
+                <small>${item[1] === null ? "Pri ap vini" : "G " + item[1].toLocaleString() + ".00"}</small>
+            </button>
+        `;
+    });
+
+    html += `
+        </div>
+        <div class="selected">
+            ${selected[1] === null ? "Pri chwazi: Pri ap vini" : "Pri chwazi: G " + selected[1].toLocaleString() + ".00"}
+        </div>
+        <div class="form">
+            <span class="badge">⚠️ Vérification requise</span>
+            <label>${service.type === "player" ? "🆔 " + service.input : "📧 " + service.input}</label>
+            <input id="service-info" type="text" placeholder="${service.placeholder}">
+            <label>📱 Nimewo ou te fè transfè a</label>
+            <input id="transfer" type="tel" placeholder="+509xxxxxxxx">
+        </div>
+        <button class="buy" onclick="paseKomand()">🛒 ACHETER MAINTENANT</button>
+    `;
+    product.innerHTML = html;
+}
+
+function pickPackage(index){
+    selectedPackage = index;
+    renderPackages();
+}
+
+function saveOrder(order){
+    db.collection("orders").add({
+        ...order,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => console.error(err));
+}
+
+function openGlobalModal(){
+    if(!checkLogin()) return;
+    document.getElementById("global-modal").style.display = "block";
+}
+function closeGlobalModal(){ document.getElementById("global-modal").style.display = "none"; }
+
+function openMyOrdersModal(){
+    if(!checkLogin()) return;
+    document.getElementById("my-orders-modal").style.display = "block";
+    loadMyOrders();
+}
+function closeMyOrdersModal(){ document.getElementById("my-orders-modal").style.display = "none"; }
+
+function loadMyOrders(){
+    const myOrdersListDiv = document.getElementById("my-orders-list");
+    const currentGmail = getCurrentGmail();
+    
+    db.collection("orders").where("gmail", "==", currentGmail).orderBy("timestamp", "desc").onSnapshot(snapshot => {
+        let orders = [];
+        snapshot.forEach(doc => orders.push(doc.data()));
+        if(!orders.length){
+            myOrdersListDiv.innerHTML = `<div class="no-orders">Ou poko pase okenn kòmand ak imèl sa a.</div>`;
+            return;
+        }
+        let html = "";
+        orders.forEach(o => {
+            html += `
+                <div class="order-item">
+                    🎮 <b>Sèvis:</b> ${o.service} (${o.package})<br>
+                    💰 <b>Pri:</b> G ${o.price.toLocaleString()}.00<br>
+                    🆔 <b>Info:</b> ${o.info}<br>
+                    📱 <b>Transfè:</b> ${o.transfer}<br>
+                    🕐 <b>Dat:</b> ${o.date}
+                </div>
+            `;
+        });
+        myOrdersListDiv.innerHTML = html;
+    }, error => {
+        // Fallback si Index Firestore la poko kreye sou 'where' + 'orderBy'
+        db.collection("orders").orderBy("timestamp", "desc").get().then(snapshot => {
+            let orders = [];
+            snapshot.forEach(doc => {
+                let data = doc.data();
+                if(data.gmail === currentGmail) orders.push(data);
+            });
+            if(!orders.length){
+                myOrdersListDiv.innerHTML = `<div class="no-orders">Ou poko pase okenn kòmand ak imèl sa a.</div>`;
+                return;
+            }
+            let html = "";
+            orders.forEach(o => {
+                html += `
+                    <div class="order-item">
+                        🎮 <b>Sèvis:</b> ${o.service} (${o.package})<br>
+                        💰 <b>Pri:</b> G ${o.price.toLocaleString()}.00<br>
+                        🆔 <b>Info:</b> ${o.info}<br>
+                        📱 <b>Transfè:</b> ${o.transfer}<br>
+                        🕐 <b>Dat:</b> ${o.date}
+                    </div>
+                `;
+            });
+            myOrdersListDiv.innerHTML = html;
+        });
+    });
+}
+
+function verifyGlobalSecret(){
+    const val = document.getElementById("global-secret-input").value.trim();
+    if(val === CLIENT_SECRET_CODE || val === ADMIN_SECRET_CODE){
+        document.getElementById("global-lock-section").style.display = "none";
+        document.getElementById("global-content-section").style.display = "flex";
+        loadGlobalData();
+    }else{
+        alert("Kòd sekrè a pa bon!");
+    }
+}
+
+function loadGlobalData(){
+    const ordersListDiv = document.getElementById("all-orders-list");
+    db.collection("orders").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+        let orders = [];
+        snapshot.forEach(doc => orders.push(doc.data()));
+        if(!orders.length){
+            ordersListDiv.innerHTML = `<div class="no-orders">Pa gen okenn kòmand pou kounye a.</div>`;
+            return;
+        }
+        let html = "";
+        orders.forEach(o => {
+            html += `
+                <div class="order-item">
+                    👤 <b>Kliyan:</b> ${o.gmail} <br>
+                    🎮 <b>${o.service}</b> - ${o.package} (G ${o.price})<br>
+                    🆔 <b>Info:</b> ${o.info} | 🕐 ${o.date}
+                </div>
+            `;
+        });
+        ordersListDiv.innerHTML = html;
+    });
+
+    const chatContainer = document.getElementById("global-chat-messages");
+    db.collection("globalChat").orderBy("timestamp", "asc").onSnapshot(snapshot => {
+        let messages = [];
+        snapshot.forEach(doc => messages.push(doc.data()));
+        if(!messages.length){
+            chatContainer.innerHTML = `<div class="msg user" style="margin:auto; text-align:center;">Byenveni nan chat global la! Tout moun ka wè mesaj yo epi reponn.</div>`;
+            return;
+        }
+        let html = "";
+        messages.forEach(m => {
+            html += `
+                <div class="msg user" style="align-self: ${m.gmail === getCurrentGmail() ? 'flex-end' : 'flex-start'};">
+                    <b style="font-size:11px; color:var(--gold); display:block; margin-bottom:2px;">${m.gmail}</b>
+                    <span>${m.text}</span>
+                    <span class="msg-time">${m.date}</span>
+                </div>
+            `;
+        });
+        chatContainer.innerHTML = html;
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    });
+}
+
+function sendGlobalMessage(){
+    const input = document.getElementById("global-chat-input");
+    const text = input.value.trim();
+    if(!text) return;
+
+    const gmail = getCurrentGmail();
+    const timeString = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    db.collection("globalChat").add({
+        gmail: gmail,
+        text: text,
+        date: timeString,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => console.error(err));
+
+    input.value = "";
+}
+
+function handleGlobalKeyPress(e){ if(e.key === "Enter") sendGlobalMessage(); }
+
+function paseKomand(){
+    if(!checkLogin()) return;
+    const service = services[currentService];
+    const packageData = service.packages[selectedPackage];
+    const packageName = packageData[0];
+    const price = packageData[1];
+
+    if(price === null){ alert("Pri pou sèvis sa a poko disponib."); return; }
+
+    const info = document.getElementById("service-info").value.trim();
+    const transfer = document.getElementById("transfer").value.trim();
+
+    if(!info || !transfer){ alert("Tanpri ranpli tout jaden yo!"); return; }
+
+    const gmail = getCurrentGmail();
+    const timeString = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const fullDate = new Date().toLocaleDateString("fr-FR") + " nan " + timeString;
+
+    const order = {
+        id: Date.now(), service: service.title, package: packageName,
+        price: price, info: info, transfer: transfer, gmail: gmail, date: fullDate
+    };
+
+    saveOrder(order);
+
+    let templateParams = {
+        client_name: gmail,           
+        service_name: service.title,       
+        package_name: packageName,         
+        price: "G " + price.toLocaleString() + ".00", 
+        info: info,                        
+        transfer: transfer                 
+    };
+
+    emailjs.send("service_mhtvv...", "CHACHE_TEMPLATE_ID_LA_METE_L_ISIT", templateParams)
+        .then(function(response) {
+           console.log("Siksè imèl!", response.status);
+        }, function(error) {
+           console.log("Echèk imèl:", error);
+        });
+
+    let whatsappMessage = `*Nouvo Kòmand - PHJoolens Store*%0A` +
+                          `👤 *Kliyan:* ${gmail}%0A` +
+                          `🎮 *Sèvis:* ${service.title}%0A` +
+                          `📦 *Pakè:* ${packageName}%0A` +
+                          `💰 *Pri:* G ${price.toLocaleString()}.00%0A` +
+                          `🆔 *Info:* ${info}%0A` +
+                          `📱 *Transfè:* ${transfer}%0A` +
+                          `🕐 *Dat:* ${fullDate}`;
+
+    let whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
+    
+    alert("Kòmand ou anrejistre! L ap dirije w sou WhatsApp pou konfime l.");
+    window.open(whatsappURL, '_blank');
+    
+    openMyOrdersModal();
+}
+
+function openAdminModal(){
+    document.getElementById("admin-modal").style.display = "block";
+    renderAdminLogin();
+}
+
+function closeAdminModal(){ document.getElementById("admin-modal").style.display = "none"; }
+
+function renderAdminLogin(){
+    document.getElementById("admin-content").innerHTML = `
+        <div style="text-align:center; padding:20px;">
+            <h3>Antre kòd sekrè admin lan</h3>
+            <input type="password" id="admin-pass-input" placeholder="Kòd sekrè" style="width:100%; max-width:300px; padding:12px; border:1px solid #ccc; border-radius:8px; margin:10px 0; font-size:16px;">
+            <br>
+            <button onclick="verifyAdminPass()" style="padding:10px 25px; background:var(--dark); color:white; border:0; border-radius:8px; font-weight:bold; cursor:pointer;">Antre</button>
+        </div>
+    `;
+}
+
+function verifyAdminPass(){
+    if(document.getElementById("admin-pass-input").value === ADMIN_SECRET_CODE){
+        document.getElementById("admin-content").innerHTML = `<h3>✅ Ou konekte kòm Admin</h3><p>Ou ka wè tout done nan baz done a an tan reyèl.</p>`;
+    }else{
+        alert("Kòd sekrè a pa bon!");
+    }
+}
+
+function goHome(){ window.scrollTo({top:0, behavior:"smooth"}); }
+
+window.onload = function(){
+    document.getElementById("login-modal").style.display = getCurrentGmail() ? "none" : "flex";
+    renderTabs();
+    renderPackages();
+};
+</script>
+</body>
+</html>
