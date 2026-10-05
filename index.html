@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHJoolens Store</title>
+
+<style>
+:root{
+  --gold:#d99a16;
+  --gold2:#efbd4b;
+  --dark:#14213d;
+  --gray:#687080;
+  --bg:#f7f8fa;
+  --green:#25d366;
+  --red:#e74c3c;
+  --white:#fff;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  padding-bottom:80px;
+}
+
+button,input,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:white;
+  box-shadow:0 2px 12px rgba(0,0,0,.08);
+  padding:12px 15px;
+}
+
+.header-inner{
+  max-width:1000px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:800;
+  color:var(--gold);
+}
+
+.wallet{
+  background:#fff7df;
+  color:#9a6a00;
+  padding:8px 12px;
+  border-radius:20px;
+  font-weight:bold;
+  font-size:13px;
+}
+
+.logout{
+  border:0;
+  background:#f0f2f5;
+  color:var(--dark);
+  padding:8px 10px;
+  border-radius:10px;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:18px 14px;
+}
+
+.hero{
+  text-align:center;
+  padding:12px 0 20px;
+}
+
+.hero h1{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.hero p{
+  color:var(--gray);
+  font-size:14px;
+}
+
+/* BONUS */
+.bonus-box{
+  margin:15px 0;
+  background:white;
+  border:1px solid #eee;
+  border-radius:16px;
+  box-shadow:0 4px 15px rgba(0,0,0,.06);
+  overflow:hidden;
+}
+
+.bonus-toggle{
+  width:100%;
+  border:0;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:white;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:800;
+  font-size:15px;
+}
+
+.bonus-arrow{
+  transition:.25s;
+}
+
+.bonus-box.open .bonus-arrow{
+  transform:rotate(180deg);
+}
+
+.bonus-content{
+  display:none;
+  padding:12px;
+}
+
+.bonus-box.open .bonus-content{
+  display:block;
+}
+
+.bonus-row{
+  border:1px solid #eee;
+  border-radius:14px;
+  padding:12px;
+  margin-bottom:10px;
+  background:#fff;
+}
+
+.b
