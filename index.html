@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PHJoolens Store</title>
+
+<style>
+
+:root{
+    --gold:#d99a16;
+    --gold2:#efbd4b;
+    --dark:#14213d;
+    --gray:#687080;
+    --white:#ffffff;
+    --bg:#f7f8fa;
+    --green:#25d366;
+    --red:#e74c3c;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    padding-bottom:90px;
+    font-family:Segoe UI,Tahoma,Arial,sans-serif;
+    background:var(--bg);
+    color:#222;
+}
+
+
+/* ================= LOGIN ================= */
+
+#login-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    padding:20px;
+}
+
+.login-box{
+    background:white;
+    width:100%;
+    max-width:410px;
+    padding:30px 24px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 15px 50px rgba(0,0,0,.25);
+}
+
+.login-logo{
+    font-size:42px;
+    margin-bottom:5px;
+}
+
+.login-box h2{
+    margin:5px 0 10px;
+    color:var(--dark);
+}
+
+.login-box p{
+    color:var(--gray);
+    line-height:1.5;
+}
+
+.login-box input{
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
+}
+
+.login-box input:focus{
+    border-color:var(--gold);
+}
+
+.login-box button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:10px;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:white;
+    font-weight:800;
+    font-size:16px;
+    cursor:pointer;
+}
+
+
+/* ================= HEADER ================= */
+
+header{
+    position:sticky;
+    top:0;
+    z
