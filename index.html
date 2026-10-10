@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071020">
+<title>PHJoolens Store</title>
+<style>
+:root{--gold:#ffd34f;--gold2:#ffb900;--dark:#071020;--gray:#b7c1d6;--white:#fff;--bg:#050b18;--green:#25d366;--red:#e74c3c}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;padding-bottom:100px;font-family:Segoe UI,Tahoma,Arial,sans-serif;background:radial-gradient(ellipse at top,#14213d 0%,#050b18 55%,#020611 100%);color:#fff}
+button,input{font:inherit}
+button{cursor:pointer}
+#login-modal{position:fixed;inset:0;background:#000d;display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+.login-box{background:#101b30;width:100%;max-width:410px;padding:30px 24px;border-radius:20px;text-align:center;border:1px solid #b4872d}
+.login-logo{font-size:42px}
+.login-box h2{color:var(--gold)}
+.login-box p{color:var(--gray);line-height:1.5}
+.login-box input{width:100%;padding:14px;margin:10px 0;border:1px solid #39445a;border-radius:10px;background:#071020;color:white}
+.login-box button,.buy,.claim-btn{width:100%;padding:14px;border:0;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#15100a;font-weight:900}
+header{position:sticky;top:0;z-index:1000;background:#071020f7;padding:13px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #39445a}
+.logo{font-size:15px;font-weight:900;color:var(--gold)}
+.wallet{background:#18243a;color:var(--gold);border:1px solid #a87a20;padding:8px;border-radius:20px;font-weight:800;font-size:12px;white-space:nowrap}
+.logout{background:var(--red);color:white;border:0;padding:8px;border-radius:8px;font-weight:700}
+.container{width:100%;max-width:1000px;margin:auto;padding:18px 12px}
+.main-title{text-align:center;color:var(--gold);font-size:27px}
+.subtitle{text-align:center;color:var(--gray);margin-bottom:20px}
+.hero-banner{position:relative;display:flex;align-items:center;overflow:hidden;padding:23px 17px;margin:8px 0 27px;min-height:225px;border:1px solid var(--gold);border-radius:20px;background:radial-gradient(ellipse at 80% 50%,#634413,transparent 43%),linear-gradient(120deg,#030712,#17223a,#070b15);box-shadow:0 0 22px #ffbf2440}
+.hero-copy{position:relative;z-index:1;max-width:78%}
+.hero-label{color:var(--gold);font-weight:900;font-size:12px}
+.hero-copy h2{font-size:clamp(23px,5vw,36px);line-height:1.15}
+.hero-copy h2 span{color:var(--gold)}
+.hero-copy p{font-size:13px;color:#e0e5ee}
+.hero-copy button{border:0;border-radius:30px;padding:12px 19px;background:linear-gradient(135deg,#ffe276,#ffb900);font-weight:900}
+.hero-art{position:absolute;right:15px;top:50%;transform:translateY(-50%);font-size:65px}
+.bonus-card{background:linear-gradient(135deg,#14213d,#1f3159);border-radius:16px;padding:18px;margin-bottom:15px;border:1px solid #6e5526}
+.bonus-header{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.bonus-title{font-weight:900;font-size:14px;color:var(--gold)}
+.bonus-count{color:var(--gold);padding:5px 9px;border-radius:10px;font-weight:900;border:1px solid var(--gold);white-space:nowrap}
+.progress-bar-container{width:100%;background:#ffffff30;border-radius:10px;height:12px;overflow:hidden;margin:12px 0}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));width:0%;transition:width .4s}
+.bonus-desc{font-size:13px;color:#d1d5db;margin-bottom:12px;line-height:1.5}
+.claim-btn{display:none}
+.service-title{font-size:22px;font-weight:900;color:var(--gold);margin:25px 0 12px}
+.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.tab{border:1px solid #4a3a1a;background:radial-gradient(ellipse at top right,#76521d,transparent 55%),linear-gradient(145deg,#182743,#080e1b);color:white;border-radius:17px;padding:15px;min-height:125px;text-align:left;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:7px}
+.tab.active{border:2px solid var(--gold);box-shadow:0 0 16px #d99a1650}
+.tab-icon{font-size:38px}
+.tab-name{font-size:16px;font-weight:900}
+.head,.form,.ff-row-container,.pkg,.selected{background:linear-gradient(145deg,#101b30,#080f20);color:white;border:1px solid #39445a}
+.head{border-radius:16px;padding:18px;margin-bottom:14px}
+.product-top{display:flex;align-items:center;gap:15px}
+.product-icon{font-size:45px}
+.head h2{margin:0 0 7px;color:var(--gold)}
+.range{font-size:18px;font-weight:900;color:var(--gold)}
+.desc{color:#c0c9da;line-height:1.5;margin-top:10px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pkg{border-radius:12px;padding:13px 9px;text-align:left;font-weight:800;min-height:65px}
+.pkg.active{border:2px solid var(--gold);background:#33270d}
+.pkg small{display:block;color:var(--gold);margin-top:6px;font-size:14px}
+.ff-row-container{grid-column:span 2;border-radius:12px;padding:12px;margin-bottom:5px}
+.ff-row-title{font-size:14px;font-weight:800;color:var(--gold);margin-bottom:8px;border-left:3px solid var(--gold);padding-left:6px}
+.ff-row-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.selected{border-radius:13px;padding:15px;margin:15px 0;font-size:19px;font-weight:900;color:var(--gold);text-align:center}
+.form{border-radius:15px;padding:17px}
+.badge{display:inline-block;background:#30270f;border:1px solid #8d6b20;color:var(--gold);padding:7px 10px;border-radius:7px;font-size:13px;font-weight:800;margin-bottom:10px}
+.form label{display:block;font-weight:800;margin:10px 0 6px}
+.form input{width:100%;padding:13px;border:1px solid #3c4961;border-radius:9px;background:#0a1426;color:white;font-size:16px}
+.form input::placeholder{color:#8592aa}
+.hint{font-size:12px;color:#aebbd2;margin-top:5px}
+.buy{margin-top:14px;font-size:17px}
+.payment{background:#101e33;border-left:5px solid var(--gold);padding:17px;margin-top:20px;border-radius:10px}
+.payment h3,.payment-number{color:var(--gold)}
+.payment h3{margin-top:0}
+.payment p{margin:8px 0;font-size:14px}
+#orders-modal{display:none;position:fixed;inset:0;z-index:5000;background:#000b;padding:20px;overflow-y:auto}
+.orders-box{background:#101b30;max-width:650px;margin:40px auto;border-radius:18px;padding:20px;border:1px solid #b4872d}
+.orders-header{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.orders-header h2{color:var(--gold)}
+.close-btn{border:0;background:#26334a;color:white;width:38px;height:38px;border-radius:50%;font-size:20px}
+.order-item{border:1px solid #39445a;border-radius:12px;padding:14px;margin-top:10px;background:#0a1426;overflow-wrap:anywhere}
+.no-orders{text-align:center;color:#b7c1d6;padding:25px}
+.nav{position:fixed;bottom:0;left:0;width:100%;z-index:2000;background:#071020f7;border:1px solid #35425a;border-radius:18px 18px 0 0;display:flex;justify-content:space-around;padding:10px 2px}
+.nav a{text-decoration:none;color:#aebbd2;text-align:center;font-size:11px;min-width:0;flex:1}
+.nav b{display:block;font-size:22px;margin-bottom:2px}
+@media(min-width:650px){.tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.tab{min-height:150px}.container{padding:22px 18px}}
+@media(max-width:380px){.container{padding:14px 9px}.tab{min-height:115px;padding:11px}.tab-name{font-size:14px}.logo{font-size:12px}.wallet,.logout{padding:7px;font-size:11px}.hero-art{right:5px;font-size:50px}}
+</style>
+</head>
+<body>
+
+<div id="login-modal">
+ <div class="login-box">
+  <div class="login-logo">💎</div>
+  <h2>PH JOOLENS STORE</h2>
+  <p>Antre adrès Gmail ou pou w ka konekte.</p>
+  <input type="email" id="gmail-input" placeholder="egzanp@gmail.com">
+  <button onclick="konekte()">Konekte</button>
+ </div>
+</div>
+
+<header>
+ <div class="logo">💎 PH JOOLENS STORE</div>
+ <div class="wallet">G 0.00</div>
+ <button class="logout" onclick="soti()">Dekonekte</button>
+</header>
+
+<main class="container">
+ <section class="hero-banner">
+  <div class="hero-copy">
+   <div class="hero-label">⚡ PH JOOLENS STORE</div>
+   <h2>Top-Up rapid,<br><span>fasil, an sekirite</span></h2>
+   <p>Pi bon sèvis pou tout jwèt ou yo!</p>
+   <button onclick="scrollServices()">Dekouvri ›</button>
+  </div>
+  <div class="hero-art">🎮</div>
+ </section>
+
+ <h1 class="main-title">PHJoolens Store</h1>
+ <div class="subtitle">Gaming • Diamonds • UC • Coins • Gift Cards</div>
+
+ <div class="bonus-card">
+  <div class="bonus-header">
+   <span class="bonus-title">🔥 Bonus Liy 1: Ti Pakè</span>
+   <span class="bonus-count" id="bonus-counter-1">0 / 30</span>
+  </div>
+  <div class="progress-bar-container"><div class="progress-bar" id="bonus-progress-1"></div></div>
+  <div class="bonus-desc" id="bonus-desc-text-1">Fè 30 kòmand nan Liy 1 pou touche 110 Diamonds.</div>
+  <button class="claim-btn" id="claim-bonus-btn-1" onclick="reklameBonus(1)">🎁 Reklame 110 Diamonds</button>
+ </div>
+
+ <div class="bonus-card">
+  <div class="bonus-header">
+   <span class="bonus-title">🏆 Bonus Liy 2: Gwo Pakè</span>
+   <span class="bonus-count" id="bonus-counter-2">0 / 30</span>
+  </div>
+  <div class="progress-bar-container"><div class="progress-bar" id="bonus-progress-2"></div></div>
+  <div class="bonus-desc" id="bonus-desc-text-2">Fè 30 kòmand nan Liy 2 pou touche 341 Diamonds.</div>
+  <button class="claim-btn" id="claim-bonus-btn-2" onclick="reklameBonus(2)">🎁 Reklame 341 Diamonds</button>
+ </div>
+
+ <div class="service-title" id="services">🎮 Pwodwi Disponib</div>
+ <div class="tabs" id="tabs"></div>
+ <div id="product"></div>
+
+ <div class="payment">
+  <h3>💳 Enfòmasyon sou Peman</h3>
+  <p>📲 <b>WhatsApp:</b> <span class="payment-number">+509 32 26 5636</span></p>
+  <p>💸 <b>MonCash:</b> <span class="payment-number">+509 4882-8406</span></p>
+  <p>💰 <b>NatCash:</b> <span class="payment-number">+509 5607-9663</span></p>
+  <p>⚠ Antre nimewo ou te itilize pou fè transfè a anvan ou voye kòmand lan.</p>
+ </div>
+</main>
+
+<div id="orders-modal">
+ <div class="orders-box">
+  <div class="orders-header">
+   <h2>📋 Mes kòmand</h2>
+   <button class="close-btn" onclick="closeOrders()">×</button>
+  </div>
+  <div id="orders-list"></div>
+ </div>
+</div>
+
+<nav class="nav">
+ <a href="#" onclick="goHome();return false"><b>🏠</b>Akèy</a>
+ <a href="#services" onclick="scrollServices()"><b>🛒</b>Sèvis</a>
+ <a href="#" onclick="showWallet();return false"><b>💳</b>Portefeuille</a>
+ <a href="#" onclick="openOrdersModal();return false"><b>📋</b>Kòmand</a>
+ <a href="https://wa.me/50932265636" target="_blank" rel="noopener"><b>💬</b>Sipò</a>
+</nav>
+
+<script>
+const services={
+freefire:{
+title:"Free Fire",icon:"🔥",
+description:"Recharge Free Fire. Antre ID ak non jwè a.",
+input:"ID Jwè",placeholder:"Antre ID Free Fire ou",type:"player",isFreeFire:true,
+packages:[["110 Diamonds",150],["220 Diamonds",300],["341 Diamonds",450],["572 Diamonds",750],["682 Diamonds",900],["792 Diamonds",1050],["913 Diamonds",1350],["1166 Diamonds",1500],["2398 Diamonds",3000],["3564 Diamonds",9300],["Booyah Pass",500],["Abonnement semaine",375],["Abonnement mois",1650]]
+},
+pubg:{
+title:"PUBG Mobile",icon:"🎯",description:"Recharge PUBG Mobile UC.",
+input:"ID Jwè",placeholder:"Antre ID PUBG Mobile ou",type:"player",
+packages:[["60 UC",180],["325 UC",875],["660 UC",1600],["1800 UC",3500],["3850 UC",8000],["8100 UC",16900],["16200 UC",33000]]
+},
+mobilelegends:{
+title:"Mobile Legends",icon:"⚔️",description:"Recharge Mobile Legends Diamonds.",
+input:"ID Jwè & Zone ID",placeholder:"Antre ID ak Zone ID ou",type:"player",
+packages:[["275 Dyaman",875],["565 Dyaman",1750],["1,160 Dyaman",3467],["1,770 Dyaman",5054],["2,975 Dyaman",7967],["6,000 Dyaman",15016]]
+},
+cod:{
+title:"Call of Duty Mobile",icon:"🎖️",description:"Recharge Call of Duty Mobile CP.",
+input:"ID Jwè",placeholder:"Antre ID Call of Duty Mobile ou",type:"player",
+packages:[["80 CP",854],["420 CP",1654],["880 CP",3307],["2400 CP",6615],["5000 CP",12449],["10800 CP",15567]]
+},
+efootball:{
+title:"eFootball",icon:"⚽",description:"Recharge eFootball Coins.",
+input:"ID Jwè",placeholder:"Antre ID eFootball ou",type:"player",
+packages:[["1050 Coins",1950],["2150 Coins",4000],["3300 Coins",5900],["5800 Coins",9850],["12000 Coins",19700]]
+},
+popolive:{
+title:"Popolive",icon:"🎥",description:"Popolive Coins.",
+input:"ID / Username",placeholder:"Antre ID oswa Username Popolive ou",type:"player",
+packages:[["9,900 Coins",350],["19,800 Coins",650],["29,700 Coins",1000],["39,600 Coins",1350],["49,500 Coins",1700],["59,400 Coins",2000],["69,300 Coins",2300],["79,200 Coins",2600],["89,100 Coins",2850],["99,000 Coins",3150],["108,900 Coins",3450],["118,800 Coins",3700],["128,700 Coins",4000],["138,600 Coins",4300],["148,500 Coins",4600],["198,000 Coins",5700],["247,500 Coins",6950],["297,000 Coins",8150],["346,500 Coins",9350],["396,000 Coins",10600],["445,500 Coins",11850],["495,000 Coins",13050],["594,000 Coins",15500],["693,000 Coins",17950],["792,000 Coins",20400],["891,000 Coins",22850],["990,000 Coins",25300],["1,980,000 Coins",50600],["2,970,000 Coins",75900],["3,960,000 Coins",101200]]
+},
+roblox:{
+title:"Roblox Gift Card",icon:"🤖",description:"Roblox Gift Card disponib.",
+input:"Username Roblox",placeholder:"Antre Username Roblox ou",type:"gift",
+packages:[["$10 USD",1807],["$20 USD",3614],["$30 USD",5421],["$40 USD",7228],["$50 USD",9035],["$60 USD",10842],["$70 USD",12649],["$80 USD",14456],["$90 USD",16263],["$100 USD",18070],["$150 USD",27105],["$200 USD",36140]]
+},
+playstation:{
+title:"PlayStation Gift Card",icon:"🎮",description:"PlayStation Gift Card.",
+input:"Email / Compte",placeholder:"Antre enfòmasyon nesesè",type:"gift",
+packages:[["$10 USD",null],["$20 USD",null],["$50 USD",null],["$100 USD",null]]
+},
+googleplay:{
+title:"Google Play Gift Card",icon:"📱",description:"Google Play Gift Card.",
+input:"Email / Compte",placeholder:"Antre enfòmasyon nesesè",type:"gift",
+packages:[["$10 USD",null],["$20 USD",null],["$50 USD",null],["$100 USD",null]]
+}
+};
+
+let currentService="freefire";
+let selectedPackage=0;
+let temporaryGmail="";
+
+function getCurrentGmail(){return temporaryGmail;}
+
+function konekte(){
+const gmail=document.getElementById("gmail-input").value.trim().toLowerCase();
+if(!/^[^\s@]+@gmail\.com$/i.test(gmail)){
+alert("Tanpri antre yon adrès Gmail valab.");
+return;
+}
+temporaryGmail=gmail;
+document.getElementById("login-modal").style.display="none";
+renderTabs();
+renderPackages();
+updateBonusProgress();
+}
+
+function soti(){
+temporaryGmail="";
+location.reload();
+}
+
+function checkLogin(){
+if(!temporaryGmail){
+document.getElementById("login-modal").style.display="flex";
+return false;
+}
+return true;
+}
+
+function renderTabs(){
+const tabs=document.getElementById("tabs");
+tabs.innerHTML="";
+Object.keys(services).forEach(key=>{
+const s=services[key];
+const button=document.createElement("button");
+button.className="tab "+(key===currentService?"active":"");
+const icon=document.createElement("span");
+icon.className="tab-icon";
+icon.textContent=s.icon;
+const name=document.createElement("span");
+name.className="tab-name";
+name.textContent=s.title;
+const desc=document.createElement("span");
+desc.style.cssText="font-size:12px;color:#b7c1d6";
+desc.textContent="Top-Up • Pakè • Sèvis";
+button.append(icon,name,desc);
+button.onclick=()=>{
+currentService=key;
+selectedPackage=0;
+renderTabs();
+renderPackages();
+};
+tabs.appendChild(button);
+});
+}
+
+function renderPackages(){
+const service=services[currentService];
+const product=document.getElementById("product");
+const prices=service.packages.map(x=>x[1]).filter(x=>typeof x==="number");
+const min=prices.length?Math.min(...prices):0;
+const max=prices.length?Math.max(...prices):0;
+const selected=service.packages[selectedPackage];
+
+let html=`<div class="head">
+<div class="product-top"><div class="product-icon">${service.icon}</div>
+<div><h2>${service.title}</h2>
+<div class="range">${prices.length?"G "+min.toLocaleString()+" – G "+max.toLocaleString():"Pri ap vini"}</div>
+</div></div><div class="desc">${service.description}</div></div><div class="grid">`;
+
+if(service.isFreeFire){
+html+='<div class="ff-row-container"><div class="ff-row-title">💎 Liy 1: Ti Pakè</div><div class="ff-row-grid">';
+for(let i=0;i<7;i++){
+const item=service.packages[i];
+html+=`<button class="pkg ${i===selectedPackage?"active":""}" onclick="pickPackage(${i})">${item[0]}<small>G ${item[1].toLocaleString()}.00</small></button>`;
+}
+html+='</div></div><div class="ff-row-container"><div class="ff-row-title">🏆 Liy 2: Gwo Pakè</div><div class="ff-row-grid">';
+for(let i=7;i<service.packages.length;i++){
+const item=service.packages[i];
+html+=`<button class="pkg ${i===selectedPackage?"active":""}" onclick="pickPackage(${i})">${item[0]}<small>G ${item[1].toLocaleString()}.00</small></button>`;
+}
+html+='</div></div>';
+}else{
+service.packages.forEach((item,i)=>{
+html+=`<button class="pkg ${i===selectedPackage?"active":""}" onclick="pickPackage(${i})">${item[0]}<small>${item[1]===null?"Pri ap vini":"G "+item[1].toLocaleString()+".00"}</small></button>`;
+});
+}
+
+html+='</div><div class="selected">'+(selected[1]===null?"Pri chwazi: Pri ap vini":"Pri chwazi: G "+selected[1].toLocaleString()+".00")+'</div><div class="form"><span class="badge">⚠️ Vérification requise</span>';
+
+if(service.type==="player"){
+html+=`<label>🆔 ${service.input}</label><input id="service-info" type="text" placeholder="${service.placeholder}">
+<label>👤 Non Jwè a (Nickname)</label><input id="player-name" type="text" placeholder="Antre non jwè a nan jwèt la">
+<div class="hint">Verifye enfòmasyon yo anvan ou voye kòmand lan.</div>`;
+}else{
+html+=`<label>📧 ${service.input}</label><input id="service-info" type="text" placeholder="${service.placeholder}">
+<div class="hint">Mete enfòmasyon ki nesesè pou Gift Card la.</div>`;
+}
+
+html+='<label>📱 Nimewo ou te fè transfè a</label><input id="transfer" type="tel" placeholder="+509xxxxxxxx"><div class="hint">Mete nimewo ki te itilize pou fè peman an.</div></div><button class="buy" onclick="paseKomand()">🛒 ACHETER MAINTENANT</button>';
+product.innerHTML=html;
+}
+
+function pickPackage(index){
+selectedPackage=index;
+renderPackages();
+}
+
+function getBonusData(){
+const gmail=getCurrentGmail();
+if(!gmail)return{count1:0,count2:0};
+try{
+return JSON.parse(localStorage.getItem("phj_ff_bonus_dual_"+gmail))||{count1:0,count2:0};
+}catch(e){return{count1:0,count2:0};}
+}
+
+function saveBonusData(count1,count2){
+const gmail=getCurrentGmail();
+if(!gmail)return;
+localStorage.setItem("phj_ff_bonus_dual_"+gmail,JSON.stringify({count1,count2}));
+}
+
+function updateBonusProgress(){
+if(!getCurrentGmail())return;
+const data=getBonusData();
+const c1=Math.min(data.count1,30);
+document.getElementById("bonus-counter-1").innerText=c1+" / 30";
+document.getElementById("bonus-progress-1").style.width=(c1/30*100)+"%";
+document.getElementById("bonus-desc-text-1").textContent=c1>=30?"🎉 Ou fini 30 kòmand sou Liy 1. Ou ka reklame 110 Diamonds!":`Fè ${30-c1} lòt kòmand nan Liy 1 pou touche 110 Diamonds.`;
+document.getElementById("claim-bonus-btn-1").style.display=c1>=30?"block":"none";
+
+const c2=Math.min(data.count2,30);
+document.getElementById("bonus-counter-2").innerText=c2+" / 30";
+document.getElementById("bonus-progress-2").style.width=(c2/30*100)+"%";
+document.getElementById("bonus-desc-text-2").textContent=c2>=30?"🎉 Ou fini 30 kòmand sou Liy 2. Ou ka reklame 341 Diamonds!":`Fè ${30-c2} lòt kòmand nan Liy 2 pou touche 341 Diamonds.`;
+document.getElementById("claim-bonus-btn-2").style.display=c2>=30?"block":"none";
+}
+
+function reklameBonus(lineNum){
+const data=getBonusData();
+if((lineNum===1?data.count1:data.count2)<30){
+alert("Ou poko rive nan 30 kòmand pou bonus sa a.");
+return;
+}
+const playerId=prompt("Antre ID Free Fire ou pou n ka voye bonus la ba ou:");
+if(!playerId||!playerId.trim()){
+alert("Tanpri antre yon ID valid.");
+return;
+}
+const bonusType=lineNum===1?"Bonus Liy 1 (110 Diamonds)":"Bonus Liy 2 (341 Diamonds)";
+const message=`Salut PHJoolens Store! 👋\n\nMwen ta renmen REKLAME ${bonusType} mwen!\n\n🎮 ID Free Fire: ${playerId.trim()}\n📧 Gmail: ${getCurrentGmail()}\n🕐 Dat: ${new Date().toLocaleString("fr-FR")}`;
+window.open("https://wa.me/50932265636?text="+encodeURIComponent(message),"_blank");
+if(lineNum===1)data.count1=0;
+else data.count2=0;
+saveBonusData(data.count1,data.count2);
+updateBonusProgress();
+}
+
+function saveOrder(order){
+const gmail=getCurrentGmail();
+if(!gmail)return;
+const key="phj_commands_"+gmail;
+let orders=[];
+try{orders=JSON.parse(localStorage.getItem(key)||"[]");}catch(e){}
+orders.unshift(order);
+localStorage.setItem(key,JSON.stringify(orders));
+
+if(order.service==="Free Fire"){
+const data=getBonusData();
+const idx=services.freefire.packages.findIndex(x=>x[0]===order.package);
+if(idx>=0&&idx<=6&&data.count1<30)data.count1++;
+else if(idx>=7&&data.count2<30)data.count2++;
+saveBonusData(data.count1,data.count2);
+updateBonusProgress();
+}
+}
+
+function paseKomand(){
+if(!checkLogin())return;
+const service=services[currentService];
+const pkg=service.packages[selectedPackage];
+const price=pkg[1];
+if(price===null){alert("Pri pou sèvis sa a poko disponib.");return;}
+
+const info=document.getElementById("service-info").value.trim();
+const nameInput=document.getElementById("player-name");
+const playerName=nameInput?nameInput.value.trim():"";
+const transfer=document.getElementById("transfer").value.trim();
+
+if(!info){alert("Tanpri antre enfòmasyon sèvis la.");return;}
+if(service.type==="player"&&!playerName){alert("Tanpri antre non jwè a.");return;}
+if(!transfer){alert("Tanpri antre nimewo transfè a.");return;}
+
+const gmail=getCurrentGmail();
+const date=new Date().toLocaleString("fr-FR");
+const order={id:Date.now(),service:service.title,package:pkg[0],price,info,playerName,transfer,gmail,date};
+saveOrder(order);
+
+const message=`Salut PHJoolens Store! 👋\n\n🎮 Sèvis: ${service.title}\n📦 Pakè: ${pkg[0]}\n💰 Pri: G ${price.toLocaleString()}.00\n${service.type==="player"?"🆔 ID: "+info+"\n👤 Non Jwè: "+playerName:"📧 Enfòmasyon: "+info}\n📱 Transfè: ${transfer}\n📧 Gmail: ${gmail}\n🕐 Dat: ${date}`;
+window.open("https://wa.me/50932265636?text="+encodeURIComponent(message),"_blank");
+}
+
+function openOrdersModal(){
+if(!checkLogin())return;
+renderCommandsList();
+document.getElementById("orders-modal").style.display="block";
+}
+
+function closeOrders(){
+document.getElementById("orders-modal").style.display="none";
+}
+
+function renderCommandsList(){
+const gmail=getCurrentGmail();
+const list=document.getElementById("orders-list");
+let orders=[];
+try{orders=JSON.parse(localStorage.getItem("phj_commands_"+gmail)||"[]");}catch(e){}
+if(!orders.length){
+list.innerHTML='<div class="no-orders">📋<br><br>Ou poko gen okenn kòmand anrejistre pou sesyon sa a.</div>';
+return;
+}
+list.innerHTML="";
+orders.forEach(order=>{
+const div=document.createElement("div");
+div.className="order-item";
+const title=document.createElement("strong");
+title.textContent="🎮 "+order.service;
+div.appendChild(title);
+div.appendChild(document.createElement("br"));
+div.appendChild(document.createElement("br"));
+const details=[["📦 Pakè",order.package],["💰 Pri","G "+Number(order.price).toLocaleString()+".00"],["🆔 Info",order.info]];
+if(order.playerName)details.push(["👤 Non Jwè",order.playerName]);
+details.push(["📱 Transfè",order.transfer],["🕐 Dat",order.date]);
+details.forEach(([label,value])=>{
+const b=document.createElement("b");
+b.textContent=label+": ";
+div.appendChild(b);
+div.appendChild(document.createTextNode(value||""));
+div.appendChild(document.createElement("br"));
+});
+list.appendChild(div);
+});
+}
+
+function goHome(){
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function scrollServices(){
+document.getElementById("services").scrollIntoView({behavior:"smooth"});
+}
+
+function showWallet(){
+if(!checkLogin())return;
+alert("💳 Portefeuille PHJoolens Store\n\nSolde aktyèl: G 0.00");
+}
+
+document.getElementById("orders-modal").addEventListener("click",function(event){
+if(event.target===this)closeOrders();
+});
+
+window.onload=function(){
+document.getElementById("login-modal").style.display="flex";
+};
+</script>
+</body>
+</html>
