@@ -1,0 +1,932 @@
+
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030918">
+<title>PH JOOLENS STORE</title>
+
+<style>
+:root {
+  --gold:#ffca28;
+  --gold2:#ff9900;
+  --bg:#030918;
+  --card:#0b1429;
+  --text:#ffffff;
+  --muted:#b5bfd5;
+  --blue:#168cff;
+  --border:#34405b;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  padding-bottom:95px;
+}
+button,input { font:inherit; }
+button { cursor:pointer; }
+.container { width:100%; max-width:1000px; margin:auto; padding:14px; }
+
+header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px 0 20px;
+}
+.brand { display:flex; align-items:center; gap:9px; min-width:0; }
+.logo {
+  font-size:42px;
+  filter:drop-shadow(0 0 9px #ffbb22);
+}
+.brand-name {
+  color:var(--gold);
+  font-weight:900;
+  font-size:clamp(19px,4.5vw,30px);
+  letter-spacing:1px;
+  line-height:1.15;
+}
+.brand-sub {
+  text-align:center;
+  letter-spacing:7px;
+  font-size:12px;
+  color:#fff;
+  margin-top:4px;
+}
+.header-actions { display:flex; gap:13px; }
+.icon-btn {
+  background:none;
+  border:0;
+  color:white;
+  font-size:24px;
+  padding:5px;
+}
+.search-box {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:#0b1426;
+  border:1px solid #63718c;
+  border-radius:18px;
+  padding:0 17px;
+  margin-bottom:24px;
+}
+.search-box span { font-size:25px; color:#aab8d2; }
+.search-box input {
+  width:100%;
+  min-width:0;
+  padding:17px 0;
+  color:white;
+  background:transparent;
+  border:0;
+  outline:none;
+  font-size:17px;
+}
+.search-box input::placeholder { color:#9daac1; }
+
+.hero {
+  position:relative;
+  overflow:hidden;
+  min-height:265px;
+  display:flex;
+  align-items:center;
+  padding:24px;
+  border:2px solid var(--gold);
+  border-radius:23px;
+  background:
+    radial-gradient(ellipse at 85% 50%,#79500d55,transparent 42%),
+    linear-gradient(125deg,#161b27,#030713 65%,#34230a);
+  box-shadow:0 0 20px #ffb00033;
+}
+.hero:after {
+  content:"💎 🎮 🎁";
+  position:absolute;
+  right:12px;
+  bottom:28px;
+  font-size:clamp(38px,9vw,75px);
+  max-width:45%;
+  filter:drop-shadow(0 0 15px #ffb600);
+}
+.hero-content { position:relative; z-index:1; max-width:70%; }
+.hero h1 { margin:0 0 12px; font-size:clamp(28px,6vw,45px); line-height:1.12; }
+.hero h1 span { color:var(--gold); }
+.hero p { font-size:16px; line-height:1.5; }
+.gold-btn {
+  background:linear-gradient(135deg,#ffe36b,#ffad08);
+  color:#15100a;
+  font-weight:900;
+  border:0;
+  border-radius:30px;
+  padding:13px 24px;
+  box-shadow:0 4px 15px #ffb00033;
+}
+.section-heading {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:30px 4px 18px;
+}
+.section-heading h2 { margin:0; font-size:clamp(22px,5vw,30px); }
+.section-heading .emoji { color:var(--gold); }
+.section-heading button { background:none; border:0; color:var(--gold); font-size:27px; }
+.gold-line { width:115px; height:3px; background:var(--gold); margin:10px 0 0 4px; border-radius:5px; }
+
+.games-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.game-card {
+  min-width:0;
+  position:relative;
+  border:1px solid #64718a;
+  border-radius:19px;
+  overflow:hidden;
+  background:var(--card);
+  box-shadow:0 0 12px #ffb00012;
+}
+.game-card.gold { border-bottom:4px solid var(--gold); }
+.game-card.blue { border-bottom:4px solid var(--blue); }
+.game-art {
+  min-height:155px;
+  aspect-ratio:1.15/1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:clamp(55px,14vw,100px);
+  background:
+    radial-gradient(circle at 50% 35%,#d49a2d55,transparent 55%),
+    linear-gradient(145deg,#24324b,#090e1b);
+}
+.game-card:nth-child(2) .game-art {
+  background:radial-gradient(circle at 50% 30%,#1177ff66,transparent 60%),linear-gradient(145deg,#09254c,#07101f);
+}
+.game-card:nth-child(3) .game-art {
+  background:radial-gradient(circle at 50% 30%,#d8a45455,transparent 60%),linear-gradient(145deg,#3c3022,#10101a);
+}
+.game-card:nth-child(4) .game-art {
+  background:radial-gradient(circle at 50% 30%,#dca52766,transparent 60%),linear-gradient(145deg,#2b1d0b,#10101a);
+}
+.game-info { padding:12px; }
+.game-title { font-size:clamp(15px,3.8vw,22px); font-weight:900; margin:0 0 8px; }
+.game-desc { color:var(--muted); font-size:12px; line-height:1.5; min-height:34px; }
+.game-footer { display:flex; align-items:center; justify-content:space-between; gap:5px; }
+.round-btn {
+  flex-shrink:0;
+  border:1px solid var(--gold);
+  background:#0a1020;
+  color:var(--gold);
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  font-size:24px;
+}
+.game-card.blue .round-btn { border-color:var(--blue); color:var(--blue); }
+.empty-message { display:none; text-align:center; color:var(--muted); padding:25px 10px; }
+
+.panel {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:17px;
+  margin-top:20px;
+}
+.panel h3 { margin-top:0; color:var(--gold); }
+.bonus-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.bonus-card {
+  border:1px solid #94701c;
+  border-radius:14px;
+  padding:14px;
+  background:linear-gradient(145deg,#241b0a,#0a1223);
+}
+.bonus-card strong { display:block; margin:8px 0; font-size:18px; }
+.bonus-card p { font-size:13px; color:var(--muted); }
+.progress { height:8px; background:#283249; border-radius:10px; overflow:hidden; }
+.progress div { height:100%; width:0%; background:linear-gradient(90deg,#ff9900,#ffe36b); }
+.small-btn {
+  border:1px solid var(--gold);
+  background:transparent;
+  color:var(--gold);
+  border-radius:9px;
+  padding:9px 12px;
+}
+.service-select {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:15px 0;
+}
+.service-select button {
+  background:#111d34;
+  color:white;
+  border:1px solid #394764;
+  padding:9px 12px;
+  border-radius:20px;
+}
+.service-select button.active { background:var(--gold); color:#16100a; border-color:var(--gold); font-weight:bold; }
+.packages { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.package {
+  border:1px solid #35435e;
+  border-radius:12px;
+  padding:13px 10px;
+  background:#0c172d;
+}
+.package strong { display:block; margin-bottom:8px; }
+.package .price { color:var(--gold); font-weight:bold; margin-bottom:10px; }
+.package button { width:100%; border:0; background:var(--gold); padding:9px; border-radius:8px; font-weight:bold; }
+.field { display:block; width:100%; margin:10px 0; }
+.field label { display:block; color:var(--muted); font-size:13px; margin-bottom:6px; }
+.field input,.field select,.field textarea {
+  width:100%;
+  padding:12px;
+  border:1px solid #43516c;
+  border-radius:9px;
+  background:#050b18;
+  color:white;
+}
+.notice { font-size:13px; color:var(--muted); line-height:1.6; }
+.hidden { display:none !important; }
+
+.bottom-nav {
+  position:fixed;
+  z-index:20;
+  left:10px;
+  right:10px;
+  bottom:8px;
+  max-width:980px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  background:#0a1225f5;
+  border:1px solid #39445c;
+  border-radius:19px;
+  padding:8px 2px;
+  box-shadow:0 0 22px #0008;
+  backdrop-filter:blur(12px);
+}
+.nav-item {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  border:0;
+  color:#b8c1d7;
+  background:none;
+  font-size:11px;
+  font-weight:bold;
+  padding:5px 0;
+  min-width:0;
+}
+.nav-icon { font-size:23px; line-height:1.1; }
+.nav-item.active { color:var(--gold); }
+
+.modal {
+  position:fixed;
+  inset:0;
+  z-index:50;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:#000c;
+}
+.modal.show { display:flex; }
+.modal-box {
+  width:100%;
+  max-width:440px;
+  max-height:85vh;
+  overflow:auto;
+  border:1px solid var(--gold);
+  border-radius:19px;
+  background:#0a1326;
+  padding:22px;
+}
+.modal-box h2 { color:var(--gold); margin-top:0; }
+.close-btn { float:right; background:none; border:0; color:white; font-size:25px; }
+.full-btn { width:100%; margin-top:10px; }
+.order-item { padding:12px 0; border-bottom:1px solid #303b52; overflow-wrap:anywhere; }
+
+body.light {
+  --bg:#f1f4fa;
+  --card:#ffffff;
+  --text:#10182a;
+  --muted:#5b6475;
+  --border:#c6ccda;
+}
+body.light .search-box,body.light .package,body.light .bottom-nav,
+body.light .modal-box,body.light .field input,body.light .field select {
+  background:#fff;
+}
+body.light .search-box input,body.light .icon-btn { color:#111827; }
+body.light .nav-item { color:#4b5563; }
+body.light .nav-item.active { color:#b87900; }
+
+@media(min-width:700px) {
+  .container { padding:24px; }
+  .game-art { aspect-ratio:1.4/1; }
+  .hero { min-height:310px; padding:35px; }
+  .packages { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media(max-width:360px) {
+  .container { padding:10px; }
+  .hero { padding:16px; min-height:230px; }
+  .hero-content { max-width:78%; }
+  .hero:after { right:3px; font-size:35px; }
+  .game-info { padding:9px; }
+  .game-art { min-height:120px; }
+  .nav-item { font-size:10px; }
+  .nav-icon { font-size:20px; }
+}
+</style>
+</head>
+
+<body>
+<div class="container" id="home">
+
+<header>
+  <div class="brand">
+    <div class="logo">💎</div>
+    <div>
+      <div class="brand-name">PH JOOLENS</div>
+      <div class="brand-sub">STORE</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="icon-btn" onclick="toggleTheme()" aria-label="Chanje tèm">☼</button>
+    <button class="icon-btn" onclick="showOrders()" aria-label="Kòmand">♧</button>
+    <button class="icon-btn" onclick="openSettings()" aria-label="Paramèt">⚙</button>
+  </div>
+</header>
+
+<div class="search-box">
+  <span>⌕</span>
+  <input id="searchInput" type="search" placeholder="Rechèch yon jwèt..." oninput="searchGames()">
+</div>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Top-Up rapid,<br><span>fasil, an sekirite</span></h1>
+    <p>Pi bon sèvis pou tout jwèt ou yo!</p>
+    <button class="gold-btn" onclick="goTo('games')">Dekouvri&nbsp; ›</button>
+  </div>
+</section>
+
+<section id="games">
+  <div class="section-heading">
+    <h2><span class="emoji">🎮</span> Pwodwi Disponib</h2>
+    <button onclick="goTo('services')" aria-label="Gade tout sèvis">»</button>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="games-grid" id="gamesGrid">
+    <article class="game-card gold" data-search="free fire diamond diamonds top-up espesyal">
+      <div class="game-art">🔥</div>
+      <div class="game-info">
+        <div class="game-title">Free Fire</div>
+        <div class="game-footer">
+          <div class="game-desc">Diamonds • Top-Up • Special</div>
+          <button class="round-btn" onclick="chooseService('freefire')" aria-label="Chwazi Free Fire">›</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="game-card blue" data-search="efootball football coins packs evènman">
+      <div class="game-art">⚽</div>
+      <div class="game-info">
+        <div class="game-title">eFootball</div>
+        <div class="game-footer">
+          <div class="game-desc">Coins • Packs • Evénements</div>
+          <button class="round-btn" onclick="chooseService('efootball')" aria-label="Chwazi eFootball">›</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="game-card gold" data-search="pubg mobile uc packs skins">
+      <div class="game-art">🪖</div>
+      <div class="game-info">
+        <div class="game-title">PUBG Mobile</div>
+        <div class="game-footer">
+          <div class="game-desc">UC • Packs • Skins</div>
+          <button class="round-btn" onclick="chooseService('pubg')" aria-label="Chwazi PUBG">›</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="game-card gold" data-search="gift cards google play playstation roblox netflix xbox steam">
+      <div class="game-art">🎁</div>
+      <div class="game-info">
+        <div class="game-title">Gift Cards</div>
+        <div class="game-footer">
+          <div class="game-desc">Google Play • PlayStation • Roblox</div>
+          <button class="round-btn" onclick="chooseService('giftcards')" aria-label="Chwazi Gift Cards">›</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="game-card gold" data-search="mobile legends ml diamonds">
+      <div class="game-art">🛡️</div>
+      <div class="game-info">
+        <div class="game-title">Mobile Legends</div>
+        <div class="game-footer">
+          <div class="game-desc">Diamonds • Packs</div>
+          <button class="round-btn" onclick="chooseService('ml')" aria-label="Chwazi Mobile Legends">›</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="game-card blue" data-search="call of duty mobile cod cp">
+      <div class="game-art">🎯</div>
+      <div class="game-info">
+        <div class="game-title">Call of Duty</div>
+        <div class="game-footer">
+          <div class="game-desc">CP • Packs</div>
+          <button class="round-btn" onclick="chooseService('cod')" aria-label="Chwazi Call of Duty">›</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="game-card gold" data-search="popolive live recharge">
+      <div class="game-art">🎤</div>
+      <div class="game-info">
+        <div class="game-title">Popolive</div>
+        <div class="game-footer">
+          <div class="game-desc">Recharge • Coins</div>
+          <button class="round-btn" onclick="chooseService('popolive')" aria-label="Chwazi Popolive">›</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="game-card gold" data-search="roblox gift card robux">
+      <div class="game-art">🧱</div>
+      <div class="game-info">
+        <div class="game-title">Roblox</div>
+        <div class="game-footer">
+          <div class="game-desc">Gift Cards • Robux</div>
+          <button class="round-btn" onclick="chooseService('roblox')" aria-label="Chwazi Roblox">›</button>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div id="noGames" class="empty-message">Pa gen jwèt ki koresponn ak rechèch sa a.</div>
+</section>
+
+<section class="panel" id="bonus">
+  <div class="section-heading" style="margin:0 0 15px">
+    <h2>🎁 Bonus Kliyan</h2>
+  </div>
+  <p class="notice">Fè 30 kòmand ki kalifye pou reklame bonus la. Kontak sipò a ka verifye kòmand yo.</p>
+  <div class="bonus-grid">
+    <div class="bonus-card">
+      <div>🥉 Liy 1</div>
+      <strong>110 Diamonds</strong>
+      <p id="bonus1Text">0 / 30 kòmand</p>
+      <div class="progress"><div id="bonus1Bar"></div></div>
+      <button class="small-btn" onclick="claimBonus(1)" style="margin-top:12px">Reklame</button>
+    </div>
+    <div class="bonus-card">
+      <div>🏆 Liy 2</div>
+      <strong>341 Diamonds</strong>
+      <p id="bonus2Text">0 / 30 kòmand</p>
+      <div class="progress"><div id="bonus2Bar"></div></div>
+      <button class="small-btn" onclick="claimBonus(2)" style="margin-top:12px">Reklame</button>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="services">
+  <h2>🛒 Chwazi sèvis ou</h2>
+  <div class="service-select">
+    <button class="active" data-service="freefire" onclick="chooseService('freefire')">Free Fire</button>
+    <button data-service="pubg" onclick="chooseService('pubg')">PUBG</button>
+    <button data-service="ml" onclick="chooseService('ml')">Mobile Legends</button>
+    <button data-service="cod" onclick="chooseService('cod')">Call of Duty</button>
+    <button data-service="efootball" onclick="chooseService('efootball')">eFootball</button>
+    <button data-service="popolive" onclick="chooseService('popolive')">Popolive</button>
+    <button data-service="roblox" onclick="chooseService('roblox')">Roblox</button>
+    <button data-service="playstation" onclick="chooseService('playstation')">PlayStation</button>
+    <button data-service="googleplay" onclick="chooseService('googleplay')">Google Play</button>
+  </div>
+  <h3 id="serviceTitle">Free Fire</h3>
+  <p class="notice" id="serviceDescription">Chwazi pakè ou vle achte a.</p>
+  <div class="packages" id="packages"></div>
+</section>
+
+<section class="panel" id="support">
+  <h2>🎧 Sipò Kliyan</h2>
+  <p>Si ou bezwen èd pou kòmand ou, kontakte ekip PH Joolens Store la sou WhatsApp.</p>
+  <p><strong>WhatsApp:</strong> +509 32 26 5636</p>
+  <button class="gold-btn" onclick="openWhatsApp()">Kontakte sipò</button>
+</section>
+
+<section class="panel" id="wallet">
+  <h3>💳 Enfòmasyon Peman</h3>
+  <p><strong>MonCash:</strong> +509 4882-8406</p>
+  <p><strong>NatCash:</strong> +509 5607-9663</p>
+  <p class="notice">Voye peman an epi antre nimewo telefòn ou te itilize pou transfè a lè w ap pase kòmand ou.</p>
+</section>
+
+</div>
+
+<nav class="bottom-nav">
+  <button class="nav-item active" onclick="navTo('home',this)"><span class="nav-icon">⌂</span><span>Akèy</span></button>
+  <button class="nav-item" onclick="navTo('games',this)"><span class="nav-icon">▦</span><span>Sèvis</span></button>
+  <button class="nav-item" onclick="navTo('bonus',this)"><span class="nav-icon">♔</span><span>Bonus</span></button>
+  <button class="nav-item" onclick="showOrders()"><span class="nav-icon">▤</span><span>Kòmand</span></button>
+  <button class="nav-item" onclick="openSettings()"><span class="nav-icon">⚙</span><span>Paramèt</span></button>
+</nav>
+
+<!-- Fenèt koneksyon -->
+<div class="modal" id="loginModal">
+  <div class="modal-box">
+    <h2>💎 PH JOOLENS STORE</h2>
+    <p>Konekte avèk Gmail ou pou n ka asosye kòmand ou yo ak kont ou.</p>
+    <form onsubmit="login(event)">
+      <div class="field">
+        <label for="gmail">Adrès Gmail</label>
+        <input id="gmail" type="email" placeholder="egzanp@gmail.com" required>
+      </div>
+      <button class="gold-btn full-btn" type="submit">Konekte</button>
+      <button class="small-btn full-btn" type="button" onclick="closeLogin()">Kontinye san konekte</button>
+    </form>
+  </div>
+</div>
+
+<!-- Fenèt paramèt -->
+<div class="modal" id="settingsModal">
+  <div class="modal-box">
+    <button class="close-btn" onclick="closeModal('settingsModal')">×</button>
+    <h2>⚙ Paramèt kont</h2>
+    <p class="notice">Kont Gmail ou</p>
+    <p id="settingsGmail" style="overflow-wrap:anywhere">Ou poko konekte.</p>
+    <button class="gold-btn full-btn" onclick="changeGmail()">Chanje Gmail</button>
+    <button class="small-btn full-btn" onclick="toggleTheme()">Chanje tèm klè/nwa</button>
+    <button class="small-btn full-btn" onclick="logout()">Dekonekte</button>
+  </div>
+</div>
+
+<!-- Fenèt kòmand -->
+<div class="modal" id="ordersModal">
+  <div class="modal-box">
+    <button class="close-btn" onclick="closeModal('ordersModal')">×</button>
+    <h2>📋 Mes Kòmand</h2>
+    <div id="ordersList"></div>
+    <p class="notice">Kòmand yo parèt sou aparèy sa a. Voye detay yo bay sipò pou konfime peman ak livrezon.</p>
+    <button class="gold-btn full-btn" onclick="openWhatsApp()">Voye mesaj sou WhatsApp</button>
+  </div>
+</div>
+
+<!-- Fenèt kòmand pwodwi -->
+<div class="modal" id="orderModal">
+  <div class="modal-box">
+    <button class="close-btn" onclick="closeModal('orderModal')">×</button>
+    <h2>🛒 Fè yon kòmand</h2>
+    <p id="selectedProduct"></p>
+    <form onsubmit="submitOrder(event)">
+      <div class="field">
+        <label for="playerId">ID jwè / Username</label>
+        <input id="playerId" required placeholder="Antre ID jwè ou">
+      </div>
+      <div class="field">
+        <label for="paymentMethod">Metòd peman</label>
+        <select id="paymentMethod" required>
+          <option value="">Chwazi metòd peman</option>
+          <option value="MonCash">MonCash — +509 4882-8406</option>
+          <option value="NatCash">NatCash — +509 5607-9663</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="transferNumber">Nimewo ou te itilize pou transfè</label>
+        <input id="transferNumber" required placeholder="+509 ...">
+      </div>
+      <div class="field">
+        <label for="customerNote">Nòt (si genyen)</label>
+        <textarea id="customerNote" rows="2" placeholder="Lòt enfòmasyon..."></textarea>
+      </div>
+      <p class="notice">Voye kòmand sa a pa WhatsApp pou ekip la verifye peman an. Kòmand lan poko konfime jis ekip la valide li.</p>
+      <button class="gold-btn full-btn" type="submit">Kontinye sou WhatsApp</button>
+    </form>
+  </div>
+</div>
+
+<script>
+const WHATSAPP_NUMBER = "50932265636";
+let currentGmail = localStorage.getItem("phj_current_gmail") || "";
+let selectedService = "freefire";
+let selectedPackage = null;
+let currentTheme = localStorage.getItem("phj_theme") || "dark";
+
+const catalog = {
+  freefire: {
+    title:"Free Fire",
+    description:"Diamonds, Booyah Pass ak abònman.",
+    items:[
+      ["110 Diamonds","G 150"],
+      ["220 Diamonds","G 300"],
+      ["341 Diamonds","G 450"],
+      ["572 Diamonds","G 750"],
+      ["682 Diamonds","G 900"],
+      ["792 Diamonds","G 1,050"],
+      ["913 Diamonds","G 1,350"],
+      ["1166 Diamonds","G 1,500"],
+      ["2398 Diamonds","G 3,000"],
+      ["3564 Diamonds","G 9,300"],
+      ["Booyah Pass","G 500"],
+      ["Abonnement semaine","G 375"],
+      ["Abonnement mois","G 1,650"],
+      ["Super VIP","Mande pri"]
+    ]
+  },
+  pubg:{
+    title:"PUBG Mobile",
+    description:"UC pou PUBG Mobile.",
+    items:[
+      ["60 UC","G 180"],
+      ["325 UC","G 875"],
+      ["660 UC","G 1,600"],
+      ["1800 UC","G 3,500"],
+      ["3850 UC","G 8,000"],
+      ["8100 UC","G 16,900"],
+      ["16200 UC","G 33,000"]
+    ]
+  },
+  ml:{
+    title:"Mobile Legends",
+    description:"Pakè Diamonds pou Mobile Legends.",
+    items:[
+      ["275 Diamonds","G 875"],
+      ["565 Diamonds","G 1,750"],
+      ["1,160 Diamonds","G 3,467"],
+      ["1,770 Diamonds","G 5,054"],
+      ["2,975 Diamonds","G 7,967"],
+      ["6,000 Diamonds","G 15,016"]
+    ]
+  },
+  cod:{
+    title:"Call of Duty Mobile",
+    description:"Pri pakè CP yo poko disponib. Kontakte sipò pou mande pri aktyèl la.",
+    items:[
+      ["80 CP","Mande pri"],
+      ["420 CP","Mande pri"],
+      ["880 CP","Mande pri"],
+      ["2400 CP","Mande pri"],
+      ["5000 CP","Mande pri"],
+      ["10800 CP","Mande pri"]
+    ]
+  },
+  efootball:{
+    title:"eFootball",
+    description:"Coins pou eFootball.",
+    items:[
+      ["1050 Coins","G 1,950"],
+      ["2150 Coins","G 4,000"],
+      ["3300 Coins","G 5,900"],
+      ["5800 Coins","G 9,850"],
+      ["12000 Coins","G 19,700"]
+    ]
+  },
+  popolive:{
+    title:"Popolive",
+    description:"Recharge Popolive. Kontakte sipò pou konfime pakè ak pri ki disponib.",
+    items:[
+      ["9,900","G 350"],
+      ["19,800","G 700"],
+      ["49,500","G 1,750"],
+      ["99,000","G 3,400"],
+      ["198,000","G 6,700"],
+      ["396,000","G 10,200"],
+      ["990,000","Mande pri"],
+      ["1,980,000","Mande pri"],
+      ["3,960,000","Mande pri"]
+    ]
+  },
+  roblox:{
+    title:"Roblox Gift Cards",
+    description:"Gift Cards Roblox.",
+    items:[
+      ["$10 Gift Card","G 1,807"],
+      ["$20 Gift Card","G 3,614"],
+      ["$30 Gift Card","G 5,421"],
+      ["$40 Gift Card","G 7,228"],
+      ["$50 Gift Card","G 9,035"],
+      ["$60 Gift Card","G 10,842"],
+      ["$70 Gift Card","G 12,649"],
+      ["$80 Gift Card","G 14,456"],
+      ["$90 Gift Card","G 16,263"],
+      ["$100 Gift Card","G 18,070"],
+      ["$150 Gift Card","G 27,105"],
+      ["$200 Gift Card","G 36,140"]
+    ]
+  },
+  playstation:{
+    title:"PlayStation Gift Cards",
+    description:"Kontakte sipò pou konfime pri ak disponiblite.",
+    items:[
+      ["$10 Gift Card","Mande pri"],
+      ["$20 Gift Card","Mande pri"],
+      ["$50 Gift Card","Mande pri"],
+      ["$100 Gift Card","Mande pri"]
+    ]
+  },
+  googleplay:{
+    title:"Google Play Gift Cards",
+    description:"Kontakte sipò pou konfime pri ak disponiblite.",
+    items:[
+      ["$10 Gift Card","Mande pri"],
+      ["$20 Gift Card","Mande pri"],
+      ["$50 Gift Card","Mande pri"],
+      ["$100 Gift Card","Mande pri"]
+    ]
+  }
+};
+
+function goTo(id) {
+  document.getElementById(id)?.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function navTo(id,button) {
+  goTo(id);
+  document.querySelectorAll(".nav-item").forEach(b=>b.classList.remove("active"));
+  if(button) button.classList.add("active");
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove("show");
+}
+function openModal(id) {
+  document.getElementById(id).classList.add("show");
+}
+function closeLogin() { closeModal("loginModal"); }
+
+function login(event) {
+  event.preventDefault();
+  const gmail = document.getElementById("gmail").value.trim();
+  if(!/^[^\s@]+@gmail\.com$/i.test(gmail)) {
+    alert("Tanpri antre yon adrès Gmail ki valab.");
+    return;
+  }
+  currentGmail = gmail.toLowerCase();
+  localStorage.setItem("phj_current_gmail",currentGmail);
+  closeModal("loginModal");
+  alert("Ou konekte sou aparèy sa a.");
+}
+function openSettings() {
+  document.getElementById("settingsGmail").textContent = currentGmail || "Ou poko konekte.";
+  openModal("settingsModal");
+}
+function changeGmail() {
+  closeModal("settingsModal");
+  document.getElementById("gmail").value = currentGmail || "";
+  openModal("loginModal");
+}
+function logout() {
+  currentGmail = "";
+  localStorage.removeItem("phj_current_gmail");
+  closeModal("settingsModal");
+  alert("Ou dekonekte sou aparèy sa a.");
+}
+function toggleTheme() {
+  document.body.classList.toggle("light");
+  currentTheme = document.body.classList.contains("light") ? "light" : "dark";
+  localStorage.setItem("phj_theme",currentTheme);
+}
+if(currentTheme === "light") document.body.classList.add("light");
+
+function chooseService(key) {
+  if(key === "giftcards") {
+    goTo("services");
+    chooseService("googleplay");
+    return;
+  }
+  if(!catalog[key]) return;
+  selectedService = key;
+  document.querySelectorAll(".service-select button").forEach(b=>{
+    b.classList.toggle("active",b.dataset.service === key);
+  });
+  renderPackages();
+  goTo("services");
+}
+function renderPackages() {
+  const service = catalog[selectedService];
+  document.getElementById("serviceTitle").textContent = service.title;
+  document.getElementById("serviceDescription").textContent = service.description;
+  const holder = document.getElementById("packages");
+  holder.innerHTML = "";
+  service.items.forEach((item,index)=>{
+    const card = document.createElement("div");
+    card.className = "package";
+    const name = document.createElement("strong");
+    name.textContent = item[0];
+    const price = document.createElement("div");
+    price.className = "price";
+    price.textContent = item[1];
+    const button = document.createElement("button");
+    button.textContent = "Kòmande";
+    button.onclick = ()=>openOrder(selectedService,index);
+    card.append(name,price,button);
+    holder.appendChild(card);
+  });
+}
+function openOrder(serviceKey,index) {
+  selectedService = serviceKey;
+  selectedPackage = index;
+  const item = catalog[serviceKey].items[index];
+  document.getElementById("selectedProduct").textContent =
+    catalog[serviceKey].title + " — " + item[0] + " — " + item[1];
+  openModal("orderModal");
+}
+function submitOrder(event) {
+  event.preventDefault();
+  const item = catalog[selectedService].items[selectedPackage];
+  const order = {
+    id:Date.now(),
+    gmail:currentGmail || "Envite",
+    service:catalog[selectedService].title,
+    product:item[0],
+    price:item[1],
+    playerId:document.getElementById("playerId").value.trim(),
+    payment:document.getElementById("paymentMethod").value,
+    transfer:document.getElementById("transferNumber").value.trim(),
+    note:document.getElementById("customerNote").value.trim(),
+    date:new Date().toLocaleString()
+  };
+  const orders = JSON.parse(localStorage.getItem("phj_orders") || "[]");
+  orders.unshift(order);
+  localStorage.setItem("phj_orders",JSON.stringify(orders));
+  const message =
+`BONJOUR PH JOOLENS STORE
+Mwen vle pase yon kòmand.
+
+Sèvis: ${order.service}
+Pakè: ${order.product}
+Pri: ${order.price}
+ID/Username: ${order.playerId}
+Metòd peman: ${order.payment}
+Nimewo transfè: ${order.transfer}
+Gmail: ${order.gmail}
+Nòt: ${order.note || "Pa gen nòt"}
+
+Tanpri verifye kòmand mwen an.`;
+  closeModal("orderModal");
+  window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),"_blank");
+}
+function showOrders() {
+  const holder = document.getElementById("ordersList");
+  const orders = JSON.parse(localStorage.getItem("phj_orders") || "[]");
+  if(!orders.length) {
+    holder.innerHTML = "<p>Ou poko gen kòmand ki sove sou aparèy sa a.</p>";
+  } else {
+    holder.innerHTML = "";
+    orders.forEach(o=>{
+      const div = document.createElement("div");
+      div.className = "order-item";
+      const title = document.createElement("strong");
+      title.textContent = o.service+" — "+o.product;
+      const details = document.createElement("p");
+      details.className = "notice";
+      details.textContent = "Pri: "+o.price+" | ID: "+o.playerId+" | Peman: "+o.payment+" | "+o.date;
+      div.append(title,details);
+      holder.appendChild(div);
+    });
+  }
+  openModal("ordersModal");
+}
+function openWhatsApp() {
+  const msg = "Bonjou PH Joolens Store, mwen bezwen èd pou yon kòmand.";
+  window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(msg),"_blank");
+}
+function searchGames() {
+  const q = document.getElementById("searchInput").value.toLowerCase().trim();
+  let visible = 0;
+  document.querySelectorAll(".game-card").forEach(card=>{
+    const show = card.dataset.search.toLowerCase().includes(q) ||
+      card.querySelector(".game-title").textContent.toLowerCase().includes(q);
+    card.style.display = show ? "" : "none";
+    if(show) visible++;
+  });
+  document.getElementById("noGames").style.display = visible ? "none" : "block";
+}
+function claimBonus(line) {
+  if(!currentGmail) {
+    alert("Konekte ak Gmail ou anvan ou reklame bonus la.");
+    openModal("loginModal");
+    return;
+  }
+  alert("Pou sekirite, ekip PH Joolens Store dwe verifye 30 kòmand ou yo. Kontakte sipò sou WhatsApp pou reklame bonus la.");
+  openWhatsApp();
+}
+function updateBonus() {
+  [1,2].forEach(line=>{
+    const count = Math.max(0,Math.min(30,Number(localStorage.getItem("phj_bonus_"+line) || 0)));
+    document.getElementById("bonus"+line+"Text").textContent = count+" / 30 kòmand";
+    document.getElementById("bonus"+line+"Bar").style.width = (count/30*100)+"%";
+  });
+}
+renderPackages();
+updateBonus();
+</script>
+</body>
+</html>
