@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030918">
+<title>PH JOOLENS STORE</title>
+<style>
+:root{--gold:#ffca28;--gold2:#ff9900;--bg:#030918;--card:#0b1429;--text:#ffffff;--muted:#b5bfd5;--border:#34405b;--blue:#168cff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;padding-bottom:95px;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.container{max-width:1000px;margin:auto;padding:12px}
+.hidden{display:none!important}
+header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0 15px}
+.brand{display:flex;align-items:center;gap:8px}
+.logo{font-size:32px;filter:drop-shadow(0 0 6px #ffbb22)}
+.brand-name{color:var(--gold);font-size:clamp(16px,4vw,24px);font-weight:900;letter-spacing:1px}
+.brand-sub{text-align:center;letter-spacing:5px;font-size:10px;margin-top:2px}
+.header-actions{display:flex;gap:6px}
+.icon-btn{background:none;border:0;color:white;font-size:20px;padding:4px}
+.search-box{display:flex;align-items:center;gap:10px;background:#0b1426;border:1px solid #63718c;border-radius:14px;padding:0 14px;margin-bottom:18px}
+.search-box span{font-size:20px;color:#aab8d2}
+.search-box input{width:100%;min-width:0;padding:12px 0;color:white;background:transparent;border:0;outline:none;font-size:15px}
+.search-box input::placeholder{color:#9daac1}
+.hero{position:relative;overflow:hidden;min-height:160px;display:flex;align-items:center;padding:18px;border:2px solid var(--gold);border-radius:18px;background:radial-gradient(ellipse at 85% 50%,#79500d55,transparent 42%),linear-gradient(125deg,#161b27,#030713 65%,#34230a);box-shadow:0 0 15px #ffb00033}
+.hero-content{position:relative;z-index:1;max-width:90%}
+.hero h1{margin:0 0 8px;font-size:clamp(20px,5vw,32px);line-height:1.15;color:#ffffff}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:13px;line-height:1.4;margin:0 0 10px;color:#b5bfd5}
+.gold-btn{background:linear-gradient(135deg,#ffe36b,#ffad08);color:#15100a;font-weight:900;border:0;border-radius:24px;padding:10px 18px;font-size:13px}
+.section-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:20px 4px 12px}
+.section-heading h2{margin:0;font-size:clamp(18px,4.5vw,24px);color:#ffffff}
+.section-heading button{background:none;border:0;color:var(--gold);font-size:22px}
+.gold-line{width:90px;height:3px;background:var(--gold);margin:6px 0 14px 4px}
+
+/* KAT JWÈT YO SAN TIBWAT AK SAN LILÈ BLANCH */
+.games-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.game-card{min-width:0;border:1px solid #48546e;border-radius:12px;overflow:hidden;background:var(--card)}
+.game-card.gold{border-bottom:3px solid var(--gold)}
+.game-card.blue{border-bottom:3px solid var(--blue)}
+.game-art{min-height:75px;aspect-ratio:1.6/1;display:flex;align-items:center;justify-content:center;font-size:36px;background:#101a30;color:#ffffff}
+.game-card.blue .game-art{background:#0d2142}
+.game-info{padding:8px 10px}
+.game-title{font-size:clamp(13px,3.2vw,16px);font-weight:900;margin-bottom:4px;color:#ffffff}
+.game-desc{color:var(--muted);font-size:11px;line-height:1.3}
+.game-footer{display:flex;align-items:center;justify-content:space-between;gap:4px}
+.round-btn{flex-shrink:0;border:1px solid var(--gold);background:#0a1020;color:var(--gold);width:28px;height:28px;border-radius:50%;font-size:16px;display:flex;align-items:center;justify-content:center}
+.game-card.blue .round-btn{border-color:var(--blue);color:var(--blue)}
+
+.empty-message{display:none;text-align:center;color:var(--muted);padding:20px 10px;font-size:14px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin-top:14px;color:#ffffff}
+.panel h2,.panel h3{margin-top:0}
+.panel h3{color:var(--gold)}
+.notice{font-size:12px;color:var(--muted);line-height:1.5}
+.bonus-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.bonus-card{border:1px solid #94701c;border-radius:12px;padding:14px;background:#0f1a30;color:#ffffff}
+.bonus-card .bonus-tag{color:var(--gold);font-weight:bold;font-size:13px}
+.bonus-card strong{display:block;margin:4px 0;font-size:18px;color:#ffffff}
+.bonus-card .bonus-reward{color:var(--gold);font-weight:bold;font-size:14px;margin-bottom:6px}
+.bonus-card p{font-size:12px;color:var(--muted);margin:3px 0}
+.progress{height:8px;background:#283249;border-radius:8px;overflow:hidden;margin:8px 0}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,#ff9900,#ffe36b)}
+.small-btn{border:1px solid var(--gold);background:transparent;color:var(--gold);border-radius:8px;padding:8px 10px;font-size:12px}
+.full-btn{width:100%;margin-top:8px}
+.packages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.package{border:1px solid #35435e;border-radius:10px;padding:10px 8px;background:#0c172d;color:#ffffff}
+.package strong{display:block;margin-bottom:6px;font-size:13px}
+.package .price{color:var(--gold);font-weight:bold;margin-bottom:8px;font-size:13px}
+.package button{width:100%;border:0;background:var(--gold);padding:7px;border-radius:6px;font-weight:bold;font-size:12px}
+.field{display:block;width:100%;margin:10px 0}
+.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}
+.field input,.field select,.field textarea{width:100%;padding:10px;border:1px solid #43516c;border-radius:8px;background:#050b18;color:white;font-size:13px}
+.bottom-nav{position:fixed;z-index:20;left:8px;right:8px;bottom:6px;max-width:980px;margin:auto;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));background:#0a1225;border:1px solid #39445c;border-radius:16px;padding:6px 2px;box-shadow:0 0 18px #0008}
+.nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;color:#b8c1d7;background:none;font-size:9px;font-weight:bold;padding:4px 0;min-width:0}
+.nav-icon{font-size:18px;line-height:1}
+.nav-item.active{color:var(--gold)}
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(0,0,0,0.85)}
+.modal.show{display:flex}
+.modal-box{width:100%;max-width:400px;max-height:85vh;overflow:auto;border:1px solid var(--gold);border-radius:16px;background:#0a1326;padding:18px;color:#ffffff}
+.modal-box h2{color:var(--gold);margin-top:0;font-size:18px}
+.close-btn{float:right;background:none;border:0;color:white;font-size:22px}
+.order-item{padding:10px 0;border-bottom:1px solid #303b52;overflow-wrap:anywhere;font-size:13px}
+body.light{--bg:#f1f4fa;--card:#fff;--text:#10182a;--muted:#5b6475;--border:#c6ccda}
+body.light .search-box,body.light .package,body.light .bottom-nav,body.light .modal-box,body.light .field input,body.light .field select,body.light .field textarea{background:#fff}
+body.light .search-box input,body.light .icon-btn{color:#111827}
+body.light .nav-item{color:#4b5563}
+body.light .nav-item.active{color:#b87900}
+@media(min-width:600px){.games-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.packages{grid-template-columns:repeat(3,minmax(0,1fr))}.bonus-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.games-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<main id="homePage" class="page">
+<header>
+  <div class="brand"><div class="logo">💎</div><div><div class="brand-name">PH JOOLENS</div><div class="brand-sub">STORE</div></div></div>
+  <div class="header-actions">
+    <button class="icon-btn" onclick="toggleTheme()">☼</button>
+    <button class="icon-btn" onclick="openOrders()">♧</button>
+    <button class="icon-btn" onclick="openSettings()">⚙</button>
+  </div>
+</header>
+
+<div class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Rechèch yon jwèt..." oninput="searchGames()"></div>
+
+<section class="hero">
+  <div class="hero-content"><h1>Top-Up rapid,<br><span>fasil, an sekirite</span></h1><p>Pi bon sèvis pou tout jwèt ou yo!</p><button class="gold-btn" onclick="showPage('servicesPage')">Dekouvri ›</button></div>
+</section>
+
+<div class="section-heading"><h2>🎮 Pwodwi Disponib</h2><button onclick="showPage('servicesPage')">»</button></div>
+<div class="gold-line"></div>
+
+<div class="games-grid" id="gamesGrid">
+  <article class="game-card gold" data-search="free fire diamond diamonds top-up special"><div class="game-art">🔥</div><div class="game-info"><div class="game-title">Free Fire</div><div class="game-footer"><div class="game-desc">Diamonds</div><button class="round-btn" onclick="openGame('freefire')">›</button></div></div></article>
+  <article class="game-card blue" data-search="efootball football coins"><div class="game-art">⚽</div><div class="game-info"><div class="game-title">eFootball</div><div class="game-footer"><div class="game-desc">Coins</div><button class="round-btn" onclick="openGame('efootball')">›</button></div></div></article>
+  <article class="game-card gold" data-search="pubg mobile uc"><div class="game-art">🪖</div><div class="game-info"><div class="game-title">PUBG Mobile</div><div class="game-footer"><div class="game-desc">UC Packs</div><button class="round-btn" onclick="openGame('pubg')">›</button></div></div></article>
+  <article class="game-card gold" data-search="gift cards google play playstation roblox"><div class="game-art">💳</div><div class="game-info"><div class="game-title">Gift Cards</div><div class="game-footer"><div class="game-desc">Google/PSN</div><button class="round-btn" onclick="openGame('googleplay')">›</button></div></div></article>
+  <article class="game-card gold" data-search="mobile legends ml diamonds"><div class="game-art">🛡️</div><div class="game-info"><div class="game-title">Mobile Legends</div><div class="game-footer"><div class="game-desc">Diamonds</div><button class="round-btn" onclick="openGame('ml')">›</button></div></div></article>
+  <article class="game-card blue" data-search="call of duty mobile cod cp"><div class="game-art">🎯</div><div class="game-info"><div class="game-title">Call of Duty</div><div class="game-footer"><div class="game-desc">CP Packs</div><button class="round-btn" onclick="openGame('cod')">›</button></div></div></article>
+  <article class="game-card gold" data-search="popolive live recharge"><div class="game-art">🎤</div><div class="game-info"><div class="game-title">Popolive</div><div class="game-footer"><div class="game-desc">Recharge</div><button class="round-btn" onclick="openGame('popolive')">›</button></div></div></article>
+  <article class="game-card gold" data-search="roblox gift card robux"><div class="game-art">🧱</div><div class="game-info"><div class="game-title">Roblox</div><div class="game-footer"><div class="game-desc">Gift Cards</div><button class="round-btn" onclick="openGame('roblox')">›</button></div></div></article>
+  <article class="game-card gold" data-search="playstation gift card psn"><div class="game-art">🎮</div><div class="game-info"><div class="game-title">PlayStation</div><div class="game-footer"><div class="game-desc">PSN Cards</div><button class="round-btn" onclick="openGame('playstation')">›</button></div></div></article>
+</div>
+<div id="noGames" class="empty-message">Pa gen jwèt ki koresponn ak rechèch sa a.</div>
+</main>
+
+<section id="servicesPage" class="page hidden">
+<h2>🎮 Tout Sèvis yo</h2><p class="notice">Chwazi yon jwèt pou wè pakè ak pri li yo.</p>
+<div class="games-grid">
+  <article class="game-card"><div class="game-art">🔥</div><div class="game-info"><div class="game-title">Free Fire</div><button class="gold-btn full-btn" onclick="openGame('freefire')">Gade pakè yo</button></div></article>
+  <article class="game-card"><div class="game-art">⚽</div><div class="game-info"><div class="game-title">eFootball</div><button class="gold-btn full-btn" onclick="openGame('efootball')">Gade pakè yo</button></div></article>
+  <article class="game-card"><div class="game-art">🪖</div><div class="game-info"><div class="game-title">PUBG Mobile</div><button class="gold-btn full-btn" onclick="openGame('pubg')">Gade pakè yo</button></div></article>
+  <article class="game-card"><div class="game-art">🛡️</div><div class="game-info"><div class="game-title">Mobile Legends</div><button class="gold-btn full-btn" onclick="openGame('ml')">Gade pakè yo</button></div></article>
+  <article class="game-card"><div class="game-art">🎯</div><div class="game-info"><div class="game-title">Call of Duty</div><button class="gold-btn full-btn" onclick="openGame('cod')">Gade pakè yo</button></div></article>
+  <article class="game-card"><div class="game-art">🎤</div><div class="game-info"><div class="game-title">Popolive</div><button class="gold-btn full-btn" onclick="openGame('popolive')">Gade pakè yo</button></div></article>
+  <article class="game-card"><div class="game-art">🧱</div><div class="game-info"><div class="game-title">Roblox</div><button class="gold-btn full-btn" onclick="openGame('roblox')">Gade pakè yo</button></div></article>
+  <article class="game-card"><div class="game-art">🎮</div><div class="game-info"><div class="game-title">PlayStation</div><button class="gold-btn full-btn" onclick="openGame('playstation')">Gade pakè yo</button></div></article>
+  <article class="game-card"><div class="game-art">💳</div><div class="game-info"><div class="game-title">Google Play</div><button class="gold-btn full-btn" onclick="openGame('googleplay')">Gade pakè yo</button></div></article>
+</div>
+</section>
+
+<section id="bonusPage" class="page hidden">
+<h2>🎁 Bonus Kliyan</h2>
+<p class="notice">Fè kòmand sou sit la pou monte liy bonus yo. Ekip la ap verifye kòmand ou yo anvan li valide bonus la.</p>
+<div class="bonus-grid">
+  <!-- PREMYE BONUS (LIY 1) -->
+  <div class="bonus-card">
+    <div class="bonus-tag">🥉 PREMYE BONUS (Liy 1)</div>
+    <div class="bonus-reward">💎 Bonus: 110 Diamonds Free Fire</div>
+    <p><strong>Kondisyon:</strong> 30 Kòmand ki kalifye</p>
+    <p class="notice">Pakè pou valide: 110 Diamonds, 220 Diamonds, 60 UC, 1050 Coins...</p>
+    <p id="bonus1Text">0 / 30 kòmand</p>
+    <div class="progress"><div id="bonus1Bar"></div></div>
+    <button class="small-btn full-btn" onclick="claimBonus(1)">Reklame Premye Bonus</button>
+  </div>
+
+  <!-- DEZYÈM BONUS (LIY 2) -->
+  <div class="bonus-card">
+    <div class="bonus-tag">🏆 DEZYÈM BONUS (Liy 2)</div>
+    <div class="bonus-reward">💎 Bonus: 341 Diamonds Free Fire</div>
+    <p><strong>Kondisyon:</strong> 30 Kòmand ki kalifye (Apre liy 1)</p>
+    <p class="notice">Pakè pou valide: 341 Diamonds, 572 Diamonds, 325 UC, 2150 Coins...</p>
+    <p id="bonus2Text">0 / 30 kòmand</p>
+    <div class="progress"><div id="bonus2Bar"></div></div>
+    <button class="small-btn full-btn" onclick="claimBonus(2)">Reklame Dezyèm Bonus</button>
+  </div>
+</div>
+</section>
+
+<section id="ordersPage" class="page hidden">
+<h2>📋 Mes Kòmand</h2><p class="notice">Kòmand ki sove sou aparèy sa a ap parèt la.</p><div id="ordersList" class="panel"></div>
+<button class="gold-btn full-btn" onclick="openWhatsApp()">Kontakte sipò sou WhatsApp</button>
+</section>
+
+<section id="settingsPage" class="page hidden">
+<h2>⚙ Paramèt</h2>
+<div class="panel"><h3>Kont mwen</h3><p class="notice">Gmail ki konekte a:</p><p id="settingsGmail" style="overflow-wrap:anywhere">Ou poko konekte.</p><button class="gold-btn full-btn" onclick="changeGmail()">Konekte / Chanje Gmail</button><button class="small-btn full-btn" onclick="toggleTheme()">Chanje tèm klè/nwa</button><button class="small-btn full-btn" onclick="logout()">Dekonekte</button></div>
+<div class="panel"><h3>Enfòmasyon Peman</h3><p><strong>MonCash:</strong> +509 4882-8406</p><p><strong>NatCash:</strong> +509 5607-9663</p></div>
+</section>
+
+<section id="supportPage" class="page hidden">
+<h2>🎧 Sipò Kliyan</h2><div class="panel"><p>Ou bezwen èd pou yon kòmand oswa ou vle konnen disponiblite yon pakè?</p><p><strong>WhatsApp:</strong> +509 32 26 5636</p><button class="gold-btn full-btn" onclick="openWhatsApp()">Ekri nou sou WhatsApp</button></div>
+</section>
+
+<section id="gamePage" class="page hidden">
+<button class="small-btn" onclick="showPage('servicesPage')">← Retounen nan sèvis yo</button>
+<h2 id="gamePageTitle">Chwazi yon jwèt</h2><p id="gameDescription" class="notice"></p><div id="packages" class="packages"></div>
+</section>
+</div>
+
+<nav class="bottom-nav">
+<button class="nav-item active" data-page="homePage" onclick="showPage('homePage')"><span class="nav-icon">⌂</span><span>Akèy</span></button>
+<button class="nav-item" data-page="servicesPage" onclick="showPage('servicesPage')"><span class="nav-icon">▦</span><span>Sèvis</span></button>
+<button class="nav-item" data-page="bonusPage" onclick="openBonus()"><span class="nav-icon">♔</span><span>Bonus</span></button>
+<button class="nav-item" data-page="ordersPage" onclick="openOrders()"><span class="nav-icon">▤</span><span>Kòmand</span></button>
+<button class="nav-item" data-page="settingsPage" onclick="openSettings()"><span class="nav-icon">⚙</span><span>Paramèt</span></button>
+<button class="nav-item" data-page="supportPage" onclick="showPage('supportPage')"><span class="nav-icon">♧</span><span>Sipò</span></button>
+</nav>
+
+<div class="modal" id="loginModal">
+<div class="modal-box">
+<h2>💎 PH JOOLENS STORE</h2><p>Konekte avèk Gmail ou pou kontinye.</p>
+<form onsubmit="login(event)">
+<div class="field"><label for="gmail">Adrès Gmail</label><input id="gmail" type="email" placeholder="egzanp@gmail.com" required></div>
+<button class="gold-btn full-btn" type="submit">Konekte</button>
+</form>
+<p class="notice">Pou itilize tout fonksyon yo, konekte ak Gmail ou.</p>
+</div>
+</div>
+
+<div class="modal" id="orderModal">
+<div class="modal-box">
+<button class="close-btn" onclick="closeModal('orderModal')">×</button>
+<h2>🛒 Fè yon kòmand</h2><p id="selectedProduct"></p>
+<form onsubmit="submitOrder(event)">
+<div class="field"><label for="playerNick">Nom Joueur (Surnom nan jwèt la)</label><input id="playerNick" required placeholder="Egz: PH_Joolens123"></div>
+<div class="field"><label for="playerId">ID Joueur (Matrikil / UID nan jwèt la)</label><input id="playerId" required placeholder="Egz: 1234567890"></div>
+<div class="field"><label for="paymentMethod">Metòd peman</label><select id="paymentMethod" required><option value="">Chwazi metòd peman</option><option value="MonCash">MonCash — +509 4882-8406</option><option value="NatCash">NatCash — +509 5607-9663</option></select></div>
+<div class="field"><label for="transferNumber">Nimewo ou te itilize pou transfè</label><input id="transferNumber" required placeholder="+509 ..."></div>
+<div class="field"><label for="customerNote">Nòt (si genyen)</label><textarea id="customerNote" rows="2" placeholder="Lòt enfòmasyon..."></textarea></div>
+<p class="notice">Kòmand lan ap voye sou WhatsApp pou ekip la verifye peman an.</p>
+<button class="gold-btn full-btn" type="submit">Kontinye sou WhatsApp</button>
+</form>
+</div>
+</div>
+
+<script>
+const WHATSAPP_NUMBER="50932265636";
+let currentGmail=localStorage.getItem("phj_current_gmail")||"";
+let selectedService="freefire";
+let selectedPackage=0;
+
+const catalog={
+freefire:{title:"Free Fire",description:"Diamonds, Booyah Pass ak abònman.",items:[["110 Diamonds","G 150"],["220 Diamonds","G 300"],["341 Diamonds","G 450"],["572 Diamonds","G 750"],["682 Diamonds","G 900"],["792 Diamonds","G 1,050"],["913 Diamonds","G 1,350"],["1166 Diamonds","G 1,500"],["2398 Diamonds","G 3,000"],["3564 Diamonds","G 9,300"],["Booyah Pass","G 500"],["Abonnement semaine","G 375"],["Abonnement mois","G 1,650"],["Super VIP","Mande pri"]]},
+pubg:{title:"PUBG Mobile",description:"UC pou PUBG Mobile.",items:[["60 UC","G 180"],["325 UC","G 875"],["660 UC","G 1,600"],["1800 UC","G 3,500"],["3850 UC","G 8,000"],["8100 UC","G 16,900"],["16200 UC","G 33,000"]]},
+ml:{title:"Mobile Legends",description:"Pakè Diamonds pou Mobile Legends.",items:[["275 Diamonds","G 875"],["565 Diamonds","G 1,750"],["1,160 Diamonds","G 3,467"],["1,770 Diamonds","G 5,054"],["2,975 Diamonds","G 7,967"],["6,000 Diamonds","G 15,016"]]},
+cod:{title:"Call of Duty Mobile",description:"Pri CP yo poko disponib. Kontakte sipò pou mande pri.",items:[["80 CP","Mande pri"],["420 CP","Mande pri"],["880 CP","Mande pri"],["2400 CP","Mande pri"],["5000 CP","Mande pri"],["10800 CP","Mande pri"]]},
+efootball:{title:"eFootball",description:"Coins pou eFootball.",items:[["1050 Coins","G 1,950"],["2150 Coins","G 4,000"],["3300 Coins","G 5,900"],["5800 Coins","G 9,850"],["12000 Coins","G 19,700"]]},
+popolive:{title:"Popolive",description:"Recharge Popolive. Kontakte sipò pou konfime disponiblite.",items:[["9,900","G 350"],["19,800","G 700"],["49,500","G 1,750"],["99,000","G 3,400"],["198,000","G 6,700"],["396,000","G 10,200"],["990,000","Mande pri"],["1,980,000","Mande pri"],["3,960,000","Mande pri"]]},
+roblox:{title:"Roblox Gift Cards",description:"Gift Cards Roblox.",items:[["$10 Gift Card","G 1,807"],["$20 Gift Card","G 3,614"],["$30 Gift Card","G 5,421"],["$40 Gift Card","G 7,228"],["$50 Gift Card","G 9,035"],["$60 Gift Card","G 10,842"],["$70 Gift Card","G 12,649"],["$80 Gift Card","G 14,456"],["$90 Gift Card","G 16,263"],["$100 Gift Card","G 18,070"],["$150 Gift Card","G 27,105"],["$200 Gift Card","G 36,140"]]},
+playstation:{title:"PlayStation Gift Cards",description:"Kontakte sipò pou konfime pri.",items:[["$10 Gift Card","Mande pri"],["$20 Gift Card","Mande pri"],["$50 Gift Card","Mande pri"],["$100 Gift Card","Mande pri"]]},
+googleplay:{title:"Google Play Gift Cards",description:"Kontakte sipò pou konfime pri.",items:[["$10 Gift Card","Mande pri"],["$20 Gift Card","Mande pri"],["$50 Gift Card","Mande pri"],["$100 Gift Card","Mande pri"]]}
+};
+
+function showPage(pageId){
+ document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!==pageId));
+ document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===pageId));
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function openGame(key){
+ if(!catalog[key])return;
+ selectedService=key;
+ document.getElementById("gamePageTitle").textContent=catalog[key].title;
+ document.getElementById("gameDescription").textContent=catalog[key].description;
+ renderPackages();
+ showPage("gamePage");
+}
+function renderPackages(){
+ const holder=document.getElementById("packages");
+ if(!holder)return;
+ holder.innerHTML="";
+ catalog[selectedService].items.forEach((item,index)=>{
+  const card=document.createElement("div");card.className="package";
+  const name=document.createElement("strong");name.textContent=item[0];
+  const price=document.createElement("div");price.className="price";price.textContent=item[1];
+  const btn=document.createElement("button");btn.textContent="Kòmande";btn.onclick=()=>openOrder(index);
+  card.append(name,price,btn);holder.appendChild(card);
+ });
+}
+function openOrder(index){
+ if(!requireGmail())return;
+ selectedPackage=index;
+ const item=catalog[selectedService].items[index];
+ document.getElementById("selectedProduct").textContent=catalog[selectedService].title+" — "+item[0]+" — "+item[1];
+ openModal("orderModal");
+}
+function submitOrder(event){
+ event.preventDefault();
+ if(!requireGmail())return;
+ const item=catalog[selectedService].items[selectedPackage];
+ const nick=document.getElementById("playerNick").value.trim();
+ const pid=document.getElementById("playerId").value.trim();
+ 
+ const order={
+  id:Date.now(),
+  gmail:currentGmail,
+  service:catalog[selectedService].title,
+  product:item[0],
+  price:item[1],
+  playerNick:nick,
+  playerId:pid,
+  payment:document.getElementById("paymentMethod").value,
+  transfer:document.getElementById("transferNumber").value.trim(),
+  note:document.getElementById("customerNote").value.trim(),
+  date:new Date().toLocaleString()
+ };
+ 
+ const orders=JSON.parse(localStorage.getItem("phj_orders")||"[]");
+ orders.unshift(order);
+ localStorage.setItem("phj_orders",JSON.stringify(orders));
+ 
+ let currentBonusCount = Number(localStorage.getItem("phj_bonus_orders")||0) + 
