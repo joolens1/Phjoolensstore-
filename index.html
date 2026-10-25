@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030918">
+<title>PH JOOLENS STORE</title>
+
+<style>
+:root {
+  --bg: #030918;
+  --card: #0b1429;
+  --gold: #ffca28;
+  --gold2: #ff9900;
+  --blue: #168cff;
+  --text: #ffffff;
+  --muted: #b5bfd5;
+  --border: #34405b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0 0 100px;
+  background: #030918;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  padding: 12px;
+  margin: auto;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* HEADER */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 0 18px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  font-size: 36px;
+  filter: drop-shadow(0 0 8px #ffbd26);
+}
+
+.brand-name {
+  font-size: clamp(17px, 4.5vw, 28px);
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.brand-sub {
+  text-align: center;
+  letter-spacing: 5px;
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.icon-btn {
+  border: 0;
+  background: transparent;
+  color: white;
+  font-size: 23px;
+  padding: 5px;
+}
+
+/* RECHÈCH */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 12
